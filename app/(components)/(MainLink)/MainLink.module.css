@@ -1,0 +1,15 @@
+.mainLink {
+    height: 58px;
+    width: 214px;
+    background-color: var(--primary);
+    border-radius: 10px;
+    cursor: pointer;
+    display: inline-flex;
+}
+
+.mainLink p {
+    margin: auto;
+    color: var(--secondary);
+    font-size: 32px;
+    font-family: var(--primary-font);
+}

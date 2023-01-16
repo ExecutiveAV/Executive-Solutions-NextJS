@@ -1,0 +1,21 @@
+.sideBar {
+    width: 72px;
+    background-color: var(--primary);
+    height: 100%;
+    display: inline-flex;
+}
+
+.initials {
+    font-size: 24px;
+    margin: auto;
+}
+
+.header {
+    background-color: var(--secondary);
+    font-family: var(--main-font);
+    border-radius: 50%;
+    width: 54px;
+    height: 54px;
+    display: inline-flex;
+    margin: 20px auto 0;
+}

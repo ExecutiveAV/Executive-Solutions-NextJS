@@ -1,0 +1,8 @@
+.viewPanel {
+    height: 100%;
+    border: solid 1px black;
+    display: inline-flex;
+    width: 50%;
+    display: inline-flex;
+    flex-direction: column;
+}
