@@ -1,0 +1,29 @@
+.fileList {
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    display: grid;
+    grid-template-columns: 260px 1fr 1fr;
+    margin-bottom: 45px;
+}
+
+.files {
+    display: flex;
+    flex-direction: column;
+}
+
+.file {
+    display: grid;
+    grid-template-columns: 260px 1fr 1fr;
+    margin-bottom: 9px;
+}
+
+.withSubtitle {
+    display: flex;
+}
+
+.withSubtitle a {
+    font-size: 32px;
+}

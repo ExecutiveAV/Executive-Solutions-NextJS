@@ -1,0 +1,21 @@
+.filterButton {
+    display: flex;
+    position: relative;
+}
+
+.container {
+    position: relative;
+}
+
+.text {
+    position: absolute;
+    font-size: 32px;
+    right: 47px;
+    font-family: var(--primary-font);
+}
+
+.arrow {
+    position: absolute;
+    top: 16px;
+    right: 12px;
+}

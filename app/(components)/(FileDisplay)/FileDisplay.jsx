@@ -1,3 +1,5 @@
+import styles from './FileDisplay.module.css';
+
 import SearchBar from "./(SearchBar)/SearchBar";
 import Button from "./(Button)/Button";
 import FilterButton from "./(FilterButton)/FilterButton";
@@ -7,18 +9,16 @@ import Link from "next/link";
 
 const FileDisplay = ({children, kind}) => {
 
-    const files = []
-
     return (
-        <article className='filePanel' >
-            <header className='filePanel__header' >
+        <article className={styles.fileDisplay} >
+            <header className={styles.header} >
                 <SearchBar />
-                <Button customStyle="filePanel__header__button" >
+                <Button className={styles.button} >
                     <Link href="/schedules/new" >New</Link>
                 </Button>
                 <FilterButton />
             </header>
-            <FileList type={"Schedule #"} filesData={files} kind={kind}  />
+            <FileList type={"Schedule #"} kind={kind}  />
         </article>
     );
 };

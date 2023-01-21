@@ -1,0 +1,43 @@
+.searchbar {
+    position: relative;
+    width: 310px;
+    height: 40px;
+    display: flex;
+    padding: 0;
+}
+
+.bar {
+    width: 100%;
+    height: 100%;
+    color: var(--text);
+    background-color: var(--background);
+    margin: auto;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    justify-items: center;
+    justify-self: center;
+    padding: 0;
+    margin: auto;
+    border: none;
+    font-size: 32px;
+}
+
+.bar:active, .bar:focus, .bar:focus-visible {
+    border: none;
+}
+
+.bar::placeholder {
+    margin: auto;
+    color: #000;
+    font-family: var(--primary-font);
+    font-size: 32px;
+    position: absolute;
+    right: 126px;
+}
+
+.magGlass {
+    position: absolute;
+    right: 88px;
+    top: 7px;
+}
