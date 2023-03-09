@@ -13,6 +13,8 @@ export default function RootLayout({ children }) {
         <body>
           <SideBar />
           {children}
+          <div id='portal' ></div>
+          <div id='modalBackdrop' ></div>
         </body>
     </html>
   )

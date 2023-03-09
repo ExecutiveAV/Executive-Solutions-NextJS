@@ -1,0 +1,50 @@
+@import url("/app/(components)/(CreatorPanel)/(Phase)/(CreatorInputs)/(optionsInput)/arrow.svg");
+
+.numberInput {
+    
+}
+
+.optionsInput, .numberInput {
+    background-color: var(--secondary-background);
+    appearance: none;
+    background-image: url("/app/(components)/(CreatorPanel)/(Phase)/(CreatorInputs)/(optionsInput)/arrow.svg");
+    background-repeat: no-repeat;
+    background-position: right center;
+    width: 600px;
+    height: 40px;
+    border: none;
+    font-size: 16px;
+    color: var(--primary-font);
+
+}
+
+.optionsInput option {
+    font-size: 40px;
+}
+
+.dateInput {
+    background-color: var(--secondary-background);
+    color: var(--primary-font);
+    width: 600px;
+    height: 40px;
+    border: none;
+    font-size: 16px;
+}
+
+.inputLabel {
+    display: inline-block;
+    font-family: var(--primary-font);
+    width: 100%;
+    height: 45px;
+    font-size: 40px;
+    margin-bottom: 12px;
+}
+
+
+.buttonHolder {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 20px;
+    padding: 0 53px;
+}

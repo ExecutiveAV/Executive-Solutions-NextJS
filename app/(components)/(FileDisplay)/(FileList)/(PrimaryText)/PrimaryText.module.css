@@ -1,5 +1,5 @@
 .primaryText {
-    font-size: 32px;
+    font-size: 24px;
     line-height: 36px;
     cursor: pointer;
     font-family: var(--primary-font);
@@ -10,4 +10,8 @@
     line-height: 23px;
     color: #737272;
     margin: auto 0;
+}
+
+.bold {
+    font-weight: bold;
 }

@@ -1,7 +1,7 @@
 import styles from './FilterButton.module.css';
 
 import Button from "../(Button)/Button";
-import Arrow from './(Arrow)/Arrow';
+import Arrow from '../../(Arrow)/Arrow';
 
 const FilterButton = () => {
     return (
