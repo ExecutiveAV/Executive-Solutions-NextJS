@@ -1,4 +1,4 @@
-import styles from './schedules.module.css';
+import styles from './Schedules.module.css';
 
 import Title from "../(components)/(Title)/Title";
 import ViewPanel from "../(components)/(ViewPanel)/ViewPanel";

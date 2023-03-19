@@ -1,4 +1,3 @@
-
 import styles from './ViewPanel.module.css';
 
 const ViewPanel = ({secondary, children}) => {
