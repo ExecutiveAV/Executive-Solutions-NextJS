@@ -70,6 +70,11 @@
     border-bottom: 1px solid #EEEAE6;
 }
 
+.option:hover:not(:first-child) {
+    background-color: #EEEAE6;
+    cursor: pointer;
+}
+
 .option:last-child {
     margin-bottom: 0;
 }

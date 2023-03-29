@@ -1,6 +1,6 @@
 import styles from "./page.module.css"
 
-import ViewPanel from "./(components)/(ViewPanel)/viewPanel";
+import ViewPanel from "./(components)/(ViewPanel)/ViewPanel";
 import MainLink from "./(components)/(MainLink)/MainLink";
 import Title from "./(components)/(Title)/Title";
 

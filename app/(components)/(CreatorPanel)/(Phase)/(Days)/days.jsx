@@ -9,8 +9,7 @@ const Days = ({ action, currentPhase }) => {
     return (
        <>   
             <DateInput label={`What date is it for Day 1`} />
-            <NumberInput label={`How many people for shift 1`} />
-            <ToggleInput label={"Add extra shift?"} id="extraShift" />
+            <NumberInput label={`How many shifts?`} />
             <section className={styles.buttonHolder} >
                 <NavButton action={() => action(currentPhase - 1)} >Back</NavButton>
                 <NavButton action={() => action(currentPhase + 1)} >Next</NavButton>
