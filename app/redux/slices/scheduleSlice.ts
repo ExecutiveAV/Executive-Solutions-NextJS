@@ -3,6 +3,18 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 
 import { Day, Shift, Contractor, ScheduleState } from '../../types/types';
 
+function getCurrentDateTimeInAmericanFormat() {
+    const now = new Date();
+    const month = (now.getMonth() + 1).toString().padStart(2, '0');
+    const day = now.getDate().toString().padStart(2, '0');
+    const year = now.getFullYear();
+    const hours = now.getHours();
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    const formattedHours = ((hours + 11) % 12 + 1).toString().padStart(2, '0');
+    const minutes = now.getMinutes().toString().padStart(2, '0');
+  
+    return `${month}/${day}/${year} ${formattedHours}:${minutes} ${ampm}`;
+}
 
 const initialState: ScheduleState = {
     scheduleData: {
@@ -10,8 +22,8 @@ const initialState: ScheduleState = {
         clientCompany: "",
         showVenue: "",
         days: [],
-        createdAt: "",
-        updatedAt: ""
+        createdAt: `${getCurrentDateTimeInAmericanFormat()}`,
+        updatedAt: `${getCurrentDateTimeInAmericanFormat()}`
     },
     current: {
         day: 0,

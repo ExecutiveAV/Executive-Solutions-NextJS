@@ -4,8 +4,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState: PortalState = {
     isNewItemPortalOpen: false,
-    newEntryPortalType: "",
-    newEnttyPortalDocument: {},
+    newEntryPortalType: "company",
+    newEntryPortalDocument: {},
     didUpload: false,
 };
 
@@ -20,14 +20,17 @@ const newEntryPortalSlice = createSlice({
             state.newEntryPortalType = action.payload;
         },
         setNewEntryPortalDocument: (state, action) => {
-            state.newEnttyPortalDocument = action.payload;
+            state.newEntryPortalDocument = action.payload;
         },
         setDidUpload: (state, action) => {
             state.didUpload = action.payload;
-        }
+        },
+        clearNewEntryPortalDocument: (state) => {
+            state.newEntryPortalDocument = {};
+        },
     }
 });
 
-export const { setIsNewItemPortalOpen, setNewEntryPortalType, setNewEntryPortalDocument, setDidUpload } = newEntryPortalSlice.actions;
+export const { setIsNewItemPortalOpen, setNewEntryPortalType, setNewEntryPortalDocument, setDidUpload, clearNewEntryPortalDocument } = newEntryPortalSlice.actions;
 
 export default newEntryPortalSlice.reducer;

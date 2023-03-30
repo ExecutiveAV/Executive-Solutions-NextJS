@@ -1,21 +1,25 @@
 'use client'
-import { useSelector, useDispatch } from 'react-redux';
-import { setNewEntryPortalDocument, setIsNewItemPortalOpen } from '../../../../redux/slices/newEntryPortalSlice';
+import styles from './NewEntryPortal.module.css';
+import PortalContainer from '../../(Portals)/(newEntryPortal)/(PortalContainer)/PortalContainer';
+import PortalInput from '../../(Portals)/(newEntryPortal)/(PortalInput)/PortalInput';
+import PopUpFooter from '../../(Portals)/(newEntryPortal)/(PopUpFooter)/PopUpFooter';
 
-const NewEntryPortal = ({ newEntryType }) => {
-    const { newEntryPortalType } = useSelector(state => state.newEntryPortal);
+import { useSelector, useDispatch } from 'react-redux';
+import { setNewEntryPortalDocument, setIsNewItemPortalOpen } from '../../../redux/slices/portalSlice';
+
+const NewEntryPortal = ({ newEntryPortalType }) => {
     const dispatch = useDispatch();
 
     const entryUpdater = (value, valueType) => {
         dispatch(setNewEntryPortalDocument({value: value, type: valueType}));
     }
 
-    
+    console.log("test", newEntryPortalType)
 
     return (
         <PortalContainer >
             {
-                newEntryType === "company" ?
+                newEntryPortalType === "company" ?
                 (
                     <>
                         <PortalInput updater={value => entryUpdater(value, "name")} >
@@ -30,7 +34,7 @@ const NewEntryPortal = ({ newEntryType }) => {
                         <PortalInput updater={value => entryUpdater(value, "street")} >
                             Street
                         </PortalInput>
-                        <section className='address' >
+                        <section className={styles.address} >
                             <PortalInput updater={value => entryUpdater(value, "city")} >
                                 City
                             </PortalInput>
@@ -46,7 +50,7 @@ const NewEntryPortal = ({ newEntryType }) => {
                         </section>
                     </>
                 ) :
-                newEntryType === "venue" ?
+                newEntryPortalType === "venue" ?
                 (
                     <>
                         <PortalInput updater={value => entryUpdater(value, "name")} >
@@ -55,7 +59,7 @@ const NewEntryPortal = ({ newEntryType }) => {
                         <PortalInput updater={value => entryUpdater(value, "street")} >
                             Street
                         </PortalInput>
-                        <section className='address' >
+                        <section className={styles.address} >
                             <PortalInput updater={value => entryUpdater(value, "city")} >
                                 City
                             </PortalInput>
@@ -68,7 +72,7 @@ const NewEntryPortal = ({ newEntryType }) => {
                         </section>
                     </>
                 ):
-                newEntryType === "tech" ?
+                newEntryPortalType === "tech" ?
                 (
                     <>
                         <PortalInput updater={value => entryUpdater(value, "name")} >
@@ -80,7 +84,7 @@ const NewEntryPortal = ({ newEntryType }) => {
                         <PortalInput updater={value => entryUpdater(value, "street")} >
                             Street
                         </PortalInput>
-                        <section className='address' >
+                        <section className={styles.address} >
                             <PortalInput updater={value => entryUpdater(value, "city")} >
                                 City
                             </PortalInput>
@@ -96,7 +100,7 @@ const NewEntryPortal = ({ newEntryType }) => {
                         </section>
                     </>
                 ):
-                newEntryType === "position" ?
+                newEntryPortalType === "position" ?
                 (
                     <>
                         <PortalInput updater={value => entryUpdater(value, "name")} >

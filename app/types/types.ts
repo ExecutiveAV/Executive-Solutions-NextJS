@@ -51,6 +51,6 @@ export interface ScheduleState {
 export interface PortalState {
     isNewItemPortalOpen: boolean;
     newEntryPortalType: string;
-    newEnttyPortalDocument: any;
+    newEntryPortalDocument: any;
     didUpload: boolean;
 }
