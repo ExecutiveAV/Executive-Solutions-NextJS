@@ -27,8 +27,8 @@ export interface Contractor {
 
 export interface ScheduleData {
     scheduleNumber: number;
-    clientCompany: string;
-    showVenue: string;
+    company: string;
+    venue: string;
     days: Day[];
     createdAt: string;
     updatedAt: string;
@@ -39,6 +39,7 @@ export interface Current {
     shift: number;
     contractor: number;
     date: string;
+    phase: number;
 }
 
 export interface ScheduleState {

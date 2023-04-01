@@ -19,8 +19,8 @@ function getCurrentDateTimeInAmericanFormat() {
 const initialState: ScheduleState = {
     scheduleData: {
         scheduleNumber: 0,
-        clientCompany: "",
-        showVenue: "",
+        company: "",
+        venue: "",
         days: [],
         createdAt: `${getCurrentDateTimeInAmericanFormat()}`,
         updatedAt: `${getCurrentDateTimeInAmericanFormat()}`
@@ -29,7 +29,8 @@ const initialState: ScheduleState = {
         day: 0,
         shift: 0,
         contractor: 0,
-        date: ""
+        date: "",
+        phase: 0,
     },
 };
 
@@ -64,26 +65,80 @@ export const scheduleSlice = createSlice({
         setScheduleNumber: (state, action: PayloadAction<number>) => {
             state.scheduleData.scheduleNumber = action.payload;
         },
-        setClientCompany: (state, action: PayloadAction<string>) => {
-            state.scheduleData.clientCompany = action.payload;
+        setcompany: (state, action: PayloadAction<string>) => {
+            state.scheduleData.company = action.payload;
         },
-        setShowVenue: (state, action: PayloadAction<string>) => {
-            state.scheduleData.showVenue = action.payload;
+        setvenue: (state, action: PayloadAction<string>) => {
+            state.scheduleData.venue = action.payload;
         },
-        setDays: (state, action: PayloadAction<Day[]>) => {
-            state.scheduleData.days = action.payload;
+        setDays: (state, action: PayloadAction<number>) => {
+            const tempDays: Day[] = [...state.scheduleData.days];
+            const newTotal = action.payload - state.scheduleData.days.length;
+            if (newTotal > 0) {
+                for (let i = 0; i < newTotal; i++) {
+                    tempDays.push({
+                        dayNumber: (state.scheduleData.days.length + i + 1),
+                        date: "",
+                        shifts: []
+                    });
+                }
+            state.scheduleData.days = tempDays;
+            } else if (newTotal < 0) {
+                state.scheduleData.days = tempDays.slice(0, action.payload);
+            } else if (newTotal === 0) {
+                return;
+            }
         },
         setDay: (state, action: PayloadAction<Day>) => {
             state.scheduleData.days[action.payload.dayNumber] = action.payload;
         },
-        setShifts: (state, action: PayloadAction<Shift[]>) => {
-            state.scheduleData.days[state.current.day].shifts = action.payload;
+        setShifts: (state, action: PayloadAction<number>) => {
+            const tempShifts: Shift[] = [...state.scheduleData.days[state.current.day].shifts];
+            const newTotal = action.payload - state.scheduleData.days[state.current.day].shifts.length;
+            if (newTotal > 0) {
+                for (let i = 0; i < newTotal; i++) {
+                    tempShifts.push({
+                        shiftNumber: (state.scheduleData.days[state.current.day].shifts.length + i + 1),
+                        startTime: "",
+                        endTime: "",
+                        contractors: [],
+                        totalHours: 0,
+                    });
+                }
+                state.scheduleData.days[state.current.day].shifts = tempShifts;
+            } else if (newTotal < 0) {
+                state.scheduleData.days[state.current.day].shifts = tempShifts.slice(0, action.payload);
+            } else if (newTotal === 0) {
+                return;
+            }
         },
         setShift: (state, action: PayloadAction<Shift>) => {
             state.scheduleData.days[state.current.day].shifts[action.payload.shiftNumber] = action.payload;
         },
-        setContractors: (state, action: PayloadAction<Contractor[]>) => {
-            state.scheduleData.days[state.current.day].shifts[state.current.shift].contractors = action.payload;
+        setContractors: (state, action: PayloadAction<number>) => {
+            const tempContractors: Contractor[] = [...state.scheduleData.days[state.current.day].shifts[state.current.shift].contractors];
+            const newTotal = action.payload - state.scheduleData.days[state.current.day].shifts[state.current.shift].contractors.length;
+            if (newTotal > 0) {
+                for (let i = 0; i < newTotal; i++) {
+                    tempContractors.push({
+                        contractorId: (state.scheduleData.days[state.current.day].shifts[state.current.shift].contractors.length + i + 1),
+                        contractorName: "",
+                        contractorPosition: "",
+                        contractorRate: 0,
+                        contractorTimeIn: "",
+                        contractorTimeOut: "",
+                        contractorHours: 0,
+                        contractorTotal: 0,
+                        contractorOvertime: 0,
+                        walkaway: false
+                    });
+                }
+                state.scheduleData.days[state.current.day].shifts[state.current.shift].contractors = tempContractors;
+            } else if (newTotal < 0) {
+                state.scheduleData.days[state.current.day].shifts[state.current.shift].contractors = tempContractors.slice(0, action.payload);
+            } else if (newTotal === 0) {
+                return;
+            }
         },
         setContractor: (state, action: PayloadAction<Contractor>) => {
             state.scheduleData.days[state.current.day].shifts[state.current.shift].contractors[action.payload.contractorId] = action.payload;
@@ -133,41 +188,12 @@ export const scheduleSlice = createSlice({
         setDayDate: (state, action: PayloadAction<string>) => {
             state.scheduleData.days[state.current.day].date = action.payload;
         },
+        setCurrentPhase: (state, action: PayloadAction<number>) => {
+            state.current.phase = action.payload;
+        },
     },
 });
-export const {
-    setScheduleData,
-    setCurrent,
-    setCurrentDay,
-    setCurrentShift,
-    setCurrentContractor,
-    setCurrentDate,
-    setCreatedAt,
-    setUpdatedAt,
-    setScheduleNumber,
-    setClientCompany,
-    setShowVenue,
-    setDays,
-    setDay,
-    setShifts,
-    setShift,
-    setContractors,
-    setContractor,
-    setContractorName,
-    setContractorPosition,
-    setContractorRate,
-    setContractorTimeIn,
-    setContractorTimeOut,
-    setContractorHours,
-    setContractorTotal,
-    setContractorOvertime,
-    setWalkAway,
-    setShiftNumber,
-    setShiftStartTime,
-    setShiftEndTime,
-    setShiftTotalHours,
-    setDayNumber,
-    setDayDate,
-} = scheduleSlice.actions;
+
+export const { setScheduleData, setCurrentDay, setCurrentShift, setCurrentContractor, setCurrentDate, setCreatedAt, setUpdatedAt, setScheduleNumber, setcompany, setvenue, setDays, setDay, setShifts, setShift, setContractors, setContractor, setContractorName, setContractorPosition, setContractorRate, setContractorTimeIn, setContractorTimeOut, setContractorHours, setContractorTotal, setContractorOvertime, setWalkAway, setShiftNumber, setShiftStartTime, setShiftEndTime, setShiftTotalHours, setDayNumber, setDayDate, setCurrentPhase, } = scheduleSlice.actions;
 
 export default scheduleSlice.reducer;
