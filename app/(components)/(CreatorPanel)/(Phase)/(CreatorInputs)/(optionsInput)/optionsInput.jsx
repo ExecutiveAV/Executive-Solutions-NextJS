@@ -20,8 +20,7 @@ const OptionsInput = ({  label, entryType, action, dispatched }) => {
             const items = [];
             group.forEach(doc => {
                 items.push([doc.id.replaceAll("_", " ")]);
-            })
-            console.log("options", items)
+            });
             setOptions(items);
         } catch (e) {
             console.error(e);
@@ -48,8 +47,6 @@ const OptionsInput = ({  label, entryType, action, dispatched }) => {
             dispatch(dispatched(value));
         };
     };
-
-    
 
     return (
         <section >

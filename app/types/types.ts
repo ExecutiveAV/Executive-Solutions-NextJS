@@ -9,6 +9,8 @@ export interface Shift {
     startTime: string;
     endTime: string;
     totalHours: number;
+    halfDay: boolean;
+    walkaway: boolean;
     contractors: Contractor[];
 }
 

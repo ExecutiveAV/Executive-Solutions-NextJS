@@ -1,13 +1,16 @@
 'use client'
 import styles from '../Inputs.module.css';
 
+
+
 import { useState } from 'react';
 
-const ToggleInput = ({ label, value, onChange, id }) => {
+const ToggleInput = ({ label, value, dispatched, id }) => {
     const [isOn, setIsOn] = useState(false);
 
     const handleClick = () => {
         setIsOn(!isOn);
+        dispatched(!isOn);
     };
 
     return (

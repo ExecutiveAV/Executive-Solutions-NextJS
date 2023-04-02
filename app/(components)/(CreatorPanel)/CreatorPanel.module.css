@@ -1,8 +1,9 @@
 .creatorPanel {
-    height: 100%;
+    height: min-content;
     width: 600px;
     margin: 0;
-    margin-top: 305px;
+    margin-top: auto;
+    margin-bottom: auto;
     display: inline-flex;
     flex-direction: column;
 }

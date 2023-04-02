@@ -27,7 +27,7 @@ const NewDocument = ({ children }) => {
             {
                 currentPhase === 0 ? <SetUp action={setCurrentPhase} currentPhase={currentPhase} /> :
                 currentPhase === 1 ? <Days action={setCurrentPhase} currentPhase={currentPhase} /> :
-                currentPhase === 2 ? <Shifts action={setCurrentPhase} currentPhase={currentPhase} /> :
+                currentPhase === 2 ? <Shifts currentPhase={currentPhase} /> :
                 currentPhase === 3 ? <Contractor action={setCurrentPhase} currentPhase={currentPhase} /> :
                 ""
             }

@@ -1,10 +1,10 @@
 import styles from '../Inputs.module.css';
 
-const DateInput = ({ label, value, onChange }) => {
+const DateInput = ({ label, dispatched }) => {
     return (
         <section>
             <label className={styles.inputLabel} >{label}</label>
-            <input className={styles.dateInput} type="date" value={value} onChange={e => onChange(e.currentTarget.value)} />
+            <input className={styles.optionsInput} type="date" onChange={e => dispatched(e.currentTarget.value)} />
         </section>
     );
 };

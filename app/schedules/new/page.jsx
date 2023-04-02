@@ -15,7 +15,7 @@ const New = () => {
                     <CreatorPanel />
                 </ViewPanel>
                 <ViewPanel secondary >
-
+                    
                 </ViewPanel>
             </Providers>
             

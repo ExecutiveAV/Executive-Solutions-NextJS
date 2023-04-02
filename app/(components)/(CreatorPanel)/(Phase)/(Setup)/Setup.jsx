@@ -32,9 +32,37 @@ const DaysCreator = (dayCounter) => {
 
 const SetUp = ({ action }) => {
 
-    const schedule = useSelector(state => state.schedule);
     const dispatch = useDispatch();
     const router = useRouter();
+    const company = useSelector(state => state.schedule.scheduleData.company);
+    const venue = useSelector(state => state.schedule.scheduleData.venue);
+    const scheduleNumber = useSelector(state => state.schedule.scheduleData.scheduleNumber);
+    const days = useSelector(state => state.schedule.scheduleData.days.length);
+
+    const checkForEmpty = () => {
+        let empty = false;
+        if (company === "") {
+            empty = true;
+        };
+        if (venue === "") {
+            empty = true;
+        };
+        if (scheduleNumber === 0) {
+            empty = true;
+        };  
+        if (days === 0) {
+            empty = true;
+        };
+        return empty;
+    };
+
+    const handleNext = () => {
+        if (checkForEmpty()) {
+            alert("Please fill out all fields");
+        } else {
+            dispatch(setCurrentPhase(1));
+        };
+    };
 
     return (
         <Providers>
@@ -44,7 +72,7 @@ const SetUp = ({ action }) => {
             <NumberInput label="How Many Days?" min={1} max={999} action={e => console.log(e)} dispatched={(value) => dispatch(setDays(value))} />
             <section className={styles.buttonHolder} >
                 <NavButton action={() => {router.back()}} >Back</NavButton>
-                <NavButton action={() => {dispatch(setCurrentPhase(1))}} >Next</NavButton>
+                <NavButton action={handleNext} >Next</NavButton>
             </section>
         </Providers>
     )

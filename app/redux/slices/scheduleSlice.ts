@@ -1,20 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
+import { getCurrentDateTimeInAmericanFormat, getCurrentDateInAmericanFormat, convertMilitaryTimeToStandardTime } from "../../../utils/jsUtils/utils";
+
 import { Day, Shift, Contractor, ScheduleState } from '../../types/types';
 
-function getCurrentDateTimeInAmericanFormat() {
-    const now = new Date();
-    const month = (now.getMonth() + 1).toString().padStart(2, '0');
-    const day = now.getDate().toString().padStart(2, '0');
-    const year = now.getFullYear();
-    const hours = now.getHours();
-    const ampm = hours >= 12 ? 'PM' : 'AM';
-    const formattedHours = ((hours + 11) % 12 + 1).toString().padStart(2, '0');
-    const minutes = now.getMinutes().toString().padStart(2, '0');
-  
-    return `${month}/${day}/${year} ${formattedHours}:${minutes} ${ampm}`;
-}
 
 const initialState: ScheduleState = {
     scheduleData: {
@@ -101,6 +91,8 @@ export const scheduleSlice = createSlice({
                         shiftNumber: (state.scheduleData.days[state.current.day].shifts.length + i + 1),
                         startTime: "",
                         endTime: "",
+                        halfDay: false,
+                        walkaway: false,
                         contractors: [],
                         totalHours: 0,
                     });
@@ -174,10 +166,10 @@ export const scheduleSlice = createSlice({
             state.scheduleData.days[state.current.day].shifts[state.current.shift].shiftNumber = action.payload;
         },
         setShiftStartTime: (state, action: PayloadAction<string>) => {
-            state.scheduleData.days[state.current.day].shifts[state.current.shift].startTime = action.payload;
+            state.scheduleData.days[state.current.day].shifts[state.current.shift].startTime = convertMilitaryTimeToStandardTime(action.payload);
         },
         setShiftEndTime: (state, action: PayloadAction<string>) => {
-            state.scheduleData.days[state.current.day].shifts[state.current.shift].endTime = action.payload;
+            state.scheduleData.days[state.current.day].shifts[state.current.shift].endTime = convertMilitaryTimeToStandardTime(action.payload);
         },
         setShiftTotalHours: (state, action: PayloadAction<number>) => {
             state.scheduleData.days[state.current.day].shifts[state.current.shift].totalHours = action.payload;
@@ -186,14 +178,20 @@ export const scheduleSlice = createSlice({
             state.scheduleData.days[state.current.day].dayNumber = action.payload;
         },
         setDayDate: (state, action: PayloadAction<string>) => {
-            state.scheduleData.days[state.current.day].date = action.payload;
+            state.scheduleData.days[state.current.day].date = getCurrentDateInAmericanFormat(action.payload);
         },
         setCurrentPhase: (state, action: PayloadAction<number>) => {
             state.current.phase = action.payload;
         },
+        setShiftHalfDay: (state, action: PayloadAction<boolean>) => {
+            state.scheduleData.days[state.current.day].shifts[state.current.shift].halfDay = action.payload;
+        },
+        setShiftWalkaway: (state, action: PayloadAction<boolean>) => {
+            state.scheduleData.days[state.current.day].shifts[state.current.shift].walkaway = action.payload;
+        },
     },
 });
 
-export const { setScheduleData, setCurrentDay, setCurrentShift, setCurrentContractor, setCurrentDate, setCreatedAt, setUpdatedAt, setScheduleNumber, setcompany, setvenue, setDays, setDay, setShifts, setShift, setContractors, setContractor, setContractorName, setContractorPosition, setContractorRate, setContractorTimeIn, setContractorTimeOut, setContractorHours, setContractorTotal, setContractorOvertime, setWalkAway, setShiftNumber, setShiftStartTime, setShiftEndTime, setShiftTotalHours, setDayNumber, setDayDate, setCurrentPhase, } = scheduleSlice.actions;
+export const { setScheduleData, setCurrentDay, setCurrentShift, setCurrentContractor, setCurrentDate, setCreatedAt, setUpdatedAt, setScheduleNumber, setcompany, setvenue, setDays, setDay, setShifts, setShift, setContractors, setContractor, setContractorName, setContractorPosition, setContractorRate, setContractorTimeIn, setContractorTimeOut, setContractorHours, setContractorTotal, setContractorOvertime, setWalkAway, setShiftNumber, setShiftStartTime, setShiftEndTime, setShiftTotalHours, setDayNumber, setDayDate, setCurrentPhase, setShiftHalfDay, setShiftWalkaway } = scheduleSlice.actions;
 
 export default scheduleSlice.reducer;
