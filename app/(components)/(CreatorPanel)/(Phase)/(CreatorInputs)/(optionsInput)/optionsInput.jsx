@@ -10,7 +10,7 @@ import { setNewEntryPortalDocument, setIsNewItemPortalOpen, setNewEntryPortalTyp
 import Arrow from "../../../../(Arrow)/Arrow";
 import styles from "../Inputs.module.css"
 
-const OptionsInput = ({  label, entryType, action, dispatched }) => {
+const OptionsInput = ({ value, label, entryType, action, dispatched }) => {
 
     const [options, setOptions] = useState("undefined");
 
@@ -51,7 +51,7 @@ const OptionsInput = ({  label, entryType, action, dispatched }) => {
     return (
         <section >
             <label className={styles.inputLabel} >{label}</label>
-            <select className={styles.optionsInput} onChange={e => newSelected(e.target.value, entryType)} >
+            <select className={styles.optionsInput} value={value} onChange={e => newSelected(e.target.value, entryType)} >
                 <option className={styles.option} selected disabled  >***Make a selection***</option>
                 {options !== "undefined" ?
                 options.map(option => (

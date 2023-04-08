@@ -1,5 +1,6 @@
 .renderingPreview {
-    width: 100%;
-    height: auto;
-    margin: auto 42px;
+    width: calc(100% - 23px);
+    height: 95%;
+    margin: auto auto auto 0;
+    overflow-y: scroll;
 }

@@ -1,0 +1,72 @@
+.category {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: space-around;
+    justify-self: center;
+    justify-items: center;
+    width: 100%;
+    background-color: white;
+}
+
+.schedule {
+    height: 18px;
+    margin: auto;
+}
+
+.schedule:nth-of-type(even) {
+    border-top: 1px solid #000000;
+}
+
+.day {
+    min-width: 47px;
+    max-width: 47px ;
+    border-bottom: #000000 solid 1px;
+    border-right: #000000 solid 1px;
+    box-sizing: border-box;
+    display: inline-flex;
+}
+
+.date {
+    min-width: 100px;
+    max-width: 100px;
+    border-bottom: #000000 solid 1px;
+    border-right: #000000 solid 1px;
+}
+
+
+.qty {
+    min-width: 44px;
+    max-width: 44px;
+    width: 100%;
+    border-bottom: #000000 solid 1px;
+    border-right: #000000 solid 1px;
+}
+
+.position {
+    min-width: 140px;
+    max-width: 140px;
+    width: 100%;
+    border-bottom: #000000 solid 1px;
+    border-right: #000000 solid 1px;
+}
+
+.tech {
+    min-width: 153px;
+    width: 100%;
+    border-bottom: #000000 solid 1px;
+    border-right: #000000 solid 1px;
+}
+
+.time {
+    min-width: 190px;
+    max-width: 190px;
+    width: 100%;
+    border-bottom: #000000 solid 1px;
+    border-right: #000000 solid 1px;
+}
+
+.hrs {
+    min-width: 81px;
+    width: 100%;
+    border-bottom: #000000 solid 1px;
+}

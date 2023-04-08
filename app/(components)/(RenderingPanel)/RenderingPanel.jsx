@@ -1,9 +1,12 @@
 import Hero from "./(Hero)/Hero";
+import Body from "./(Body)/Body";
+import styles from './RenderingPanel.module.css';
 
-const RenderingPanel = ({  }) => {
+const RenderingPanel = () => {
     return (
-        <section className="rendering-panel">
-            <Hero />
+        <section className={styles.renderingPreview}>
+            <Hero ></Hero>
+            <Body ></Body>
         </section>
     );
 };

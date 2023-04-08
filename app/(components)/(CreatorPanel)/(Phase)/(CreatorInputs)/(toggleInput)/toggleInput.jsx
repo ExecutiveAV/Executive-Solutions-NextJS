@@ -6,18 +6,17 @@ import styles from '../Inputs.module.css';
 import { useState } from 'react';
 
 const ToggleInput = ({ label, value, dispatched, id }) => {
-    const [isOn, setIsOn] = useState(false);
 
     const handleClick = () => {
-        setIsOn(!isOn);
-        dispatched(!isOn);
+        setIsOn(!value);
+        dispatched(!value);
     };
 
     return (
         <>
             <label className={styles.inputLabel} >{label}</label>
             <label className={styles.switch} htmlFor={id} >
-                <input id={id} type={'checkbox'} checked={isOn} onChange={handleClick} />
+                <input id={id} type={'checkbox'} defaultChecked={value} onChange={handleClick} />
                 <span className={`${styles.slider} ${styles.round}`}></span>
             </label>
         </>

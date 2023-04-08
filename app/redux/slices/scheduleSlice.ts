@@ -5,13 +5,46 @@ import { getCurrentDateTimeInAmericanFormat, getCurrentDateInAmericanFormat, con
 
 import { Day, Shift, Contractor, ScheduleState } from '../../types/types';
 
+const tempInitialState = {
+    days: [
+    {
+      dayNumber: 1,
+      date: '',
+      shifts: [
+        {
+          shiftNumber: 1,
+          startTime: '',
+          endTime: '',
+          halfDay: false,
+          walkaway: false,
+          contractors: [
+            {
+              contractorId: 1,
+              contractorName: '',
+              contractorPosition: '',
+              contractorRate: 0,
+              contractorTimeIn: '',
+              contractorTimeOut: '',
+              contractorHours: 0,
+              contractorTotal: 0,
+              contractorOvertime: 0,
+              walkaway: false
+            }
+          ],
+          totalHours: 0
+        }
+      ]
+    }
+  ],
+}
+
 
 const initialState: ScheduleState = {
     scheduleData: {
         scheduleNumber: 0,
         company: "",
         venue: "",
-        days: [],
+        days: tempInitialState.days,
         createdAt: `${getCurrentDateTimeInAmericanFormat()}`,
         updatedAt: `${getCurrentDateTimeInAmericanFormat()}`
     },
@@ -69,7 +102,30 @@ export const scheduleSlice = createSlice({
                     tempDays.push({
                         dayNumber: (state.scheduleData.days.length + i + 1),
                         date: "",
-                        shifts: []
+                        shifts: [
+                            {
+                              shiftNumber: 1,
+                              startTime: '',
+                              endTime: '',
+                              halfDay: false,
+                              walkaway: false,
+                              contractors: [
+                                {
+                                  contractorId: 1,
+                                  contractorName: '',
+                                  contractorPosition: '',
+                                  contractorRate: 0,
+                                  contractorTimeIn: '',
+                                  contractorTimeOut: '',
+                                  contractorHours: 0,
+                                  contractorTotal: 0,
+                                  contractorOvertime: 0,
+                                  walkaway: false
+                                }
+                              ],
+                              totalHours: 0
+                            }
+                          ]
                     });
                 }
             state.scheduleData.days = tempDays;
@@ -93,7 +149,20 @@ export const scheduleSlice = createSlice({
                         endTime: "",
                         halfDay: false,
                         walkaway: false,
-                        contractors: [],
+                        contractors: [
+                            {
+                              contractorId: 1,
+                              contractorName: '',
+                              contractorPosition: '',
+                              contractorRate: 0,
+                              contractorTimeIn: '',
+                              contractorTimeOut: '',
+                              contractorHours: 0,
+                              contractorTotal: 0,
+                              contractorOvertime: 0,
+                              walkaway: false
+                            }
+                          ],
                         totalHours: 0,
                     });
                 }

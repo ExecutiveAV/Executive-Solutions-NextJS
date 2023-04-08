@@ -2,6 +2,7 @@ import styles from './Schedules.module.css';
 
 import Title from "../(components)/(Title)/Title";
 import ViewPanel from "../(components)/(ViewPanel)/ViewPanel";
+import RenderingPanel from "../(components)/(RenderingPanel)/RenderingPanel";
 import FileDisplay from "../(components)/(FileDisplay)/FileDisplay";
 
 const Schedules = () => {
@@ -13,7 +14,6 @@ const Schedules = () => {
                 <FileDisplay kind="schedules" ></FileDisplay>
             </ViewPanel>
             <ViewPanel secondary >
-
             </ViewPanel>
         </main>
     );

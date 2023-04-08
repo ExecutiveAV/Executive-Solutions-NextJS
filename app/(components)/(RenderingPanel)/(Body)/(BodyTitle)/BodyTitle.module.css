@@ -1,0 +1,87 @@
+.bodyTitleContainer {
+    width: 100%;
+    display: inline-flex;
+    background-color: var(--tertiary-background);
+    color: var(--secondary);
+}
+
+.bodyTitle:last-child {
+    border-left: none;
+}
+
+.day {
+    min-width: 47px;
+    max-width: 47px ;
+    border-bottom: #000000 solid 1px;
+    border-right: #000000 solid 1px;
+    width: 100%;
+    flex: 1;
+    display: inline-flex;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.date {
+    min-width: 100px;
+    max-width: 100px;
+    flex: 1;
+    border-bottom: #000000 solid 1px;
+    border-right: #000000 solid 1px;
+    display: inline-flex;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.all {
+    min-width: 474px;
+    width: 100%;
+    flex: 6;
+    display: inline-flex;
+    padding: 0;
+    border-bottom: #000000 solid 1px;
+    display: inline-flex;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.qty {
+    min-width: 44px;
+    max-width: 44px;
+    min-width: 44px;
+    width: 100%;
+    display: inline-flex;
+    justify-content: center;
+    border-right: #000000 solid 1px;
+}
+
+.position {
+    min-width: 140px;
+    max-width: 140px;
+    display: inline-flex;
+    justify-content: center;
+    border-right: #000000 solid 1px;
+}
+
+.tech {
+    min-width: 153px;
+    width: 100%;
+    display: inline-flex;
+    justify-content: center;
+    border-right: #000000 solid 1px;
+}
+
+.time {
+    min-width: 190px;
+    max-width: 190px;
+    width: 100%;
+    display: inline-flex;
+    justify-content: center;
+    border-right: #000000 solid 1px;
+}
+
+.hrs {
+    min-width: 81px;
+    width: 100%;
+    display: inline-flex;
+    justify-content: center;
+}

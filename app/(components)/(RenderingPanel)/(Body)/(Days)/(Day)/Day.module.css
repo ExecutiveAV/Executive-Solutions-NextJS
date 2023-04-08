@@ -1,0 +1,22 @@
+.day {
+    width: 100%;    
+}
+
+.dayInfo {
+    display: inline-flex;
+    width: 100%;
+}
+
+.schedule {
+    width: 100%;
+    margin: auto;
+    display: inline-flex;
+    justify-content: center;
+}
+
+.groups {
+    display: inline-flex;
+    width: 100%;
+    border: none;
+    min-width: 474px;
+}

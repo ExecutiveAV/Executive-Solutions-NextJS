@@ -4,6 +4,7 @@ import Providers from "../../(components)/(Provider)/Provider";
 
 import ViewPanel from "../../(components)/(ViewPanel)/ViewPanel";
 import CreatorPanel from "../../(components)/(CreatorPanel)/CreatorPanel"
+import RenderingPanel from "../../(components)/(RenderingPanel)/RenderingPanel";
 import Title from '../../(components)/(Title)/Title'
 
 const New = () => {
@@ -15,7 +16,7 @@ const New = () => {
                     <CreatorPanel />
                 </ViewPanel>
                 <ViewPanel secondary >
-                    
+                    <RenderingPanel />
                 </ViewPanel>
             </Providers>
             

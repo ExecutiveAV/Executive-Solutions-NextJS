@@ -1,10 +1,16 @@
+'use client'
+
+import { dateSelector } from '../../../../../redux/store/selectors/scheduleSelectors';
+
+import { useSelector } from 'react-redux';
+
 import styles from '../Inputs.module.css';
 
-const DateInput = ({ label, dispatched }) => {
+const DateInput = ({ value, label, dispatched }) => {
     return (
         <section>
             <label className={styles.inputLabel} >{label}</label>
-            <input className={styles.optionsInput} type="date" onChange={e => dispatched(e.currentTarget.value)} />
+            <input defaultValue={value} className={styles.optionsInput} type="date" onChange={e => dispatched(e.currentTarget.value)} />
         </section>
     );
 };

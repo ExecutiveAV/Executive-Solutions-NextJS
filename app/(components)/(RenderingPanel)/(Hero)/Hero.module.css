@@ -1,0 +1,9 @@
+.headerTitle {
+    width: 100%;
+    color: #000000;
+    font-family: var(--primary-font);
+    font-size: 32px;
+    font-weight: bold;
+    text-align: left;
+    vertical-align: text-bottom;
+}
