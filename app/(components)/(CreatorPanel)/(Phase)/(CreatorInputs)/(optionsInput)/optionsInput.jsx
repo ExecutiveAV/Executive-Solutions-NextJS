@@ -6,20 +6,28 @@ import { collection, getDocs } from "firebase/firestore";
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { setNewEntryPortalDocument, setIsNewItemPortalOpen, setNewEntryPortalType } from "../../../../../redux/slices/portalSlice";
+import { setNewEntryKind } from "../../../../../redux/slices/newEntrySlice";
 
-import Arrow from "../../../../(Arrow)/Arrow";
 import styles from "../Inputs.module.css"
 
 const OptionsInput = ({ value, label, entryType, action, dispatched }) => {
 
-    const [options, setOptions] = useState("undefined");
+    const [options, setOptions] = useState({
+        optionIds: [],
+        optionData: {}
+    });
 
     const fetchDB = async (kind) => {
         try {
             const group = await getDocs(collection(db, kind));
-            const items = [];
+            const items = {
+                optionIds: [],
+                optionData: {}
+            };
             group.forEach(doc => {
-                items.push([doc.id.replaceAll("_", " ")]);
+                items.optionIds.push(doc.id);
+                items.optionData[doc.id] = doc.data();
+                console.log(doc.data())
             });
             setOptions(items);
         } catch (e) {
@@ -42,20 +50,22 @@ const OptionsInput = ({ value, label, entryType, action, dispatched }) => {
     const newSelected = async (value, entryType) => {
         if (value === "New") {
         portalOpener(entryType);
+        dispatch(setNewEntryKind(entryType));
         
         } else {
-            dispatch(dispatched(value));
+            dispatch(dispatched(options.optionData[value.replaceAll(" ", "_")]));
         };
     };
+
 
     return (
         <section >
             <label className={styles.inputLabel} >{label}</label>
-            <select className={styles.optionsInput} value={value} onChange={e => newSelected(e.target.value, entryType)} >
-                <option className={styles.option} selected disabled  >***Make a selection***</option>
+            <select className={styles.optionsInput} value={value ? value : "***Make a selection***"} onChange={e => newSelected(e.target.value, entryType)} >
+                <option className={styles.option} disabled  >***Make a selection***</option>
                 {options !== "undefined" ?
-                options.map(option => (
-                    <option key={`Opt${option}`} className={styles.option} >{option}</option>
+                options.optionIds.map(option => (
+                    <option key={`Opt${option}`} className={styles.option} id={option} >{option.replaceAll("_", " ")}</option>
                 )
                 ) :
                 ""

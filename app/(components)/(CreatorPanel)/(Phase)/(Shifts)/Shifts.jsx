@@ -2,7 +2,7 @@
 
 import { useSelector, useDispatch } from 'react-redux';
 
-import { contractorsSelector, contractorTimeInSelector, contractorTimeOutSelector, halfDaySelector, walkawaySelector, currentShiftSelector, currentDaySelector, shiftSelector } from '../../../../redux/store/selectors/scheduleSelectors';
+import { contractorsSelector, contractorTimeInSelector, contractorTimeOutSelector, halfDaySelector, walkawaySelector, currentShiftSelector, currentDaySelector, shiftSelector } from '../../../../redux/selectors/scheduleSelectors';
 
 import { setContractors, setShiftHalfDay, setShiftWalkaway, setCurrentPhase, setShiftStartTime, setShiftEndTime, setCurrentShift, setCurrentContractor } from '../../../../redux/slices/scheduleSlice';
 

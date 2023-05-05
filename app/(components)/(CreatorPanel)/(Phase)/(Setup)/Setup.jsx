@@ -9,9 +9,9 @@ import Providers from "../../../(Provider)/Provider";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
 
-import { companySelector, venueSelector, scheduleNumberSelector, daysSelector } from "../../../../redux/store/selectors/scheduleSelectors";
+import { companyNameSelector, venueNameSelector, scheduleNumberSelector, daysSelector } from "../../../../redux/selectors/scheduleSelectors";
 
-import { setcompany, setScheduleNumber, setvenue, setDays, setCurrentPhase } from '../../../../redux/slices/scheduleSlice';
+import { setcompany, setScheduleNumber, setVenue, setDays, setCurrentPhase } from '../../../../redux/slices/scheduleSlice';
 
 import OptionsInput from "../(CreatorInputs)/(optionsInput)/optionsInput";
 import NumberInput from "../(CreatorInputs)/(numberInput)/numberInput";
@@ -21,8 +21,8 @@ const SetUp = ({ action }) => {
 
     const dispatch = useDispatch();
     const router = useRouter();
-    const company = useSelector(companySelector);
-    const venue = useSelector(venueSelector);
+    const companyName = useSelector(companyNameSelector);
+    const venueName = useSelector(venueNameSelector);
     const scheduleNumber = useSelector(scheduleNumberSelector);
     const days = useSelector(daysSelector);
 
@@ -53,9 +53,9 @@ const SetUp = ({ action }) => {
 
     return (
         <Providers>
-            <OptionsInput value={company ? company : null} label="Which Company is it for?" entryType="company" dispatched={(value) => dispatch(setcompany(value))} />
+            <OptionsInput value={companyName ? companyName : null} label="Which Company is it for?" entryType="company" dispatched={(value) => dispatch(setcompany(value))} />
             <NumberInput value={scheduleNumber ? scheduleNumber : null} label={`Invoice # `} min={1} max={999} dispatched={(value) => dispatch(setScheduleNumber(value))} />
-            <OptionsInput value={venue ? venue : null} label="What Venue?" entryType="venue" dispatched={(value) => dispatch(setvenue(value))} />
+            <OptionsInput value={venueName ? venueName : null} label="What Venue?" entryType="venue" dispatched={(value) => dispatch(setVenue(value))} />
             <NumberInput value={days ? days.length : null} label="How Many Days?" min={1} max={999} action={e => console.log(e)} dispatched={(value) => dispatch(setDays(value))} />
             <section className={styles.buttonHolder} >
                 <NavButton action={() => {router.back()}} >Back</NavButton>

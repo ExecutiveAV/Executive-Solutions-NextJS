@@ -1,7 +1,15 @@
 import { createSelector } from 'reselect';
 
-const scheduleDataSelector = (state) => state.schedule.scheduleData;
-const currentSelector = (state) => state.schedule.current;
+const scheduleSelector = (state) => state.schedule;
+
+const scheduleDataSelector = createSelector(
+  scheduleSelector,
+  (schedule) => schedule.scheduleData
+);
+const currentSelector = createSelector(
+  scheduleSelector,
+  (schedule) => schedule.current
+);
 
 // Selectors for the schedule data
 
@@ -138,6 +146,66 @@ export const contractorOvertimeSelector = createSelector(
 export const contractorWalkawaySelector = createSelector(
   [scheduleDataSelector, currentSelector],
   (scheduleData, current) => scheduleData.days[current.day].shifts[current.shift].contractors[current.contractor].walkaway
+);
+
+export const companyNameSelector = createSelector(
+  companySelector,
+  (company) => company.companyName
+);
+
+export const companyAddressSelector = createSelector(
+  companySelector,
+  (company) => company.companyAddress
+);
+
+export const companyAddress2Selector = createSelector(
+  companySelector,
+  (company) => company.companyAddress2
+);
+
+export const companyCitySelector = createSelector(
+  companySelector,
+  (company) => company.companyCity
+);
+
+export const companyStateSelector = createSelector(
+  companySelector,
+  (company) => company.companyState
+);
+
+export const companyZipSelector = createSelector(
+  companySelector,
+  (company) => company.companyZip
+);
+
+export const venueNameSelector = createSelector(
+  venueSelector,
+  (venue) => venue.venueName
+);
+
+export const venueAddressSelector = createSelector(
+  venueSelector,
+  (venue) => venue.venueAddress
+);
+
+export const venueAddress2Selector = createSelector(
+  venueSelector,
+  (venue) => venue.venueAddress2
+);
+
+export const venueCitySelector = createSelector(
+  venueSelector,
+  (venue) => venue.venueCity
+);
+
+export const venueStateSelector = createSelector(
+  venueSelector,
+  (venue) => venue.venueState
+);
+
+export const venueZipSelector = createSelector(
+  venueSelector,
+  (venue) => venue.venueZip
 );
 
 // Current selectors for the current day, shift, contractor, and phase

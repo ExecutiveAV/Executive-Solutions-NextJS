@@ -3,7 +3,7 @@ import HeaderTitle from './(HeaderTitle)/HeaderTitle';
 import Headers from './(Headers)/Headers';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { scheduleNumberSelector, venueSelector, companySelector } from '../../../redux/store/selectors/scheduleSelectors';
+import { scheduleNumberSelector, venueSelector, companySelector } from '../../../redux/selectors/scheduleSelectors';
 import { getDoc, doc } from 'firebase/firestore';
 import { db } from '../../../../utils/firebaseUtils/firebaseUtils';
 

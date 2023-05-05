@@ -3,7 +3,7 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 
 import { getCurrentDateTimeInAmericanFormat, getCurrentDateInAmericanFormat, convertMilitaryTimeToStandardTime } from "../../../utils/jsUtils/utils";
 
-import { Day, Shift, Contractor, ScheduleState } from '../../types/types';
+import { Day, Shift, Contractor, ScheduleState, Company, Venue } from '../../types/types';
 
 const tempInitialState = {
     days: [
@@ -36,14 +36,33 @@ const tempInitialState = {
       ]
     }
   ],
+  company: {
+    companyName: '',
+    companyPOC: '',
+    companyEmail: '',
+    companyPhone: '',
+    companyAddress: '',
+    companyAddress2: '',
+    companyCity: '',
+    companyState: '',
+    companyZip: ''
+  },
+    venue: {
+        venueName: '',
+        venueAddress: '',
+        venueAddress2: '',
+        venueCity: '',
+        venueState: '',
+        venueZip: ''
+    }
 }
 
 
 const initialState: ScheduleState = {
     scheduleData: {
-        scheduleNumber: 0,
-        company: "",
-        venue: "",
+        scheduleNumber: 1,
+        company: tempInitialState.company,
+        venue: tempInitialState.venue,
         days: tempInitialState.days,
         createdAt: `${getCurrentDateTimeInAmericanFormat()}`,
         updatedAt: `${getCurrentDateTimeInAmericanFormat()}`
@@ -88,11 +107,29 @@ export const scheduleSlice = createSlice({
         setScheduleNumber: (state, action: PayloadAction<number>) => {
             state.scheduleData.scheduleNumber = action.payload;
         },
-        setcompany: (state, action: PayloadAction<string>) => {
+        setcompany: (state, action: PayloadAction<Company>) => {
             state.scheduleData.company = action.payload;
         },
-        setvenue: (state, action: PayloadAction<string>) => {
+        setVenue: (state, action: PayloadAction<Venue>) => {
             state.scheduleData.venue = action.payload;
+        },
+        setVenueName: (state, action: PayloadAction<string>) => {
+            state.scheduleData.venue.venueName = action.payload;
+        },
+        setVenueAddress: (state, action: PayloadAction<string>) => {
+            state.scheduleData.venue.venueAddress = action.payload;
+        },
+        setVenueAddress2: (state, action: PayloadAction<string>) => {
+            state.scheduleData.venue.venueAddress2 = action.payload;
+        },
+        setVenueCity: (state, action: PayloadAction<string>) => {
+            state.scheduleData.venue.venueCity = action.payload;
+        },
+        setVenueState: (state, action: PayloadAction<string>) => {
+            state.scheduleData.venue.venueState = action.payload;
+        },
+        setVenueZip: (state, action: PayloadAction<string>) => {
+            state.scheduleData.venue.venueZip = action.payload;
         },
         setDays: (state, action: PayloadAction<number>) => {
             const tempDays: Day[] = [...state.scheduleData.days];
@@ -258,9 +295,36 @@ export const scheduleSlice = createSlice({
         setShiftWalkaway: (state, action: PayloadAction<boolean>) => {
             state.scheduleData.days[state.current.day].shifts[state.current.shift].walkaway = action.payload;
         },
+        setCompany: (state, action: PayloadAction<Company>) => {
+            state.scheduleData.company = action.payload;
+        },
+        setCompanyName: (state, action: PayloadAction<string>) => {
+            state.scheduleData.company.companyName = action.payload;
+        },
+        setCompanyAddress: (state, action: PayloadAction<string>) => {
+            state.scheduleData.company.companyAddress = action.payload;
+        },
+        setCompanyAddress2: (state, action: PayloadAction<string>) => {
+            state.scheduleData.company.companyAddress2 = action.payload;
+        },
+        setCompanyCity: (state, action: PayloadAction<string>) => {
+            state.scheduleData.company.companyCity = action.payload;
+        },
+        setCompanyState: (state, action: PayloadAction<string>) => {
+            state.scheduleData.company.companyState = action.payload;
+        },
+        setCompanyZip: (state, action: PayloadAction<string>) => {
+            state.scheduleData.company.companyZip = action.payload;
+        },
+        setCompanyPOC: (state, action: PayloadAction<string>) => {
+            state.scheduleData.company.companyPOC = action.payload;
+        }
+
     },
 });
 
-export const { setScheduleData, setCurrentDay, setCurrentShift, setCurrentContractor, setCurrentDate, setCreatedAt, setUpdatedAt, setScheduleNumber, setcompany, setvenue, setDays, setDay, setShifts, setShift, setContractors, setContractor, setContractorName, setContractorPosition, setContractorRate, setContractorTimeIn, setContractorTimeOut, setContractorHours, setContractorTotal, setContractorOvertime, setWalkAway, setShiftNumber, setShiftStartTime, setShiftEndTime, setShiftTotalHours, setDayNumber, setDayDate, setCurrentPhase, setShiftHalfDay, setShiftWalkaway } = scheduleSlice.actions;
+export const {
+    setScheduleData, setCurrentDay, setCurrentShift, setCurrentContractor, setCurrentDate, setCreatedAt, setUpdatedAt, setScheduleNumber, setcompany, setVenue, setDays, setDay, setShifts, setShift, setContractors, setContractor, setContractorName, setContractorPosition, setContractorRate, setContractorTimeIn, setContractorTimeOut, setContractorHours, setContractorTotal, setContractorOvertime, setWalkAway, setShiftNumber, setShiftStartTime, setShiftEndTime, setShiftTotalHours, setDayNumber, setDayDate, setCurrentPhase, setShiftHalfDay, setShiftWalkaway, setCompanyName, setCompanyAddress, setCompanyAddress2, setCompanyCity, setCompanyState, setCompanyZip,
+} = scheduleSlice.actions;
 
 export default scheduleSlice.reducer;

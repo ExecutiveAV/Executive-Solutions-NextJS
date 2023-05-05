@@ -27,10 +27,31 @@ export interface Contractor {
     walkaway: boolean;
 }
 
+export interface Company {
+    companyName: string;
+    companyPOC: string;
+    companyEmail: string;
+    companyPhone: string;
+    companyAddress: string;
+    companyAddress2: string;
+    companyCity: string;
+    companyState: string;
+    companyZip: string;
+}
+
+export interface Venue {
+    venueName: string;
+    venueAddress: string;
+    venueAddress2: string;
+    venueCity: string;
+    venueState: string;
+    venueZip: string;
+}
+
 export interface ScheduleData {
-    scheduleNumber: number;
-    company: string;
-    venue: string;
+    scheduleNumber: string | number;
+    company: Company;
+    venue: Venue;
     days: Day[];
     createdAt: string;
     updatedAt: string;
@@ -56,4 +77,99 @@ export interface PortalState {
     newEntryPortalType: string;
     newEntryPortalDocument: any;
     didUpload: boolean;
+}
+
+//////
+export interface newEntryCompany {
+    companyName: string;
+    companyPOC: string;
+    companyEmail: string;
+    companyPhone: string;
+    companyAddress: string;
+    companyAddress2: string;
+    companyCity: string;
+    companyState: string;
+    companyZip: string;
+}
+
+export interface newEntryVenue {
+    venueName: string;
+    venueAddress: string;
+    venueAddress2: string;
+    venueCity: string;
+    venueState: string;
+    venueZip: string;
+}
+
+export interface newEntryContractor {
+    contractorName: string;
+    contractorEmail: string;
+    contractorPhone: string;
+    contractorAddress: string;
+    contractorAddress2: string;
+    contractorCity: string;
+    contractorState: string;
+    contractorZip: string;
+}
+
+export interface newEntryPosition {
+    positionName: string;
+    positionRate: number;
+}
+
+export interface newEntryCompanyValidation {
+    companyName: boolean;
+    companyPOC: boolean;
+    companyEmail: boolean;
+    companyPhone: boolean;
+    companyAddress: boolean;
+    companyAddress2: boolean;
+    companyCity: boolean;
+    companyState: boolean;
+    companyZip: boolean;
+    valid: boolean;
+}
+
+export interface newEntryVenueValidation {
+    venueName: boolean;
+    venueAddress: boolean;
+    venueAddress2: boolean;
+    venueCity: boolean;
+    venueState: boolean;
+    venueZip: boolean;
+    valid: boolean;
+}
+
+export interface newEntryContractorValidation {
+    contractorName: boolean;
+    contractorEmail: boolean;
+    contractorPhone: boolean;
+    contractorAddress: boolean;
+    contractorAddress2: boolean;
+    contractorCity: boolean;
+    contractorState: boolean;
+    contractorZip: boolean;
+    valid: boolean;
+}
+
+export interface newEntryPositionValidation {
+    positionName: boolean;
+    positionRate: boolean;
+    valid: boolean;
+}
+
+export interface newEntryValidation {
+    company: newEntryCompanyValidation;
+    venue: newEntryVenueValidation;
+    contractor: newEntryContractorValidation;
+    position: newEntryPositionValidation;
+}
+
+export interface newEntry {
+    company: newEntryCompany;
+    venue: newEntryVenue;
+    contractor: newEntryContractor;
+    position: newEntryPosition;
+    kind: string;
+    validation: newEntryValidation;
 }

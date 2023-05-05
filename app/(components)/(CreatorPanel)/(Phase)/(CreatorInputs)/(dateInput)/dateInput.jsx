@@ -1,6 +1,6 @@
 'use client'
 
-import { dateSelector } from '../../../../../redux/store/selectors/scheduleSelectors';
+import { dateSelector } from '../../../../../redux/selectors/scheduleSelectors';
 
 import { useSelector } from 'react-redux';
 

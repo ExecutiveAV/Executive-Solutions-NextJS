@@ -5,16 +5,43 @@ import PortalInput from '../../(Portals)/(newEntryPortal)/(PortalInput)/PortalIn
 import PopUpFooter from '../../(Portals)/(newEntryPortal)/(PopUpFooter)/PopUpFooter';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { setNewEntryPortalDocument, setIsNewItemPortalOpen } from '../../../redux/slices/portalSlice';
+import {
+    newEntryKindSelector, newEntryCompanyNameValidationSelector, newEntryCompanyPOCValidationSelector, newEntryCompanyEmailValidationSelector, newEntryCompanyPhoneValidationSelector, newEntryCompanyAddressValidationSelector, newEntryCompanyCityValidationSelector, newEntryCompanyStateValidationSelector, newEntryCompanyZipValidationSelector, newEntryVenueNameValidationSelector, newEntryVenueAddressValidationSelector, newEntryVenueCityValidationSelector, newEntryVenueStateValidationSelector, newEntryVenueZipValidationSelector, newEntryContractorNameValidationSelector, newEntryContractorAddressValidationSelector, newEntryContractorCityValidationSelector, newEntryContractorStateValidationSelector, newEntryContractorZipValidationSelector, newEntryContractorEmailValidationSelector, newEntryContractorPhoneValidationSelector, newEntryPositionNameValidationSelector, newEntryPositionRateValidationSelector,
+} from '../../../redux/selectors/newEntrySelectors';
+import {
+    setNewEntryCompanyName, setNewEntryCompanyAddress, setNewEntryCompanyCity, setNewEntryCompanyState, setNewEntryCompanyZip, setNewEntryCompanyPOC, setNewEntryCompanyEmail, setNewEntryCompanyPhone, setNewEntryVenueName, setNewEntryVenueAddress, setNewEntryVenueCity, setNewEntryVenueState, setNewEntryVenueZip, setNewEntryContractorName, setNewEntryContractorAddress, setNewEntryCompanyAddress2, setNewEntryContractorCity, setNewEntryContractorState, setNewEntryContractorZip, setNewEntryContractorEmail, setNewEntryContractorPhone, setNewEntryPositionName, setNewEntryPositionRate, checkNewEntryCompanyValidation, checkNewEntryContractorValidation, checkNewEntryPositionValidation, checkNewEntryVenueValidation
+} from '../../../redux/slices/newEntrySlice';
 
-const NewEntryPortal = ({ newEntryPortalType }) => {
+const NewEntryPortal = () => {
+
     const dispatch = useDispatch();
 
-    const entryUpdater = (value, valueType) => {
-        dispatch(setNewEntryPortalDocument({value: value, type: valueType}));
-    }
+    const newEntryPortalType = useSelector(newEntryKindSelector);
+    const companyNameValidated = useSelector(newEntryCompanyNameValidationSelector);
+    const companyPOCValidated = useSelector(newEntryCompanyPOCValidationSelector);
+    const companyEmailValidated = useSelector(newEntryCompanyEmailValidationSelector);
+    const companyPhoneValidated = useSelector(newEntryCompanyPhoneValidationSelector);
+    const companyAddressValidated = useSelector(newEntryCompanyAddressValidationSelector);
+    const companyCityValidated = useSelector(newEntryCompanyCityValidationSelector);
+    const companyStateValidated = useSelector(newEntryCompanyStateValidationSelector);
+    const companyZipValidated = useSelector(newEntryCompanyZipValidationSelector);
 
-    console.log("test", newEntryPortalType)
+    const venueNameValidated = useSelector(newEntryVenueNameValidationSelector);
+    const venueAddressValidated = useSelector(newEntryVenueAddressValidationSelector);
+    const venueCityValidated = useSelector(newEntryVenueCityValidationSelector);
+    const venueStateValidated = useSelector(newEntryVenueStateValidationSelector);
+    const venueZipValidated = useSelector(newEntryVenueZipValidationSelector);
+
+    const contractorNameValidated = useSelector(newEntryContractorNameValidationSelector);
+    const contractorAddressValidated = useSelector(newEntryContractorAddressValidationSelector);
+    const contractorCityValidated = useSelector(newEntryContractorCityValidationSelector);
+    const contractorStateValidated = useSelector(newEntryContractorStateValidationSelector);
+    const contractorZipValidated = useSelector(newEntryContractorZipValidationSelector);
+    const contractorEmailValidated = useSelector(newEntryContractorEmailValidationSelector);
+    const contractorPhoneValidated = useSelector(newEntryContractorPhoneValidationSelector);
+
+    const positionNameValidated = useSelector(newEntryPositionNameValidationSelector);
+    const positionRateValidated = useSelector(newEntryPositionRateValidationSelector);
 
     return (
         <PortalContainer >
@@ -22,29 +49,59 @@ const NewEntryPortal = ({ newEntryPortalType }) => {
                 newEntryPortalType === "company" ?
                 (
                     <>
-                        <PortalInput updater={value => entryUpdater(value, "name")} >
+                        <PortalInput updater={value => {
+                            dispatch(setNewEntryCompanyName(value))
+                            dispatch(checkNewEntryCompanyValidation())
+                        }} validated={companyNameValidated} >
                             Company Name
                         </PortalInput>
-                        <PortalInput updater={value => entryUpdater(value, "companyPOC")} >
+                        <PortalInput updater={value => {
+                            dispatch(setNewEntryCompanyPOC(value))
+                            dispatch(checkNewEntryCompanyValidation())
+                        }} validated={companyPOCValidated} >
                             Company's POC
                         </PortalInput>
-                        <PortalInput updater={value => entryUpdater(value, "email")} >
+                        <PortalInput updater={value => {
+                            dispatch(setNewEntryCompanyEmail(value))
+                            dispatch(checkNewEntryCompanyValidation())
+                        }} validated={companyEmailValidated} >
                             Email
                         </PortalInput>
-                        <PortalInput updater={value => entryUpdater(value, "street")} >
+                        <PortalInput updater={value => {
+                            dispatch(setNewEntryCompanyPhone(value))
+                            dispatch(checkNewEntryCompanyValidation())
+                        }} validated={companyPhoneValidated} >
                             Street
                         </PortalInput>
+                        <PortalInput updater={value => {
+                            dispatch(setNewEntryCompanyAddress(value))
+                            dispatch(checkNewEntryCompanyValidation())
+                        }} validated={companyAddressValidated} >
+                            Street 2
+                        </PortalInput>
                         <section className={styles.address} >
-                            <PortalInput updater={value => entryUpdater(value, "city")} >
+                            <PortalInput updater={value => {
+                                dispatch(setNewEntryCompanyCity(value))
+                                dispatch(checkNewEntryCompanyValidation())
+                            }} validated={companyCityValidated} >
                                 City
                             </PortalInput>
-                            <PortalInput updater={value => entryUpdater(value, "state")} >
+                            <PortalInput updater={value => {
+                                dispatch(setNewEntryCompanyState(value))
+                                dispatch(checkNewEntryCompanyValidation())
+                            }} validated={companyStateValidated} >
                                 State
                             </PortalInput>
-                            <PortalInput updater={value => entryUpdater(value, "zipCode")} >
+                            <PortalInput updater={value => {
+                                dispatch(setNewEntryCompanyZip(value))
+                                dispatch(checkNewEntryCompanyValidation())
+                            }} validated={companyZipValidated} >
                                 Zip Code
                             </PortalInput>
-                            <PortalInput updater={value => entryUpdater(value, "number")} >
+                            <PortalInput updater={value => {
+                                dispatch(setNewEntryCompanyPhone(value))
+                                dispatch(checkNewEntryCompanyValidation())
+                            }} validated={companyPhoneValidated} >
                                 Phone Number
                             </PortalInput>
                         </section>
@@ -53,20 +110,23 @@ const NewEntryPortal = ({ newEntryPortalType }) => {
                 newEntryPortalType === "venue" ?
                 (
                     <>
-                        <PortalInput updater={value => entryUpdater(value, "name")} >
+                        <PortalInput updater={value => dispatch(setNewEntryVenueName(value))} validated={venueNameValidated} >
                             Venue
                         </PortalInput>
-                        <PortalInput updater={value => entryUpdater(value, "street")} >
+                        <PortalInput updater={value => dispatch(setNewEntryVenueAddress(value))} validated={venueAddressValidated} >
                             Street
                         </PortalInput>
+                        <PortalInput updater={value => dispatch(setNewEntryVenueAddress2(value))} >
+                            Street 2
+                        </PortalInput>
                         <section className={styles.address} >
-                            <PortalInput updater={value => entryUpdater(value, "city")} >
+                            <PortalInput updater={value => dispatch(setNewEntryVenueCity(value))} validated={venueCityValidated} >
                                 City
                             </PortalInput>
-                            <PortalInput updater={value => entryUpdater(value, "state")} >
+                            <PortalInput updater={value => dispatch(setNewEntryVenueState(value))} validated={venueStateValidated} >
                                 State
                             </PortalInput>
-                            <PortalInput updater={value => entryUpdater(value, "zipCode")} >
+                            <PortalInput updater={value => dispatch(setNewEntryVenueZip(value))} validated={venueZipValidated} >
                                 Zip Code
                             </PortalInput>
                         </section>
@@ -75,26 +135,29 @@ const NewEntryPortal = ({ newEntryPortalType }) => {
                 newEntryPortalType === "tech" ?
                 (
                     <>
-                        <PortalInput updater={value => entryUpdater(value, "name")} >
+                        <PortalInput updater={value => dispatch(setNewEntryContractorName(value))} validated={contractorNameValidated} >
                             Employee's Name
                         </PortalInput>
-                        <PortalInput updater={value => entryUpdater(value, "email")} >
+                        <PortalInput updater={value => dispatch(setNewEntryContractorEmail(value))} validated={contractorEmailValidated} >
                             Email
                         </PortalInput>
-                        <PortalInput updater={value => entryUpdater(value, "street")} >
+                        <PortalInput updater={value => dispatch(setNewEntryContractorAddress(value))} validated={contractorAddressValidated} >
                             Street
                         </PortalInput>
+                        <PortalInput updater={value => dispatch(setNewEntryContractorAddress2(value))} >
+                            Street 2
+                        </PortalInput>
                         <section className={styles.address} >
-                            <PortalInput updater={value => entryUpdater(value, "city")} >
+                            <PortalInput updater={value => dispatch(setNewEntryContractorCity(value))} validated={contractorCityValidated} >
                                 City
                             </PortalInput>
-                            <PortalInput updater={value => entryUpdater(value, "state")} >
+                            <PortalInput updater={value => dispatch(setNewEntryContractorState(value))} validated={contractorStateValidated} >
                                 State
                             </PortalInput>
-                            <PortalInput updater={value => entryUpdater(value, "zipCode")} >
+                            <PortalInput updater={value => dispatch(setNewEntryContractorZip(value))} validated={contractorZipValidated} >
                                 Zip Code
                             </PortalInput>
-                            <PortalInput updater={value => entryUpdater(value, "number")} >
+                            <PortalInput updater={value => dispatch(setNewEntryContractorPhone(value))} validated={contractorPhoneValidated} >
                                 Phone Number
                             </PortalInput>
                         </section>
@@ -103,10 +166,10 @@ const NewEntryPortal = ({ newEntryPortalType }) => {
                 newEntryPortalType === "position" ?
                 (
                     <>
-                        <PortalInput updater={value => entryUpdater(value, "name")} >
+                        <PortalInput updater={value => dispatch(setNewEntryPositionName(value))} validated={positionNameValidated} >
                             Position
                         </PortalInput>
-                        <PortalInput updater={value => entryUpdater(value, "rate")} >
+                        <PortalInput updater={value => dispatch(setNewEntryPositionRate(value))} validated={positionRateValidated} >
                             Rate
                         </PortalInput>
                     </>

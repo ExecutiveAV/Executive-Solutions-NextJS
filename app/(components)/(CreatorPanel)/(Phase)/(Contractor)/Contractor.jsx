@@ -3,7 +3,7 @@
 import { useSelector, useDispatch } from "react-redux";
 
 import { setContractorName, setContractorPosition, setContractorRate, setWalkAway, setCurrentContractor, setCurrentShift, setCurrentDay, setCurrentPhase } from '../../../../redux/slices/scheduleSlice';
-import { contractorNameSelector, contractorPositionSelector, contractorRateSelector, contractorWalkawaySelector, currentDaySelector, daysSelector, currentShiftSelector, shiftsSelector, currentContractorSelector, contractorsSelector } from "../../../../redux/store/selectors/scheduleSelectors";
+import { contractorNameSelector, contractorPositionSelector, contractorRateSelector, contractorWalkawaySelector, currentDaySelector, daysSelector, currentShiftSelector, shiftsSelector, currentContractorSelector, contractorsSelector } from "../../../../redux/selectors/scheduleSelectors";
 
 import OptionsInput from "../(CreatorInputs)/(optionsInput)/optionsInput";
 import NumberInput from "../(CreatorInputs)/(numberInput)/numberInput";
@@ -55,7 +55,7 @@ const Contractor = ({ currentPhase }) => {
     return (
         <>
             <p className={styles.inputLabel} >{`Day ${currentDay + 1}`}</p>
-            <OptionsInput value={name ? name : null} label={`Contractor ${currentContractor + 1} for shift ${currentShift + 1}`} entryType={"tech"} dispatched={value => dispatch(setContractorName(value))} ></OptionsInput>
+            <OptionsInput value={name ? name : null} label={`Contractor ${currentContractor + 1} for shift ${currentShift + 1}`} entryType={"contractor"} dispatched={value => dispatch(setContractorName(value))} ></OptionsInput>
             <OptionsInput value={position ? position : null} label={"Position?"} entryType={"position"} dispatched={value => dispatch(setContractorPosition(value))} />
             <NumberInput value={rate ? rate : null} label={"Rate?"} dispatched={value => dispatch(setContractorRate(value))} />
             <ToggleInput value={walkaway ? walkaway : null} label={"Walkaway?"} id={"walkaway"} dispatched={value => dispatch(setWalkAway(value))} />

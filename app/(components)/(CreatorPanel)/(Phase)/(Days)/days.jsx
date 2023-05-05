@@ -1,7 +1,7 @@
 'use client'
 
 import { useSelector, useDispatch } from 'react-redux';
-import { dateSelector, shiftsSelector, daysSelector, currentDaySelector, currentPhaseSelector } from '../../../../redux/store/selectors/scheduleSelectors';
+import { dateSelector, shiftsSelector, daysSelector, currentDaySelector, currentPhaseSelector } from '../../../../redux/selectors/scheduleSelectors';
 
 import { setCurrentPhase, setShifts, setDayDate, setCurrentDay, setCurrentShift, setCurrentContractor } from '../../../../redux/slices/scheduleSlice';
 
