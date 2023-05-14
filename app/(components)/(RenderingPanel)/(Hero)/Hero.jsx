@@ -51,7 +51,7 @@ const Hero = () => {
             return null;
         }
 
-        return venueData;
+        return venueData.venueAddress;
         } catch (error) {
         console.error('Error fetching venue address:', error);
         return null;
@@ -64,11 +64,11 @@ const Hero = () => {
         isMounted.current = true;
 
         const fetchVenueAddress = async () => {
-        const data = await getVenueAddress(venue);
-        if (isMounted.current && data) {
-            setVenueAddress(`${data.street}`);
-            setVenueCity(`${data.city}, ${data.state} ${data.zipCode}`);
-        }
+            const data = await getVenueAddress(venue.venueName);
+            if (isMounted.current && data) {
+                setVenueAddress(`${data.street}`);
+                setVenueCity(`${data.city}, ${data.state} ${data.zipCode}`);
+            }
         };
 
         fetchVenueAddress();
@@ -80,9 +80,9 @@ const Hero = () => {
 
     return (
         <>
-            <HeaderTitle client={client} />
+            <HeaderTitle client={client.companyName} />
             <Headers content={`22${currentYear}_${scheduleNumber < 10 ? `0${scheduleNumber}` : scheduleNumber}`} />
-            <Headers content={venue} />
+            <Headers content={venue.venueName} />
             {venueAddress && <Headers content={venueAddress} gray />}
             {venueCity && <Headers content={venueCity} gray />}
         </>

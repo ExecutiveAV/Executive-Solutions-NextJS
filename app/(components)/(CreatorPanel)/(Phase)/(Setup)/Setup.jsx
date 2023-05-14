@@ -28,10 +28,10 @@ const SetUp = ({ action }) => {
 
     const checkForEmpty = () => {
         let empty = false;
-        if (company === "") {
+        if (companyName === "") {
             empty = true;
         };
-        if (venue === "") {
+        if (venueName === "") {
             empty = true;
         };
         if (scheduleNumber === 0) {

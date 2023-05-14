@@ -6,7 +6,7 @@ import Hero from "./(Hero)/Hero";
 import Body from "./(Body)/Body";
 import styles from './RenderingPanel.module.css';
 
-import { usePDF } from "@react-pdf/renderer";
+import { usePDF, PDFViewer  } from "@react-pdf/renderer";
 
 import SchedulePDF from "../(pdfs)/(SchedulePDF)/SchedulePDF"
 
@@ -20,7 +20,7 @@ const RenderingPanel = () => {
   
   try {
 
-    const [isChildShown, setShowChild] = useState(false);
+    const [document, setDocument] = useState(null);
 
     const days = useSelector(daysSelector);
     const companyName = useSelector(companyNameSelector);
@@ -41,17 +41,18 @@ const RenderingPanel = () => {
     useEffect(() => {
       updateInstance(<SchedulePDF days={days} companyName={companyName} scheduleNumber={scheduleNumber} venueName={venueName} venueStreet={venueStreet} venueStreet2={venueStreet2} venueCity={venueCity} venueState={venueState} venueZip={venueZip} />)
       console.count( companyName)
+      setDocument(<SchedulePDF days={days} companyName={companyName} scheduleNumber={scheduleNumber} venueName={venueName} venueStreet={venueStreet} venueStreet2={venueStreet2} venueCity={venueCity} venueState={venueState} venueZip={venueZip} />)
     }, [days, companyName, scheduleNumber, venueName, venueStreet, venueStreet2, venueCity, venueState, venueZip]);
 
     if (instance.loading) return <div>Loading ...</div>;
 
     if (instance.error) return <div>Something went wrong: {error}</div>;
+    console.log(instance)
 
     return (
       <div>
-        {companyName ? (<a href={instance.url} download="tested.pdf">
-          Download, {companyName}
-        </a> ) : "not working :/"}
+        <Hero />
+        <Body />
       </div>
     );
   } catch (error) {

@@ -9,22 +9,22 @@ const tempInitialState = {
     days: [
     {
       dayNumber: 1,
-      date: '',
+      date: '01/01/2021',
       shifts: [
         {
           shiftNumber: 1,
-          startTime: '',
-          endTime: '',
+          startTime: '08:00',
+          endTime: '18:00',
           halfDay: false,
           walkaway: false,
           contractors: [
             {
               contractorId: 1,
-              contractorName: '',
-              contractorPosition: '',
+              contractorName: 'Alejandro Baldwin',
+              contractorPosition: 'Lead',
               contractorRate: 0,
-              contractorTimeIn: '',
-              contractorTimeOut: '',
+              contractorTimeIn: '08:00',
+              contractorTimeOut: '18:00',
               contractorHours: 0,
               contractorTotal: 0,
               contractorOvertime: 0,
@@ -37,23 +37,23 @@ const tempInitialState = {
     }
   ],
   company: {
-    companyName: '',
-    companyPOC: '',
-    companyEmail: '',
-    companyPhone: '',
-    companyAddress: '',
-    companyAddress2: '',
-    companyCity: '',
-    companyState: '',
-    companyZip: ''
+    companyName: 'Placeholder Company',
+    companyPOC: 'Placeholder POC',
+    companyEmail: 'Placeholder Email',
+    companyPhone: 'Placeholder Phone',
+    companyAddress: 'Placeholder Address',
+    companyAddress2: 'Placeholder Address2',
+    companyCity: 'Placeholder City',
+    companyState: 'FL',
+    companyZip: '12345'
   },
     venue: {
-        venueName: '',
-        venueAddress: '',
-        venueAddress2: '',
-        venueCity: '',
-        venueState: '',
-        venueZip: ''
+        venueName: 'Placeholder Venue',
+        venueAddress: 'Placeholder Address',
+        venueAddress2: 'Placeholder Address2',
+        venueCity: 'Placeholder City',
+        venueState: 'FL',
+        venueZip: '12345'
     }
 }
 
@@ -138,22 +138,22 @@ export const scheduleSlice = createSlice({
                 for (let i = 0; i < newTotal; i++) {
                     tempDays.push({
                         dayNumber: (state.scheduleData.days.length + i + 1),
-                        date: "",
+                        date: "01/01/2021",
                         shifts: [
                             {
                               shiftNumber: 1,
-                              startTime: '',
-                              endTime: '',
+                              startTime: '08:00',
+                              endTime: '18:00',
                               halfDay: false,
                               walkaway: false,
                               contractors: [
                                 {
                                   contractorId: 1,
-                                  contractorName: '',
-                                  contractorPosition: '',
+                                  contractorName: 'Alejandro Baldwin',
+                                  contractorPosition: 'Lead',
                                   contractorRate: 0,
-                                  contractorTimeIn: '',
-                                  contractorTimeOut: '',
+                                  contractorTimeIn: '08:00',
+                                  contractorTimeOut: '18:00',
                                   contractorHours: 0,
                                   contractorTotal: 0,
                                   contractorOvertime: 0,
@@ -182,18 +182,18 @@ export const scheduleSlice = createSlice({
                 for (let i = 0; i < newTotal; i++) {
                     tempShifts.push({
                         shiftNumber: (state.scheduleData.days[state.current.day].shifts.length + i + 1),
-                        startTime: "",
-                        endTime: "",
+                        startTime: "08:00",
+                        endTime: "18:00",
                         halfDay: false,
                         walkaway: false,
                         contractors: [
                             {
                               contractorId: 1,
-                              contractorName: '',
-                              contractorPosition: '',
+                              contractorName: 'Alejandro Baldwin',
+                              contractorPosition: 'Lead',
                               contractorRate: 0,
-                              contractorTimeIn: '',
-                              contractorTimeOut: '',
+                              contractorTimeIn: '08:00',
+                              contractorTimeOut: '18:00',
                               contractorHours: 0,
                               contractorTotal: 0,
                               contractorOvertime: 0,
@@ -220,11 +220,11 @@ export const scheduleSlice = createSlice({
                 for (let i = 0; i < newTotal; i++) {
                     tempContractors.push({
                         contractorId: (state.scheduleData.days[state.current.day].shifts[state.current.shift].contractors.length + i + 1),
-                        contractorName: "",
-                        contractorPosition: "",
+                        contractorName: "Alejandro Baldwin",
+                        contractorPosition: "Lead",
                         contractorRate: 0,
-                        contractorTimeIn: "",
-                        contractorTimeOut: "",
+                        contractorTimeIn: "08:00",
+                        contractorTimeOut: "18:00",
                         contractorHours: 0,
                         contractorTotal: 0,
                         contractorOvertime: 0,
