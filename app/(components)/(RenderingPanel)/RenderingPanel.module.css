@@ -16,6 +16,10 @@
     position: relative;
 }
 
+.pdfViewer {
+    height: 100vh;
+}
+
 .renderingPreview::-webkit-scrollbar {
     width: 10px;
 }

@@ -13,63 +13,76 @@ const styles = StyleSheet.create({
         backgroundColor: '#FFF',
         width: "100%",
         height: "100%",
-        padding: "0px 22px 0px 22px",
+        padding: "0px 22px 0px 60px",
     },
     section: {
         marginTop: "10px",
-        marginLeft: "auto",
+        marginRight: "auto",
         padding: "0px",
         flexGrow: 0,
     },
     headerTitle: {
         fontFamily: "Helvetica",
         width: "164px",
-        height: "32px",
+        height: "26px",
         color: "#fff",
         backgroundColor: "#808080",
-        // fontSize: "24px",
+        fontSize: "16px",
         textAlign: "left",
-        paddingTop: "8px",
+        padding: "3px 0 0 5px",
         marginTop: "10px",
     },
     headers: {
-        height: "32px",
-        paddingTop: "8px",
-        color: "#000"
+        height: "26px",
+        fontSize: "16px",
+        color: "#000",
+        padding: "3px 0 0 5px",
     },
     bodyTitle: {
         height: "40px",
-        width: "100%",
+        width: "22.5cm",
         maxWidth: "100%",
         display: "inline-flex",
         flexDirection: "row",
         backgroundColor: "#808080",
         boxSizing: "border-box",
         justifyContent: "space-between",
-        marginTop: "30px",
+        marginTop: "10px",
+        height: "26px",
     },
     bodyTitleTitle: {
         display: "inline-block",
         color: "#fff",
-        fontSize: "21px",
+        fontSize: "16px",
         fontWeight: "bold",
         textAlign: "center",
-        padding: "11px 0 0px 0px",
+        padding: "3px 0 0px 0px",
         marginTop: "1px",
+    },
+    dayContainer: {
+        width: "22.5cm",
+        maxWidth: "100%",
+        height: "auto",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        fontSize: "16px",
     },
     shifts: {
         display: "inline-flex",
         flexDirection: "row",
         width: "100%",
-        minHeight: "36px",
+        minHeight: "26px",
         justifyContent: "space-between",
     },
     day: {
         display: "flex",
         flexDirection: "row",
-        minHeight: "36px",
+        minHeight: "26px",
         height: "auto",
         margin: "auto",
+        flex: 1,
     },
     shift: {
         display: "inline-flex",
@@ -79,7 +92,7 @@ const styles = StyleSheet.create({
         flex: 2,
         display: "flex",
         flexDirection: "row",
-        minHeight: "36px",
+        minHeight: "26px",
         height: "auto",
         margin: "auto",
     },
@@ -129,8 +142,14 @@ const styles = StyleSheet.create({
     bumper: {
         width: "100%",
         maxWidth: "100%",
-        height: "8px",
+        height: "26px",
         backgroundColor: "#808080",
+    },
+    lastBumper: {
+        width: "22.5cm",
+        maxWidth: "100%",
+        height: "26px",
+        backgroundColor: "#000000",
     },
     bodyShiftContainer: {
         width: "100%",
@@ -146,6 +165,7 @@ const styles = StyleSheet.create({
         display: "flex",
         flexDirection: "row",
         justifyContent: "space-between",
+        fontSize: "16px",
     },
     bodyDayContainer: {
         height: "auto",
@@ -159,10 +179,12 @@ const styles = StyleSheet.create({
         fontSize: "21px",
         fontWeight: "bold",
         textAlign: "center",
+        fontSize: "16px",
     },
     bodyDay: {
         display: "flex",
         margin: "auto",
+        fontSize: "16px",
     },
     bodyDateContainer: {
         flex: 4,
@@ -174,6 +196,7 @@ const styles = StyleSheet.create({
         fontSize: "21px",
         fontWeight: "bold",
         textAlign: "center",
+        fontSize: "16px",
     },
     bodyDate: {
         width: "100%",
@@ -181,6 +204,7 @@ const styles = StyleSheet.create({
         height: "auto",
         display: "flex",
         margin: "auto",
+        fontSize: "16px",
     },
     bodyShiftsContainer: {
         width: "100%",
@@ -195,12 +219,13 @@ const styles = StyleSheet.create({
         fontSize: "21px",
         fontWeight: "bold",
         textAlign: "center",
+        fontSize: "16px",
     },
     bodyShiftContainer: {
         width: "100%",
         maxWidth: "100%",
         height: "auto",
-        minHeight: "36px",
+        minHeight: "26px",
         display: "flex",
         flexDirection: "row",
     },
@@ -214,10 +239,10 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         color: "#000",
         alignItems: "center",
+        fontSize: "16px",
     },
     bodyQty: {
         width: "100%",
-        flex: 1,
         maxHeight: "25px",
         maxWidth: "100%",
         color: "#000",
@@ -226,30 +251,33 @@ const styles = StyleSheet.create({
         textAlign: "center",
         alignSelf: "center",
         marginTop: "auto",
+        fontSize: "16px",
         marginBottom: "auto",
     },
     bodyContractorsContainer: {
         width: "100%",
         maxWidth: "100%",
         height: "auto",
-        minHeight: "36px",
+        minHeight: "26px",
         flex: 17,
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
         color: "#000",
         alignItems: "center",
+        fontSize: "16px",
     },
     bodyContractorContainer: {
         width: "100%",
         maxWidth: "100%",
         height: "auto",
-        minHeight: "36px",
+        minHeight: "26px",
         display: "flex",
         flexDirection: "row",
         justifyContent: "center",
         color: "#000",
         alignItems: "center",
+        fontSize: "16px",
     },
     bodyContractor: {
         width: "100%",
@@ -257,6 +285,7 @@ const styles = StyleSheet.create({
         height: "auto",
         display: "flex",
         flexDirection: "row",
+        fontSize: "16px",
     },
     bodyPositionContainer: {
         width: "100%",
@@ -267,12 +296,12 @@ const styles = StyleSheet.create({
         flexDirection: "column",
         justifyContent: "center",
         color: "#000",
-        minHeight: "36px",
+        minHeight: "26px",
         alignItems: "center",
+        fontSize: "16px",
     },
     bodyPosition: {
         width: "100%",
-        flex: 1,
         maxHeight: "25px",
         maxWidth: "100%",
         color: "#000",
@@ -282,6 +311,7 @@ const styles = StyleSheet.create({
         alignSelf: "center",
         marginTop: "auto",
         marginBottom: "auto",
+        fontSize: "16px",
     },
     bodyNameContainer: {
         width: "100%",
@@ -291,13 +321,13 @@ const styles = StyleSheet.create({
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
-        minHeight: "36px",
+        minHeight: "26px",
         color: "#000",
+        fontSize: "16px",
         alignItems: "center",
     },
     bodyName: {
         width: "100%",
-        flex: 1,
         maxHeight: "25px",
         maxWidth: "100%",
         color: "#000",
@@ -307,6 +337,7 @@ const styles = StyleSheet.create({
         alignSelf: "center",
         marginTop: "auto",
         marginBottom: "auto",
+        fontSize: "16px",
     },
     bodyTimeContainer: {
         width: "100%",
@@ -317,12 +348,12 @@ const styles = StyleSheet.create({
         flexDirection: "column",
         justifyContent: "center",
         color: "#000",
-        minHeight: "36px",
+        minHeight: "26px",
+        fontSize: "16px",
         alignItems: "center",
     },
     bodyTime: {
         width: "100%",
-        flex: 1,
         maxHeight: "25px",
         maxWidth: "100%",
         color: "#000",
@@ -332,31 +363,35 @@ const styles = StyleSheet.create({
         alignSelf: "center",
         marginTop: "auto",
         marginBottom: "auto",
+        fontSize: "16px",
     },
     bodyHrsContainer: {
         width: "100%",
         maxWidth: "100%",
-        height: "auto",
+        height: "100%",
         flex: 2,
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
         color: "#000",
-        minHeight: "36px",
+        minHeight: "26px",
         alignItems: "center",
+        fontSize: "16px",
     },
     bodyHrs: {
         width: "100%",
-        flex: 1,
-        maxHeight: "25px",
         maxWidth: "100%",
         color: "#000",
         fontSize: "21px",
         fontWeight: "bold",
         textAlign: "center",
         alignSelf: "center",
-        marginTop: "auto",
-        marginBottom: "auto",
+        display: "flex",
+        justifyContent: "center",
+        alignContent: "center",
+        flexDirection: "column",
+        margin: "auto",
+        fontSize: "16px",
     },
 });
 
@@ -412,7 +447,7 @@ const SchedulePDF = ({ days, companyName, scheduleNumber, venueName, venueStreet
             console.log(contractorQty, "contractorQty");
             if (index === 0) {
                 return (
-                    <View style={[styles.bodyShiftContainer, {height: `${contractorQty * 36}px`, } ]} >
+                    <View style={[styles.bodyShiftContainer, {height: `${contractorQty * 26}px`, } ]} >
                         <View style={[styles.bodyQtyContainer, ]} >
                             <Text style={styles.bodyQty} >{contractorQty}</Text>
                         </View>
@@ -467,7 +502,7 @@ const SchedulePDF = ({ days, companyName, scheduleNumber, venueName, venueStreet
 
             return (
                 <View style={styles.dayContainer} wrap={false} >
-                    <View style={[styles.dayContainerData, {height: `${36 * totalAmountOfContractor}`,}]} >
+                    <View style={[styles.dayContainerData, {height: `${26 * totalAmountOfContractor}`,}]} >
                         <View style={[styles.bodyDayContainer]} >
                             <Text style={styles.bodyDay} >{index+1}</Text>
                         </View>
@@ -494,7 +529,7 @@ const SchedulePDF = ({ days, companyName, scheduleNumber, venueName, venueStreet
                 {/* Header */}
                 <View style={styles.section}>
                     <Text style={styles.headerTitle} >{companyName}</Text>
-                    <Text style={styles.headers} >{`#2222_${scheduleNumber}`}</Text>
+                    <Text style={styles.headers} >{`#2222_${scheduleNumber < 10 ? `0${scheduleNumber}` : scheduleNumber}`}</Text>
                     <Text style={styles.headers} >{venueName}</Text>
                     <Text style={styles.headers} >{venueStreet}</Text>
                     <Text style={styles.headers} >{venueCity}</Text>
@@ -517,6 +552,7 @@ const SchedulePDF = ({ days, companyName, scheduleNumber, venueName, venueStreet
                     {
                         buildDays()
                     }
+                <View style={styles.lastBumper} ></View>
             </Page>
         </Document>
     );

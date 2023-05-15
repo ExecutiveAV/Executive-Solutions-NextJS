@@ -15,6 +15,7 @@ const Body = () => {
         <section className={styles.body} >
             <BodyTitle />
             <Days dayData={dayData} />
+            <section className={styles.lastBumper} />
         </section>
     );
 };

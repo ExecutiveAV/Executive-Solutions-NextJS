@@ -56,6 +56,7 @@ const RenderingPanel = () => {
           <Body />
         </section>
         <a href={instance.url} download={`Schedule 2223_${scheduleNumber}`} className={styles.downloadButton}>Download</a>
+
       </section>
     );
   } catch (error) {

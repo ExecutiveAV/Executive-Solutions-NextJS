@@ -3,3 +3,9 @@
     font-family: var(--primary-font);
     width: 20.5cm;
 }
+
+.lastBumper {
+    height: 26px;
+    width: 20.5cm;
+    background-color: #000000;
+}
