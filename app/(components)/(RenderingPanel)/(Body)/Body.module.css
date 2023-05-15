@@ -1,7 +1,5 @@
 .body {
-    position: absolute;
-    top: 240px;
+    margin-top: 20px;
     font-family: var(--primary-font);
-    border: solid 1px black;
-    border-bottom: none;
+    width: 20.5cm;
 }

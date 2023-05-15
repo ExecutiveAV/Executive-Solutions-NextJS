@@ -9,7 +9,7 @@ import {
     newEntryKindSelector, newEntryCompanyNameValidationSelector, newEntryCompanyPOCValidationSelector, newEntryCompanyEmailValidationSelector, newEntryCompanyPhoneValidationSelector, newEntryCompanyAddressValidationSelector, newEntryCompanyCityValidationSelector, newEntryCompanyStateValidationSelector, newEntryCompanyZipValidationSelector, newEntryVenueNameValidationSelector, newEntryVenueAddressValidationSelector, newEntryVenueCityValidationSelector, newEntryVenueStateValidationSelector, newEntryVenueZipValidationSelector, newEntryContractorNameValidationSelector, newEntryContractorAddressValidationSelector, newEntryContractorCityValidationSelector, newEntryContractorStateValidationSelector, newEntryContractorZipValidationSelector, newEntryContractorEmailValidationSelector, newEntryContractorPhoneValidationSelector, newEntryPositionNameValidationSelector, newEntryPositionRateValidationSelector,
 } from '../../../redux/selectors/newEntrySelectors';
 import {
-    setNewEntryCompanyName, setNewEntryCompanyAddress, setNewEntryCompanyCity, setNewEntryCompanyState, setNewEntryCompanyZip, setNewEntryCompanyPOC, setNewEntryCompanyEmail, setNewEntryCompanyPhone, setNewEntryVenueName, setNewEntryVenueAddress, setNewEntryVenueCity, setNewEntryVenueState, setNewEntryVenueZip, setNewEntryContractorName, setNewEntryContractorAddress, setNewEntryCompanyAddress2, setNewEntryContractorCity, setNewEntryContractorState, setNewEntryContractorZip, setNewEntryContractorEmail, setNewEntryContractorPhone, setNewEntryPositionName, setNewEntryPositionRate, checkNewEntryCompanyValidation, checkNewEntryContractorValidation, checkNewEntryPositionValidation, checkNewEntryVenueValidation
+    setNewEntryCompanyName, setNewEntryCompanyAddress, setNewEntryCompanyAddress2, setNewEntryCompanyCity, setNewEntryCompanyState, setNewEntryCompanyZip, setNewEntryCompanyPOC, setNewEntryCompanyEmail, setNewEntryCompanyPhone, setNewEntryVenueName, setNewEntryVenueAddress, setNewEntryVenueAddress2, setNewEntryVenueCity, setNewEntryVenueState, setNewEntryVenueZip, setNewEntryContractorName, setNewEntryContractorAddress, setNewEntryContractorAddress2, setNewEntryContractorCity, setNewEntryContractorState, setNewEntryContractorZip, setNewEntryContractorEmail, setNewEntryContractorPhone, setNewEntryPositionName, setNewEntryPositionRate, checkNewEntryCompanyValidation, checkNewEntryContractorValidation, checkNewEntryPositionValidation, checkNewEntryVenueValidation
 } from '../../../redux/slices/newEntrySlice';
 
 const NewEntryPortal = () => {
@@ -68,13 +68,12 @@ const NewEntryPortal = () => {
                             Email
                         </PortalInput>
                         <PortalInput updater={value => {
-                            dispatch(setNewEntryCompanyPhone(value))
+                            dispatch(setNewEntryCompanyAddress(value))
                             dispatch(checkNewEntryCompanyValidation())
-                        }} validated={companyPhoneValidated} >
+                        }} validated={companyAddressValidated} >
                             Street
                         </PortalInput>
                         <PortalInput updater={value => {
-                            dispatch(setNewEntryCompanyAddress(value))
                             dispatch(checkNewEntryCompanyValidation())
                         }} validated={companyAddressValidated} >
                             Street 2
@@ -110,29 +109,47 @@ const NewEntryPortal = () => {
                 newEntryPortalType === "venue" ?
                 (
                     <>
-                        <PortalInput updater={value => dispatch(setNewEntryVenueName(value))} validated={venueNameValidated} >
+                        <PortalInput updater={value => {
+                            dispatch(setNewEntryVenueName(value))
+                            dispatch(checkNewEntryVenueValidation())
+                        }} validated={venueNameValidated} >
                             Venue
                         </PortalInput>
-                        <PortalInput updater={value => dispatch(setNewEntryVenueAddress(value))} validated={venueAddressValidated} >
+                        <PortalInput updater={value => {
+                            dispatch(setNewEntryVenueAddress(value))
+                            dispatch(checkNewEntryVenueValidation())
+                        }} validated={venueAddressValidated} >
                             Street
                         </PortalInput>
-                        <PortalInput updater={value => dispatch(setNewEntryVenueAddress2(value))} >
+                        <PortalInput updater={value => {
+                            dispatch(setNewEntryVenueAddress2(value))
+                            dispatch(checkNewEntryVenueValidation())
+                        }} >
                             Street 2
                         </PortalInput>
                         <section className={styles.address} >
-                            <PortalInput updater={value => dispatch(setNewEntryVenueCity(value))} validated={venueCityValidated} >
+                            <PortalInput updater={value => {
+                                dispatch(setNewEntryVenueCity(value))
+                                dispatch(checkNewEntryVenueValidation())
+                            }} validated={venueCityValidated} >
                                 City
                             </PortalInput>
-                            <PortalInput updater={value => dispatch(setNewEntryVenueState(value))} validated={venueStateValidated} >
+                            <PortalInput updater={value => {
+                                dispatch(setNewEntryVenueState(value))
+                                dispatch(checkNewEntryVenueValidation())
+                            }} validated={venueStateValidated} >
                                 State
                             </PortalInput>
-                            <PortalInput updater={value => dispatch(setNewEntryVenueZip(value))} validated={venueZipValidated} >
+                            <PortalInput updater={value => {
+                                dispatch(setNewEntryVenueZip(value))
+                                dispatch(checkNewEntryVenueValidation())
+                            }} validated={venueZipValidated} >
                                 Zip Code
                             </PortalInput>
                         </section>
                     </>
                 ):
-                newEntryPortalType === "tech" ?
+                newEntryPortalType === "contractor" ?
                 (
                     <>
                         <PortalInput updater={value => dispatch(setNewEntryContractorName(value))} validated={contractorNameValidated} >

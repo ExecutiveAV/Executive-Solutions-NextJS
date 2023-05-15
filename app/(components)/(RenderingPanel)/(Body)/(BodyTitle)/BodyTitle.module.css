@@ -9,11 +9,15 @@
     border-left: none;
 }
 
+.item {
+    height: 24px;
+    font-size: 22px;
+    height: 0.71cm;
+}
+
 .day {
     min-width: 47px;
     max-width: 47px ;
-    border-bottom: #000000 solid 1px;
-    border-right: #000000 solid 1px;
     width: 100%;
     flex: 1;
     display: inline-flex;
@@ -24,9 +28,7 @@
 .date {
     min-width: 100px;
     max-width: 100px;
-    flex: 1;
-    border-bottom: #000000 solid 1px;
-    border-right: #000000 solid 1px;
+    flex: 6;
     display: inline-flex;
     justify-content: center;
     box-sizing: border-box;
@@ -38,50 +40,46 @@
     flex: 6;
     display: inline-flex;
     padding: 0;
-    border-bottom: #000000 solid 1px;
     display: inline-flex;
     justify-content: center;
     box-sizing: border-box;
 }
 
 .qty {
+    flex: 1;
     min-width: 44px;
-    max-width: 44px;
-    min-width: 44px;
-    width: 100%;
     display: inline-flex;
     justify-content: center;
-    border-right: #000000 solid 1px;
 }
 
 .position {
     min-width: 140px;
     max-width: 140px;
+    flex: 4;
     display: inline-flex;
     justify-content: center;
-    border-right: #000000 solid 1px;
 }
 
 .tech {
     min-width: 153px;
     width: 100%;
+    flex: 8;
     display: inline-flex;
     justify-content: center;
-    border-right: #000000 solid 1px;
 }
 
 .time {
     min-width: 190px;
-    max-width: 190px;
+    flex: 8;
     width: 100%;
     display: inline-flex;
     justify-content: center;
-    border-right: #000000 solid 1px;
+    
 }
 
 .hrs {
     min-width: 81px;
-    width: 100%;
+    flex: 1;
     display: inline-flex;
     justify-content: center;
 }

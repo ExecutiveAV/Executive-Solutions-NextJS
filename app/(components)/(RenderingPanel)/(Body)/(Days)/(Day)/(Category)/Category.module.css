@@ -6,67 +6,56 @@
     justify-items: center;
     width: 100%;
     background-color: white;
-}
-
-.schedule {
-    height: 18px;
-    margin: auto;
-}
-
-.schedule:nth-of-type(even) {
-    border-top: 1px solid #000000;
+    min-height: 0.71cm;
+    font-size: 16px;
 }
 
 .day {
     min-width: 47px;
-    max-width: 47px ;
-    border-bottom: #000000 solid 1px;
-    border-right: #000000 solid 1px;
+    flex: 1;
     box-sizing: border-box;
     display: inline-flex;
+    min-height: 0.71cm;
 }
 
 .date {
     min-width: 100px;
-    max-width: 100px;
-    border-bottom: #000000 solid 1px;
-    border-right: #000000 solid 1px;
+    min-height: 0.71cm;
+    flex: 6;
 }
 
 
 .qty {
     min-width: 44px;
-    max-width: 44px;
-    width: 100%;
-    border-bottom: #000000 solid 1px;
-    border-right: #000000 solid 1px;
+    min-height: 0.71cm;
+    flex: 1;
 }
 
 .position {
     min-width: 140px;
-    max-width: 140px;
+    flex: 4;
+    min-height: 0.71cm;
     width: 100%;
-    border-bottom: #000000 solid 1px;
-    border-right: #000000 solid 1px;
 }
 
 .tech {
     min-width: 153px;
-    width: 100%;
-    border-bottom: #000000 solid 1px;
-    border-right: #000000 solid 1px;
+    flex: 8;
+    min-height: 0.71cm;
 }
 
 .time {
     min-width: 190px;
-    max-width: 190px;
-    width: 100%;
-    border-bottom: #000000 solid 1px;
-    border-right: #000000 solid 1px;
+    flex: 8;
+    min-height: 0.71cm;
 }
 
 .hrs {
     min-width: 81px;
-    width: 100%;
-    border-bottom: #000000 solid 1px;
+    min-height: 0.71cm;
+    flex: 1;
+}
+
+.bumper {
+    border-bottom: 1px solid #000;
 }

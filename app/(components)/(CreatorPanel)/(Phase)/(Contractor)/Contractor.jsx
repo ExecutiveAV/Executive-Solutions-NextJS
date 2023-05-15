@@ -55,8 +55,8 @@ const Contractor = ({ currentPhase }) => {
     return (
         <>
             <p className={styles.inputLabel} >{`Day ${currentDay + 1}`}</p>
-            <OptionsInput value={name ? name : null} label={`Contractor ${currentContractor + 1} for shift ${currentShift + 1}`} entryType={"contractor"} dispatched={value => dispatch(setContractorName(value))} ></OptionsInput>
-            <OptionsInput value={position ? position : null} label={"Position?"} entryType={"position"} dispatched={value => dispatch(setContractorPosition(value))} />
+            <OptionsInput value={name ? name : null} label={`Contractor ${currentContractor + 1} for shift ${currentShift + 1}`} entryType={"contractor"} dispatched={value => dispatch(setContractorName(value.contractorName))} ></OptionsInput>
+            <OptionsInput value={position.positionName ? position.positionName : null} label={"Position?"} entryType={"position"} dispatched={value => dispatch(setContractorPosition(value))} />
             <NumberInput value={rate ? rate : null} label={"Rate?"} dispatched={value => dispatch(setContractorRate(value))} />
             <ToggleInput value={walkaway ? walkaway : null} label={"Walkaway?"} id={"walkaway"} dispatched={value => dispatch(setWalkAway(value))} />
             <section className={styles.buttonHolder} >

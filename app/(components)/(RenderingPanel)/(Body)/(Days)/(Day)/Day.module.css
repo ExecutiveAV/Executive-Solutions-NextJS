@@ -5,6 +5,7 @@
 .dayInfo {
     display: inline-flex;
     width: 100%;
+    min-height: 0.71cm;
 }
 
 .schedule {
@@ -12,6 +13,10 @@
     margin: auto;
     display: inline-flex;
     justify-content: center;
+    min-height: 0.71cm;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .groups {
@@ -19,4 +24,19 @@
     width: 100%;
     border: none;
     min-width: 474px;
+    min-height: 0.71cm;
+}
+
+.bumper {
+    height: 26px;
+    width: 100%;
+    background-color: var(--tertiary);
+}
+
+.lineBumper {
+    border-bottom: 1px solid #000000;
+}
+
+.lineBumper:nth-last-child(1) {
+    border-bottom: none;
 }

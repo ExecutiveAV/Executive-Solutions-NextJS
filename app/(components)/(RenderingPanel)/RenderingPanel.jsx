@@ -50,10 +50,13 @@ const RenderingPanel = () => {
     console.log(instance)
 
     return (
-      <div>
-        <Hero />
-        <Body />
-      </div>
+      <section className={styles.renderingPanel}>
+        <section className={styles.renderingPreview}>
+          <Hero />
+          <Body />
+        </section>
+        <a href={instance.url} download={`Schedule 2223_${scheduleNumber}`} className={styles.downloadButton}>Download</a>
+      </section>
     );
   } catch (error) {
     

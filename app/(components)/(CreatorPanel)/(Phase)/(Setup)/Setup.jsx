@@ -55,7 +55,7 @@ const SetUp = ({ action }) => {
         <Providers>
             <OptionsInput value={companyName ? companyName : null} label="Which Company is it for?" entryType="company" dispatched={(value) => dispatch(setcompany(value))} />
             <NumberInput value={scheduleNumber ? scheduleNumber : null} label={`Invoice # `} min={1} max={999} dispatched={(value) => dispatch(setScheduleNumber(value))} />
-            <OptionsInput value={venueName ? venueName : null} label="What Venue?" entryType="venue" dispatched={(value) => dispatch(setVenue(value))} />
+            <OptionsInput value={venueName ? venueName : "***Make a selection***"} label="What Venue?" entryType="venue" dispatched={(value) => dispatch(setVenue(value))} />
             <NumberInput value={days ? days.length : null} label="How Many Days?" min={1} max={999} action={e => console.log(e)} dispatched={(value) => dispatch(setDays(value))} />
             <section className={styles.buttonHolder} >
                 <NavButton action={() => {router.back()}} >Back</NavButton>

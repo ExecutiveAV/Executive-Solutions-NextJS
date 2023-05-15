@@ -114,7 +114,7 @@ export const newEntryCompanyPhoneValidationSelector = createSelector(
 
 export const newEntryCompanyIsValidSelector = createSelector(
     newEntryCompanyValidation,
-    (validation) => validation.isValid
+    (validation) => validation.valid
 );
 
 ///////////////////////////////////////////
@@ -146,7 +146,7 @@ export const newEntryVenueZipValidationSelector = createSelector(
 
 export const newEntryVenueIsValidSelector = createSelector(
     newEntryVenueValidation,
-    (validation) => validation.isValid
+    (validation) => validation.valid
 );
 
 ///////////////////////////////////////////
@@ -188,7 +188,7 @@ export const newEntryContractorPhoneValidationSelector = createSelector(
 
 export const newEntryContractorIsValidSelector = createSelector(
     newEntryContractorValidation,
-    (validation) => validation.isValid
+    (validation) => validation.valid
 );
 
 ///////////////////////////////////////////
@@ -205,5 +205,5 @@ export const newEntryPositionRateValidationSelector = createSelector(
 
 export const newEntryPositionIsValidSelector = createSelector(
     newEntryPositionValidation,
-    (validation) => validation.isValid
+    (validation) => validation.valid
 );

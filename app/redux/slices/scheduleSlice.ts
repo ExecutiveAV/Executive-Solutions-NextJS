@@ -3,13 +3,13 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 
 import { getCurrentDateTimeInAmericanFormat, getCurrentDateInAmericanFormat, convertMilitaryTimeToStandardTime } from "../../../utils/jsUtils/utils";
 
-import { Day, Shift, Contractor, ScheduleState, Company, Venue } from '../../types/types';
+import { Day, Shift, Contractor, ScheduleState, Company, Venue, Position } from '../../types/types';
 
 const tempInitialState = {
     days: [
     {
       dayNumber: 1,
-      date: '01/01/2021',
+      date: '',
       shifts: [
         {
           shiftNumber: 1,
@@ -20,8 +20,11 @@ const tempInitialState = {
           contractors: [
             {
               contractorId: 1,
-              contractorName: 'Alejandro Baldwin',
-              contractorPosition: 'Lead',
+              contractorName: '',
+              contractorPosition: {
+                positionName: '',
+                positionRate: 0,
+              },
               contractorRate: 0,
               contractorTimeIn: '08:00',
               contractorTimeOut: '18:00',
@@ -37,23 +40,23 @@ const tempInitialState = {
     }
   ],
   company: {
-    companyName: 'Placeholder Company',
-    companyPOC: 'Placeholder POC',
-    companyEmail: 'Placeholder Email',
-    companyPhone: 'Placeholder Phone',
-    companyAddress: 'Placeholder Address',
-    companyAddress2: 'Placeholder Address2',
-    companyCity: 'Placeholder City',
-    companyState: 'FL',
-    companyZip: '12345'
+    companyName: '',
+    companyPOC: '',
+    companyEmail: '',
+    companyPhone: '',
+    companyAddress: '',
+    companyAddress2: '',
+    companyCity: '',
+    companyState: '',
+    companyZip: ''
   },
     venue: {
-        venueName: 'Placeholder Venue',
-        venueAddress: 'Placeholder Address',
-        venueAddress2: 'Placeholder Address2',
-        venueCity: 'Placeholder City',
-        venueState: 'FL',
-        venueZip: '12345'
+        venueName: '',
+        venueAddress: '',
+        venueAddress2: '',
+        venueCity: '',
+        venueState: '',
+        venueZip: ''
     }
 }
 
@@ -138,7 +141,7 @@ export const scheduleSlice = createSlice({
                 for (let i = 0; i < newTotal; i++) {
                     tempDays.push({
                         dayNumber: (state.scheduleData.days.length + i + 1),
-                        date: "01/01/2021",
+                        date: "",
                         shifts: [
                             {
                               shiftNumber: 1,
@@ -149,8 +152,11 @@ export const scheduleSlice = createSlice({
                               contractors: [
                                 {
                                   contractorId: 1,
-                                  contractorName: 'Alejandro Baldwin',
-                                  contractorPosition: 'Lead',
+                                  contractorName: '',
+                                  contractorPosition: {
+                                    positionName: '',
+                                    positionRate: 0,
+                                  },
                                   contractorRate: 0,
                                   contractorTimeIn: '08:00',
                                   contractorTimeOut: '18:00',
@@ -189,8 +195,11 @@ export const scheduleSlice = createSlice({
                         contractors: [
                             {
                               contractorId: 1,
-                              contractorName: 'Alejandro Baldwin',
-                              contractorPosition: 'Lead',
+                              contractorName: '',
+                              contractorPosition: {
+                                positionName: '',
+                                positionRate: 0,
+                              },
                               contractorRate: 0,
                               contractorTimeIn: '08:00',
                               contractorTimeOut: '18:00',
@@ -220,8 +229,11 @@ export const scheduleSlice = createSlice({
                 for (let i = 0; i < newTotal; i++) {
                     tempContractors.push({
                         contractorId: (state.scheduleData.days[state.current.day].shifts[state.current.shift].contractors.length + i + 1),
-                        contractorName: "Alejandro Baldwin",
-                        contractorPosition: "Lead",
+                        contractorName: "",
+                        contractorPosition: {
+                            positionName: "",
+                            positionRate: 0,
+                        },
                         contractorRate: 0,
                         contractorTimeIn: "08:00",
                         contractorTimeOut: "18:00",
@@ -244,7 +256,7 @@ export const scheduleSlice = createSlice({
         setContractorName: (state, action: PayloadAction<string>) => {
             state.scheduleData.days[state.current.day].shifts[state.current.shift].contractors[state.current.contractor].contractorName = action.payload;
         },
-        setContractorPosition: (state, action: PayloadAction<string>) => {
+        setContractorPosition: (state, action: PayloadAction<Position>) => {
             state.scheduleData.days[state.current.day].shifts[state.current.shift].contractors[state.current.contractor].contractorPosition = action.payload;
         },
         setContractorRate: (state, action: PayloadAction<number>) => {

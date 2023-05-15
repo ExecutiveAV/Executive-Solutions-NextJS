@@ -1,8 +1,8 @@
 import styles from './Category.module.css'
 
-const Category = ({children, size}) => {
+const Category = ({children, size, bumper}) => {
     return (
-        <section className={`${styles.category} ${styles[size]}`}>
+        <section className={`${styles.category} ${bumper ? styles.bumper : ""} ${styles[size]}`}>
             {children}
         </section>
     );

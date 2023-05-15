@@ -27,6 +27,18 @@ const PopUpFooter = () => {
     const newEntryContractorIsValid = useSelector(newEntryContractorIsValidSelector);
     const newEntryPositionIsValid = useSelector(newEntryPositionIsValidSelector);
 
+    useEffect(() => {
+        if (newEntryKind === "company") {
+            dispatch(checkNewEntryCompanyValidation())
+        } else if (newEntryKind === "contractor") {
+            dispatch(checkNewEntryContractorValidation())
+        } else if (newEntryKind === "position") {
+            dispatch(checkNewEntryPositionValidation())
+        } else if (newEntryKind === "venue") {
+            dispatch(checkNewEntryVenueValidation())
+        }
+    }, [newEntryKind, newEntryCompanyIsValid, newEntryVenueIsValid, newEntryContractorIsValid, newEntryPosition])
+
 
     const getDocumentName = () => {
         switch (newEntryKind) {
@@ -34,13 +46,13 @@ const PopUpFooter = () => {
                 return newEntryCompanyName.replaceAll(" ", "_");
             case "contractor":
                 dispatch(checkNewEntryContractorValidation())
-                return newEntryContractorName.replace(/\s/g, "_");
+                return newEntryContractorName.replaceAll(" ", "_");
             case "position":
                 dispatch(checkNewEntryPositionValidation())
-                return newEntryPositionName.replace(/\s/g, "_");
+                return newEntryPositionName.replaceAll(" ", "_");
             case "venue":
                 dispatch(checkNewEntryVenueValidation())
-                return newEntryVenueName.replace(/\s/g, "_");
+                return newEntryVenueName.replaceAll(" ", "_");
             default:
                 return null;
         }
@@ -49,6 +61,9 @@ const PopUpFooter = () => {
     const saveNewEntryToCollection = async (collection, documentName, data) => {
         await setDoc(doc(db, collection, documentName), data);
     };
+
+    
+    console.log("newEntryCompanyIsValid outside: ", newEntryVenue)
       
     const saveNewEntry = async () => {
         try {
@@ -64,46 +79,51 @@ const PopUpFooter = () => {
             alert("Entry already exists: ");
             return;
             }
+
+            
         
             switch (collection) {
-            case "company":
-                dispatch(checkNewEntryCompanyValidation())
-                if (!newEntryCompanyIsValid) {
-                    alert("Please fill out all the company fields");
-                    return;
-                } else {
-                    await saveNewEntryToCollection(collection, documentName, newEntryCompany);
-                    alert("Company added")
-                }
-                break;
-            case "contractor":
-                if (!newEntryContractorIsValid) {
-                    alert("Please fill out all fields");
-                    return;
-                } else {
-                    await saveNewEntryToCollection(collection, documentName, newEntryContractor);
-                    alert("Contractor added")
-                }
-                break;
-            case "position":
-                if (!newEntryPositionIsValid) {
-                    alert("Please fill out all fields");
-                    return;
-                } else {
-                    await saveNewEntryToCollection(collection, documentName, newEntryPosition);
-                    alert("Position added")
-                }
-            case "venue":
-                if (!newEntryVenueIsValid) {
-                    alert("Please fill out all fields");
-                    return;
-                } else {
-                    await saveNewEntryToCollection(collection, documentName, newEntryVenue);
-                    alert("Venue added")
-                }
-                break;
-            default:
-                break;
+                case "company":
+                    if (!newEntryCompanyIsValid) {
+                        alert("Please fill out all the company fields");
+                        console.log("newEntryCompanyIsValid inside: ", newEntryCompanyIsValid)
+                        return;
+                    } else {
+                        await saveNewEntryToCollection(collection, documentName, newEntryCompany);
+                        alert("Company added")
+                    }
+                    break;
+                case "contractor":
+                    dispatch(checkNewEntryContractorValidation())
+                    if (!newEntryContractorIsValid) {
+                        alert("Please fill out all fields");
+                        return;
+                    } else {
+                        await saveNewEntryToCollection(collection, documentName, newEntryContractor);
+                        alert("Contractor added")
+                    }
+                    break;
+                case "position":
+                    dispatch(checkNewEntryPositionValidation())
+                    if (!newEntryPositionIsValid) {
+                        alert("Please fill out all fields");
+                        return;
+                    } else {
+                        await saveNewEntryToCollection(collection, documentName, newEntryPosition);
+                        alert("Position added")
+                    }
+                case "venue":
+                    dispatch(checkNewEntryVenueValidation())
+                    if (!newEntryVenueIsValid) {
+                        alert("Please fill out all fields");
+                        return;
+                    } else {
+                        await saveNewEntryToCollection(collection, documentName, newEntryVenue);
+                        alert("Venue added: ", newEntryVenueName.replaceAll("_", " "), newEntryVenueName);
+                    }
+                    break;
+                default:
+                    break;
             }
         
             dispatch(setIsNewItemPortalOpen(false));

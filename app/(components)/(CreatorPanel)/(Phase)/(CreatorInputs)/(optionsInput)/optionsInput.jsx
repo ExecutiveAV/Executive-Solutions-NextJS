@@ -65,7 +65,7 @@ const OptionsInput = ({ value, label, entryType, action, dispatched }) => {
                 <option className={styles.option} disabled  >***Make a selection***</option>
                 {options !== "undefined" ?
                 options.optionIds.map(option => (
-                    <option key={`Opt${option}`} className={styles.option} id={option} >{option.replaceAll("_", " ")}</option>
+                    <option key={`Opt${options.optionData[option]}`} className={styles.option} id={option} >{option.replaceAll("_", " ")}</option>
                 )
                 ) :
                 ""

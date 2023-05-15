@@ -125,7 +125,7 @@ const validateZip = (zip: string): boolean => {
 }
 
 const validateRate = (rate: number): boolean => {
-    if (typeof rate !== "number" || rate < 0 || rate > 5000) {
+    if (rate < 0 || rate > 5000) {
         return false;
     }
 
@@ -151,6 +151,7 @@ export const newEntrySlice = createSlice({
         setNewEntryPosition: (state, action: PayloadAction<newEntryPosition>) => {
             state.position = action.payload;
         },
+        //
         setNewEntryCompanyName: (state, action: PayloadAction<string>) => {
             if (validateString(action.payload, 2, 50)) {
                 state.validation.company.companyName = true;

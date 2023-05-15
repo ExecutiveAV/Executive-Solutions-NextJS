@@ -82,9 +82,9 @@ const Hero = () => {
         <>
             <HeaderTitle client={client.companyName} />
             <Headers content={`22${currentYear}_${scheduleNumber < 10 ? `0${scheduleNumber}` : scheduleNumber}`} />
-            <Headers content={venue.venueName} />
-            {venueAddress && <Headers content={venueAddress} gray />}
-            {venueCity && <Headers content={venueCity} gray />}
+            {venue.venueName ? <Headers content={venue.venueName} /> : <Headers content={"Venue"} />}
+            {venue.venueAddress ? <Headers content={venue.venueAddress} gray /> : <Headers content={"Address"} gray />}
+            {venue.venueCity ? <Headers content={venue.venueCity} gray /> : <Headers content={"City, State Zip"} gray />}
         </>
     );
 };

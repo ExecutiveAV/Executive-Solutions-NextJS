@@ -14,10 +14,15 @@ export interface Shift {
     contractors: Contractor[];
 }
 
+export interface Position {
+    positionName: string;
+    positionRate: number;
+}
+
 export interface Contractor {
     contractorId: number;
     contractorName: string;
-    contractorPosition: string;
+    contractorPosition: Position;
     contractorRate: number;
     contractorTimeIn: string;
     contractorTimeOut: string;

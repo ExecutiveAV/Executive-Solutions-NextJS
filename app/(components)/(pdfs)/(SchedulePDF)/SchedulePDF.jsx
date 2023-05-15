@@ -363,31 +363,31 @@ const styles = StyleSheet.create({
 const SchedulePDF = ({ days, companyName, scheduleNumber, venueName, venueStreet, venueCity, venueState, venueZip }) => {
 
     const formatTime = time => {
-        let formatTime = time.split(":");
-        let meridian = "";
-        let hour = formatTime[0];
-        if (hour > 11) {
-            meridian = " PM";
-            if (hour > 12) {
-                hour = hour - 12;
+        if (time) {
+            let formatTime = time.split(":");
+            let meridian = "";
+            let hour = formatTime[0];
+            if (hour > 11) {
+                meridian = " PM";
+                if (hour > 12) {
+                    hour = hour - 12;
+                }
+            } else {
+                meridian = " AM";
             }
-        } else {
-            meridian = " AM";
+            formatTime[0] = hour
+            formatTime = formatTime.join(":");
+            formatTime = formatTime.concat(meridian);
+            return formatTime;
         }
-        formatTime[0] = hour
-        formatTime = formatTime.join(":");
-        formatTime = formatTime.concat(meridian);
-        return formatTime;
     }
-
-    console.count("This is the schedulePDF: ", companyName);
 
     const buildContractors = (contractors) => {
         return contractors.map((contractor, index) => {
             return (
                 <View style={styles.bodyContractor} >
                     <View style={[styles.bodyPositionContainer]} >
-                        <Text style={[styles.bodyPosition]} >{contractor.contractorPosition}</Text>
+                        <Text style={[styles.bodyPosition]} >{contractor.contractorPosition.positionName}</Text>
                     </View>
                     <View style={[styles.bodyNameContainer ]} >
                         <Text style={[styles.bodyName]} >{contractor.contractorName}</Text>
@@ -442,11 +442,12 @@ const SchedulePDF = ({ days, companyName, scheduleNumber, venueName, venueStreet
 
     const formatDate = date => {
         //format time from mm/dd/yyyy to mm/dd/yy
-        let formatTime = date.split("/");
-        let year = formatTime[2].slice(2, 4);
-        formatTime[2] = year;
-        formatTime = formatTime.join("/");
-        return formatTime;
+        if (date) {
+            let formatDate = date.split("/");
+            formatDate[2] = formatDate[2].slice(2, 4);
+            formatDate = formatDate.join("/");
+            return formatDate;
+        }
     };
 
     const buildDays = () => {
