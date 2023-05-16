@@ -8,7 +8,6 @@ import { useState } from 'react';
 const ToggleInput = ({ label, value, dispatched, id }) => {
 
     const handleClick = () => {
-        setIsOn(!value);
         dispatched(!value);
     };
 

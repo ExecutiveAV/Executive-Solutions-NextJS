@@ -63,7 +63,6 @@ const PopUpFooter = () => {
     };
 
     
-    console.log("newEntryCompanyIsValid outside: ", newEntryVenue)
       
     const saveNewEntry = async () => {
         try {
@@ -86,7 +85,6 @@ const PopUpFooter = () => {
                 case "company":
                     if (!newEntryCompanyIsValid) {
                         alert("Please fill out all the company fields");
-                        console.log("newEntryCompanyIsValid inside: ", newEntryCompanyIsValid)
                         return;
                     } else {
                         await saveNewEntryToCollection(collection, documentName, newEntryCompany);
@@ -153,12 +151,16 @@ const PopUpFooter = () => {
         dispatch(setNewEntryKind(""));
       };
 
-    return (
-        <section className={styles.popUpFooter} >
-            <p className={`${styles.button} ${styles.cancel}`} onClick={closeNewEntry} >Cancel</p>
-            <p className={`${styles.button} ${styles.add}`} onClick={saveNewEntry} >Add</p>
-        </section>
-    );
+    try {
+        return (
+            <section className={styles.popUpFooter} >
+                <p className={`${styles.button} ${styles.cancel}`} onClick={closeNewEntry} >Cancel</p>
+                <p className={`${styles.button} ${styles.add}`} onClick={saveNewEntry} >Add</p>
+            </section>
+        );
+    } catch (error) {
+        console.error("This is a popUpFooter error: ", error);
+    }
 };
 
 export default PopUpFooter;

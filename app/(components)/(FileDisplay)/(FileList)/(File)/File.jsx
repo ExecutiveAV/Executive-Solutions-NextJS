@@ -7,7 +7,7 @@ import FileOptions from "./(FileOptions)/FileOptions";
 
 const File = ({ key, fileName, createdOn, editedOn, kind }) => {
     return (
-        <li className={styles.file} >
+        <li key={`File ${key}`} className={styles.file} >
             <PrimaryText >{fileName}</PrimaryText>
             <PrimaryText >{createdOn}</PrimaryText>
             <PrimaryText >{editedOn}</PrimaryText>

@@ -2,7 +2,7 @@ import { createSelector } from 'reselect';
 
 const scheduleSelector = (state) => state.schedule;
 
-const scheduleDataSelector = createSelector(
+export const scheduleDataSelector = createSelector(
   scheduleSelector,
   (schedule) => schedule.scheduleData
 );
@@ -156,6 +156,21 @@ export const companyNameSelector = createSelector(
 export const companyAddressSelector = createSelector(
   companySelector,
   (company) => company.companyAddress
+);
+
+export const companyEmailSelector = createSelector(
+  companySelector,
+  (company) => company.companyEmail
+);
+
+export const companyPhoneSelector = createSelector(
+  companySelector,
+  (company) => company.companyPhone
+);
+
+export const companyInitialsSelector = createSelector(
+  companySelector,
+  (company) => company.companyInitials
 );
 
 export const companyAddress2Selector = createSelector(

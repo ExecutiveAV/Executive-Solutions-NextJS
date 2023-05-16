@@ -36,6 +36,7 @@ export interface Company {
     companyName: string;
     companyPOC: string;
     companyEmail: string;
+    companyInitials: string;
     companyPhone: string;
     companyAddress: string;
     companyAddress2: string;

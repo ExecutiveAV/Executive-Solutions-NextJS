@@ -6,12 +6,15 @@ import { db } from '../../../../../../utils/firebaseUtils/firebaseUtils';
 import { doc, deleteDoc } from 'firebase/firestore';
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import Link from "next/link";
 import Dots from './dots';
 
 const FileOptions = ({ id, route, fileName }) => {
 
     // const router = useRouter();
     const [isModalOpen, toggleModal] = useState(false);
+
+    console.log("test: ",`/${route}/edit/${fileName}`)
 
     // const handleOptionsClick = async (route, fileName, operation) => {
     //     //Inside a try catch block, handle the click of the options button usin the operation parameter via a switch statement, the operation parameter will be either edit, delete, or view
@@ -65,7 +68,7 @@ const FileOptions = ({ id, route, fileName }) => {
                 <p className={styles.option} >Download</p>
                 <p className={styles.option} >Rename</p>
                 <p className={styles.option} >View</p>
-                <p className={styles.option} >Edit</p>
+                <Link href={`/${route}/edit/${fileName}`} className={styles.option} >Edit</Link>
                 <p className={styles.option} >Edit History</p>
                 <p className={styles.option} >Delete</p>
             </div>

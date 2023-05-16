@@ -27,7 +27,6 @@ const OptionsInput = ({ value, label, entryType, action, dispatched }) => {
             group.forEach(doc => {
                 items.optionIds.push(doc.id);
                 items.optionData[doc.id] = doc.data();
-                console.log(doc.data())
             });
             setOptions(items);
         } catch (e) {

@@ -19,14 +19,17 @@ const Day = ( { dayData, dayCounter } ) => {
                 meridian = " AM";
             }
             formatTime[0] = hour
-            formatTime = formatTime.join(":");
-            formatTime = formatTime.concat(meridian);
+            //check if time contains meridian
+            if (formatTime[1].includes("AM") || formatTime[1].includes("PM")) {
+                formatTime = formatTime.join(":");
+            } else {
+                formatTime = formatTime.join(":") + meridian;
+            }
             return formatTime;
         }
     }
     
     const formatDate = date => {
-        //format time from mm/dd/yyyy to mm/dd/yy
         if (date) {
             try {
                 let formatDate = date.split("/");
@@ -34,7 +37,7 @@ const Day = ( { dayData, dayCounter } ) => {
                 formatDate = formatDate.join("/");
                 return formatDate;
             } catch (error) {
-                console.log(error);
+                console.error(error);
             }
         }
     };

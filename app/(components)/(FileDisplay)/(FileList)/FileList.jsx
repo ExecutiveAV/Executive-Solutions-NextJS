@@ -1,6 +1,4 @@
 import PrimaryText from "./(PrimaryText)/PrimaryText";
-import FileOptions from "./(File)/(FileOptions)/FileOptions";
-
 import { db } from '../../../../utils/firebaseUtils/firebaseUtils';
 import { getDocs, collection } from 'firebase/firestore'
 
@@ -16,7 +14,7 @@ const fetchFilesFromDB = async (kind) => {
         files.forEach(doc => {
             const file = doc.data();
             items.push(
-                <File key={doc.id} fileName={doc.id} createdOn={`${new Date(file.createdOn).toLocaleDateString('en-us')}`} editedOn={`${new Date(file.editedOn).toLocaleDateString('en-us')}`} kind={kind} />
+                <File key={doc.id} fileName={doc.id} createdOn={`${new Date(file.createdAt).toLocaleDateString('en-us')}`} editedOn={`${new Date(file.updatedAt).toLocaleDateString('en-us')}`} kind={kind} />
             );
         });
         return items;

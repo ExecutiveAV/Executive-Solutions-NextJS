@@ -1,6 +1,8 @@
 'use client'
 
 import { useEffect, useState } from "react";
+import { doc, getDoc, setDoc } from "@firebase/firestore";
+import { db } from "../../../utils/firebaseUtils/firebaseUtils";
 
 import Hero from "./(Hero)/Hero";
 import Body from "./(Body)/Body";
@@ -11,7 +13,7 @@ import { usePDF, PDFViewer  } from "@react-pdf/renderer";
 import SchedulePDF from "../(pdfs)/(SchedulePDF)/SchedulePDF"
 
 import {
-  daysSelector, companyNameSelector, scheduleNumberSelector, venueNameSelector, venueAddressSelector, venueAddress2Selector, venueCitySelector, venueStateSelector, venueZipSelector, companySelector, scheduleDataSelector
+  daysSelector, companyNameSelector, scheduleNumberSelector, venueNameSelector, venueAddressSelector, venueAddress2Selector, venueCitySelector, venueStateSelector, venueZipSelector, companySelector, scheduleDataSelector, companyInitialsSelector
 } from "../../redux/selectors/scheduleSelectors";
 
 import { useSelector } from "react-redux";
@@ -24,13 +26,18 @@ const RenderingPanel = () => {
 
     const days = useSelector(daysSelector);
     const companyName = useSelector(companyNameSelector);
+    const companyInitials = useSelector(companyInitialsSelector);
     const scheduleNumber = useSelector(scheduleNumberSelector);
+    const scheduleData = useSelector(scheduleDataSelector);
     const venueName = useSelector(venueNameSelector);
     const venueStreet = useSelector(venueAddressSelector);
     const venueStreet2 = useSelector(venueAddress2Selector);
     const venueCity = useSelector(venueCitySelector);
     const venueState = useSelector(venueStateSelector);
     const venueZip = useSelector(venueZipSelector);
+
+    //function to get the last two digits of the current year
+    const year = new Date().getFullYear().toString().slice(-2);
 
     const [instance, updateInstance] =  usePDF(
       {
@@ -47,7 +54,23 @@ const RenderingPanel = () => {
     if (instance.loading) return <div>Loading ...</div>;
 
     if (instance.error) return <div>Something went wrong: {error}</div>;
-    console.log(instance)
+
+    const saveScheduleToFirebaseDatabase = async (year, scheduleNumber, companyInitials, scheduleData) => {
+      try {
+        const dbRef = doc(db, "schedules", `22${year}_${scheduleNumber < 10 ? `0${scheduleNumber}` : scheduleNumber}-${companyInitials}`);
+        const docSnap = await getDoc(dbRef);
+    
+        if (!docSnap.exists()) {
+          await setDoc(dbRef, scheduleData);
+          alert("Schedule saved successfully!");
+        } else {
+          alert("Document already exists.");
+        }
+      } catch (error) {
+        console.error("Error writing document: ", error);
+        alert("Error saving schedule. Please try again.");
+      }
+    };    
 
     return (
       <section className={styles.renderingPanel}>
@@ -55,7 +78,14 @@ const RenderingPanel = () => {
           <Hero />
           <Body />
         </section>
-        <a href={instance.url} download={`Schedule 2223_${scheduleNumber}`} className={styles.downloadButton}>Download</a>
+        <section className={styles.buttons} >
+          <section className={styles.downloadButton}>
+            <a href={instance.url} download={`Schedule 2223_${scheduleNumber}`} className={styles.buttonContent} >Download</a>
+          </section>
+          <section className={styles.downloadButton}>
+            <p onClick={e => saveScheduleToFirebaseDatabase(year, scheduleNumber, companyInitials, scheduleData)} className={styles.buttonContent} >Save</p>
+          </section>
+        </section>
 
       </section>
     );

@@ -444,7 +444,6 @@ const SchedulePDF = ({ days, companyName, scheduleNumber, venueName, venueStreet
             if ( contractorQty === 0 ) {
                 contractorQty = 1;
             }
-            console.log(contractorQty, "contractorQty");
             if (index === 0) {
                 return (
                     <View style={[styles.bodyShiftContainer, {height: `${contractorQty * 26}px`, } ]} >

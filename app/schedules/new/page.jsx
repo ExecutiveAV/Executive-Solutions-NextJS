@@ -10,15 +10,13 @@ import Title from '../../(components)/(Title)/Title'
 const New = () => {
     return (
         <main style={{"display": "flex"}}>
-            <Providers>
-                <ViewPanel >
-                    <Title pathTo={"/"} >Executive AV</Title>
-                    <CreatorPanel />
-                </ViewPanel>
-                <ViewPanel secondary >
-                    <RenderingPanel />
-                </ViewPanel>
-            </Providers>
+            <ViewPanel >
+                <Title pathTo={"/"} >Executive AV</Title>
+                <CreatorPanel />
+            </ViewPanel>
+            <ViewPanel secondary >
+                <RenderingPanel />
+            </ViewPanel>
             
         </main>
     )

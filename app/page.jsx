@@ -4,6 +4,7 @@ import ViewPanel from "./(components)/(ViewPanel)/ViewPanel";
 import MainLink from "./(components)/(MainLink)/MainLink";
 import Title from "./(components)/(Title)/Title";
 
+
 import Link from "next/link";
 
 const Homepage = () => {

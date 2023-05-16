@@ -43,6 +43,7 @@ const tempInitialState = {
     companyName: '',
     companyPOC: '',
     companyEmail: '',
+    companyInitials: '',
     companyPhone: '',
     companyAddress: '',
     companyAddress2: '',
@@ -84,7 +85,7 @@ export const scheduleSlice = createSlice({
     initialState,
     reducers: {
         setScheduleData: (state, action: PayloadAction<ScheduleState>) => {
-            state.scheduleData = action.payload.scheduleData;
+            state.scheduleData = action.payload;
         },
         setCurrent: (state, action: PayloadAction<ScheduleState>) => {
             state.current = action.payload.current;
@@ -330,13 +331,21 @@ export const scheduleSlice = createSlice({
         },
         setCompanyPOC: (state, action: PayloadAction<string>) => {
             state.scheduleData.company.companyPOC = action.payload;
-        }
-
+        },
+        setCompanyInitials: (state, action: PayloadAction<string>) => {
+            state.scheduleData.company.companyInitials = action.payload;
+        },
+        setCompanyEmail: (state, action: PayloadAction<string>) => {
+            state.scheduleData.company.companyEmail = action.payload;
+        },
+        setCompanyPhone: (state, action: PayloadAction<string>) => {
+            state.scheduleData.company.companyPhone = action.payload;
+        },   
     },
 });
 
 export const {
-    setScheduleData, setCurrentDay, setCurrentShift, setCurrentContractor, setCurrentDate, setCreatedAt, setUpdatedAt, setScheduleNumber, setcompany, setVenue, setDays, setDay, setShifts, setShift, setContractors, setContractor, setContractorName, setContractorPosition, setContractorRate, setContractorTimeIn, setContractorTimeOut, setContractorHours, setContractorTotal, setContractorOvertime, setWalkAway, setShiftNumber, setShiftStartTime, setShiftEndTime, setShiftTotalHours, setDayNumber, setDayDate, setCurrentPhase, setShiftHalfDay, setShiftWalkaway, setCompanyName, setCompanyAddress, setCompanyAddress2, setCompanyCity, setCompanyState, setCompanyZip,
+    setScheduleData, setCurrentDay, setCurrentShift, setCurrentContractor, setCurrentDate, setCreatedAt, setUpdatedAt, setScheduleNumber, setcompany, setVenue, setDays, setDay, setShifts, setShift, setContractors, setContractor, setContractorName, setContractorPosition, setContractorRate, setContractorTimeIn, setContractorTimeOut, setContractorHours, setContractorTotal, setContractorOvertime, setWalkAway, setShiftNumber, setShiftStartTime, setShiftEndTime, setShiftTotalHours, setDayNumber, setDayDate, setCurrentPhase, setShiftHalfDay, setShiftWalkaway, setCompanyName, setCompanyAddress, setCompanyAddress2, setCompanyCity, setCompanyState, setCompanyZip, setCompanyPOC, setCompanyInitials, setCompanyEmail, setCompanyPhone
 } = scheduleSlice.actions;
 
 export default scheduleSlice.reducer;
