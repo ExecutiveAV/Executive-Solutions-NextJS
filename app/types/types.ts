@@ -1,3 +1,6 @@
+import { ThunkAction, Action } from '@reduxjs/toolkit';
+import { rootReducer } from '../redux/store/store';
+
 export interface Day {
     dayNumber: number;
     date: string;
@@ -179,3 +182,13 @@ export interface newEntry {
     kind: string;
     validation: newEntryValidation;
 }
+
+//Root reducer type
+export type RootState = ReturnType<typeof rootReducer>;
+
+export type AppThunk<ReturnType = void> = ThunkAction<
+  ReturnType,
+  RootState,
+  unknown,
+  Action<string>
+>;
