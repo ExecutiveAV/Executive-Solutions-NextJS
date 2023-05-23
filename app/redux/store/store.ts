@@ -12,7 +12,7 @@ import newEntryReducer from "../slices/newEntrySlice";
 const persistConfig = {
   key: 'root',
   storage,
-  // Expires in 1 day (in milliseconds)
+  whitelist: ["schedule"],
   expireIn: 24 * 60 * 60 * 1000,
 };
 
