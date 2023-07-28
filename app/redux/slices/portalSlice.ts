@@ -1,6 +1,6 @@
-import { PortalState } from "../../types/types";
+import { PortalState, newEntryCompany, newEntryContractor, newEntryPosition, newEntryVenue } from "../../types/types";
 
-import { createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 
 const initialState: PortalState = {
     isNewItemPortalOpen: false,
@@ -13,16 +13,16 @@ const newEntryPortalSlice = createSlice({
     name: "newEntryPortal",
     initialState,
     reducers: {
-        setIsNewItemPortalOpen: (state, action) => {
+        setIsNewItemPortalOpen: (state, action:PayloadAction<boolean>) => {
             state.isNewItemPortalOpen = action.payload;
         },
-        setNewEntryPortalType: (state, action) => {
+        setNewEntryPortalType: (state, action:PayloadAction<string>) => {
             state.newEntryPortalType = action.payload;
         },
-        setNewEntryPortalDocument: (state, action) => {
+        setNewEntryPortalDocument: (state, action:PayloadAction<newEntryCompany | newEntryContractor | newEntryPosition | newEntryVenue>) => {
             state.newEntryPortalDocument = action.payload;
         },
-        setDidUpload: (state, action) => {
+        setDidUpload: (state, action:PayloadAction<boolean>) => {
             state.didUpload = action.payload;
         },
         clearNewEntryPortalDocument: (state) => {

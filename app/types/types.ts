@@ -1,9 +1,3 @@
-export interface Day {
-    dayNumber: number;
-    date: string;
-    shifts: Shift[];
-}
-
 export interface Shift {
     shiftNumber: number;
     startTime: string;
@@ -12,6 +6,12 @@ export interface Shift {
     halfDay: boolean;
     walkaway: boolean;
     contractors: Contractor[];
+}
+
+export interface Day {
+    dayNumber: number;
+    date: string;
+    shifts: Shift[];
 }
 
 export interface Position {
@@ -55,7 +55,7 @@ export interface Venue {
 }
 
 export interface ScheduleData {
-    scheduleNumber: string | number;
+    scheduleNumber: number;
     company: Company;
     venue: Venue;
     days: Day[];
@@ -179,3 +179,19 @@ export interface newEntry {
     kind: string;
     validation: newEntryValidation;
 }
+
+//////PROPS//////
+
+export interface SchedulePDFProps {
+    days: Day[];
+    companyName: string;
+    scheduleNumber: number;
+    venueName: string;
+    venueStreet: string;
+    venueStreet2 ?: string;
+    venueCity: string;
+    venueState: string;
+    venueZip: string;
+}
+
+

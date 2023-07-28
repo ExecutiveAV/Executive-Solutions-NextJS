@@ -14,11 +14,11 @@ const FileDisplay = ({children, kind}) => {
             <header className={styles.header} >
                 <SearchBar />
                 <Button className={styles.button} >
-                    <Link href="/schedules/new" >New</Link>
+                    <Link href={`/${kind}/new`} >New</Link>
                 </Button>
                 <FilterButton />
             </header>
-            <FileList type={"Schedule #"} kind={kind}  />
+            <FileList type={`${kind} #`} kind={kind}  />
         </article>
     );
 };

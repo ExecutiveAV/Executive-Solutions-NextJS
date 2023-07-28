@@ -1,75 +1,77 @@
 import { createSelector } from "reselect";
+import { newEntry, newEntryValidation, newEntryCompany, newEntryVenue, newEntryContractor, newEntryPosition } from "../../types/types";
+import { RootState } from "../store/store";
 
-const newEntrySelector = (state) => state.newEntry;
+const newEntrySelector = (state:RootState) => state.newEntry;
 
 export const newEntryCompanySelector = createSelector(
     newEntrySelector,
-    (newEntry) => newEntry.company
+    (newEntry:newEntry) => newEntry.company
 );
 
 export const newEntryVenueSelector = createSelector(
     newEntrySelector,
-    (newEntry) => newEntry.venue
+    (newEntry:newEntry) => newEntry.venue
 );
 
 export const newEntryContractorSelector = createSelector(
     newEntrySelector,
-    (newEntry) => newEntry.contractor
+    (newEntry:newEntry) => newEntry.contractor
 );
 
 export const newEntryPositionSelector = createSelector(
     newEntrySelector,
-    (newEntry) => newEntry.position
+    (newEntry:newEntry) => newEntry.position
 );
 
 export const newEntryKindSelector = createSelector(
     newEntrySelector,
-    (newEntry) => newEntry.kind
+    (newEntry:newEntry) => newEntry.kind
 );
 
 export const newEntryValidationSelector = createSelector(
     newEntrySelector,
-    (newEntry) => newEntry.validation
+    (newEntry:newEntry) => newEntry.validation
 );
 
 export const newEntryCompanyValidation = createSelector(
     newEntryValidationSelector,
-    (validation) => validation.company
+    (validation:newEntryValidation) => validation.company
 );
 
 export const newEntryVenueValidation = createSelector(
     newEntryValidationSelector,
-    (validation) => validation.venue
+    (validation:newEntryValidation) => validation.venue
 );
 
 export const newEntryContractorValidation = createSelector(
     newEntryValidationSelector,
-    (validation) => validation.contractor
+    (validation:newEntryValidation) => validation.contractor
 );
 
 export const newEntryPositionValidation = createSelector(
     newEntryValidationSelector,
-    (validation) => validation.position
+    (validation:newEntryValidation) => validation.position
 );
 
 export const newEntryCompanyNameSelector = createSelector(
     newEntryCompanySelector,
-    (company) => company.companyName
+    (company:newEntryCompany) => company.companyName
 );
 
 export const newEntryVenueNameSelector = createSelector(
     newEntryVenueSelector,
-    (venue) => venue.venueName
+    (venue:newEntryVenue) => venue.venueName
 );
 
 export const newEntryContractorNameSelector = createSelector(
     newEntryContractorSelector,
-    (contractor) => contractor.contractorName
+    (contractor:newEntryContractor) => contractor.contractorName
 );
 
 export const newEntryPositionNameSelector = createSelector(
     newEntryPositionSelector,
-    (position) => position.positionName
+    (position:newEntryPosition) => position.positionName
 );
 
 export const newEntryCompanyNameValidationSelector = createSelector(

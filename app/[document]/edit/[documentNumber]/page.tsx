@@ -1,7 +1,5 @@
 'use client'
 
-import Providers from "../../../(components)/(Provider)/Provider";
-
 import ViewPanel from "../../../(components)/(ViewPanel)/ViewPanel";
 import CreatorPanel from "../../../(components)/(CreatorPanel)/CreatorPanel"
 import RenderingPanel from "../../../(components)/(RenderingPanel)/RenderingPanel";
@@ -13,19 +11,21 @@ import { doc, getDoc } from "firebase/firestore";
 import { db } from "../../../../utils/firebaseUtils/firebaseUtils";
 import { setScheduleData } from "../../../redux/slices/scheduleSlice";
 
-const New = ({ params }) => {
+import { ScheduleData } from "../../../types/types"
+
+const New = ({ params }: {params: {documentNumber: string, document: string}}) => {
 
     const dispatch = useDispatch();
-    const scheduleNumber = params.schedule;
 
+    const { documentNumber, document } = params;
 
-    const fetchSchedule = async (scheduleNumber) => {
+    const fetchSchedule = async (documentNumber) => {
         try {
-            const schedule = doc(db, "schedules", scheduleNumber);
-            const scheduleSnap = await getDoc(schedule);
-            console.log(scheduleSnap.data());
-            if (scheduleSnap.exists()) {
-                dispatch(setScheduleData(scheduleSnap.data()));
+            const documents = doc(db, document, documentNumber);
+            const documentSnap = await getDoc(documents);
+            console.log(documentSnap.data());
+            if (documentSnap.exists()) {
+                dispatch(setScheduleData(documentSnap.data() as ScheduleData));
             } else {
                 console.log("No such document!");
             }
@@ -36,8 +36,8 @@ const New = ({ params }) => {
     };
 
     useEffect(() => {
-        fetchSchedule(scheduleNumber);
-    }, [scheduleNumber]);
+        fetchSchedule(documentNumber);
+    }, [documentNumber]);
 
 
     return (

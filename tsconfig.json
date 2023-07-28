@@ -29,7 +29,7 @@
     ".next/types/**/*.ts",
     "**/*.ts",
     "**/*.tsx"
-, "app/provider.js", "app/(components)/(Provider)/Provider.js", "app/redux/selectors/newEntrySelectors.js"  ],
+, "app/provider.js", "app/(components)/(Provider)/Provider.js", "app/redux/selectors/newEntrySelectors.ts"  ],
   "exclude": [
     "node_modules"
   ]

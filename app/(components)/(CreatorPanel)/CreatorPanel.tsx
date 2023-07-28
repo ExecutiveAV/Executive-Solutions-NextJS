@@ -1,5 +1,7 @@
 'use client'
 
+import { } from '../../types/types';
+
 import { useState } from 'react';
 
 import styles from './CreatorPanel.module.css';
@@ -16,7 +18,7 @@ import Days from './(Phase)/(Days)/days';
 import Contractor from './(Phase)/(Contractor)/Contractor';
 import Shifts from './(Phase)/(Shifts)/Shifts';
 
-const NewDocument = ({ children }) => {
+const NewDocument = ({ children }:{children ? : any}) => {
 
     const isNewEntryPortalOpen = useSelector(state => state.newEntryPortal.isNewItemPortalOpen);
     const newEntryPortalType = useSelector(state => state.newEntryPortal.newEntryPortalType);

@@ -3,7 +3,7 @@ import type { PayloadAction } from "@reduxjs/toolkit";
 
 import { getCurrentDateTimeInAmericanFormat, getCurrentDateInAmericanFormat, convertMilitaryTimeToStandardTime } from "../../../utils/jsUtils/utils";
 
-import { Day, Shift, Contractor, ScheduleState, Company, Venue, Position } from '../../types/types';
+import { ScheduleData, Day, Shift, Contractor, ScheduleState, Company, Venue, Position } from '../../types/types';
 
 const tempInitialState = {
     days: [
@@ -84,7 +84,7 @@ export const scheduleSlice = createSlice({
     name: "schedule",
     initialState,
     reducers: {
-        setScheduleData: (state, action: PayloadAction<ScheduleState>) => {
+        setScheduleData: (state, action: PayloadAction<ScheduleData>) => {
             state.scheduleData = action.payload;
         },
         setCurrent: (state, action: PayloadAction<ScheduleState>) => {

@@ -1,5 +1,7 @@
 'use client'
 
+import { SchedulePDFProps, Contractor, Day } from '../../../types/types';
+
 import { useSelector } from 'react-redux';
 import { Document, Page, Text, View, StyleSheet, Font  } from '@react-pdf/renderer';
 
@@ -39,10 +41,8 @@ const styles = StyleSheet.create({
         padding: "3px 0 0 5px",
     },
     bodyTitle: {
-        height: "40px",
         width: "22.5cm",
         maxWidth: "100%",
-        display: "inline-flex",
         flexDirection: "row",
         backgroundColor: "#808080",
         boxSizing: "border-box",
@@ -51,7 +51,6 @@ const styles = StyleSheet.create({
         height: "26px",
     },
     bodyTitleTitle: {
-        display: "inline-block",
         color: "#fff",
         fontSize: "16px",
         fontWeight: "bold",
@@ -70,7 +69,6 @@ const styles = StyleSheet.create({
         fontSize: "16px",
     },
     shifts: {
-        display: "inline-flex",
         flexDirection: "row",
         width: "100%",
         minHeight: "26px",
@@ -83,10 +81,6 @@ const styles = StyleSheet.create({
         height: "auto",
         margin: "auto",
         flex: 1,
-    },
-    shift: {
-        display: "inline-flex",
-        flex: 6,
     },
     dayNumber: {
         flex: 2,
@@ -151,13 +145,6 @@ const styles = StyleSheet.create({
         height: "26px",
         backgroundColor: "#000000",
     },
-    bodyShiftContainer: {
-        width: "100%",
-        maxWidth: "100%",
-        height: "auto",
-        display: "flex",
-        flexDirection: "row",
-    },
     dayContainerData: {
         width: "100%",
         maxWidth: "100%",
@@ -176,7 +163,6 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         color: "#000",
-        fontSize: "21px",
         fontWeight: "bold",
         textAlign: "center",
         fontSize: "16px",
@@ -193,7 +179,6 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         color: "#000",
-        fontSize: "21px",
         fontWeight: "bold",
         textAlign: "center",
         fontSize: "16px",
@@ -216,7 +201,6 @@ const styles = StyleSheet.create({
         justifyContent: "center",
         alignItems: "center",
         color: "#000",
-        fontSize: "21px",
         fontWeight: "bold",
         textAlign: "center",
         fontSize: "16px",
@@ -246,7 +230,6 @@ const styles = StyleSheet.create({
         maxHeight: "25px",
         maxWidth: "100%",
         color: "#000",
-        fontSize: "21px",
         fontWeight: "bold",
         textAlign: "center",
         alignSelf: "center",
@@ -305,7 +288,6 @@ const styles = StyleSheet.create({
         maxHeight: "25px",
         maxWidth: "100%",
         color: "#000",
-        fontSize: "21px",
         fontWeight: "bold",
         textAlign: "center",
         alignSelf: "center",
@@ -331,7 +313,6 @@ const styles = StyleSheet.create({
         maxHeight: "25px",
         maxWidth: "100%",
         color: "#000",
-        fontSize: "21px",
         fontWeight: "bold",
         textAlign: "center",
         alignSelf: "center",
@@ -357,7 +338,6 @@ const styles = StyleSheet.create({
         maxHeight: "25px",
         maxWidth: "100%",
         color: "#000",
-        fontSize: "21px",
         fontWeight: "bold",
         textAlign: "center",
         alignSelf: "center",
@@ -382,7 +362,6 @@ const styles = StyleSheet.create({
         width: "100%",
         maxWidth: "100%",
         color: "#000",
-        fontSize: "21px",
         fontWeight: "bold",
         textAlign: "center",
         alignSelf: "center",
@@ -395,13 +374,13 @@ const styles = StyleSheet.create({
     },
 });
 
-const SchedulePDF = ({ days, companyName, scheduleNumber, venueName, venueStreet, venueCity, venueState, venueZip }) => {
+const SchedulePDF = ({ days, companyName, scheduleNumber, venueName, venueStreet, venueCity, venueState, venueZip }:SchedulePDFProps) => {
 
-    const formatTime = time => {
+    const formatTime = (time:string) => {
         if (time) {
             let formatTime = time.split(":");
             let meridian = "";
-            let hour = formatTime[0];
+            let hour = parseInt(formatTime[0]);
             if (hour > 11) {
                 meridian = " PM";
                 if (hour > 12) {
@@ -410,14 +389,12 @@ const SchedulePDF = ({ days, companyName, scheduleNumber, venueName, venueStreet
             } else {
                 meridian = " AM";
             }
-            formatTime[0] = hour
-            formatTime = formatTime.join(":");
-            formatTime = formatTime.concat(meridian);
-            return formatTime;
+            formatTime[0] = hour.toString();
+            return formatTime.join(":").concat(meridian);
         }
     }
 
-    const buildContractors = (contractors) => {
+    const buildContractors = (contractors:Contractor[]) => {
         return contractors.map((contractor, index) => {
             return (
                 <View style={styles.bodyContractor} >
@@ -438,7 +415,7 @@ const SchedulePDF = ({ days, companyName, scheduleNumber, venueName, venueStreet
         });
     };
 
-    const buildShifts = (day) => {
+    const buildShifts = (day:Day) => {
         return day.shifts.map((shift, index) => {
             let contractorQty = shift.contractors.length;
             if ( contractorQty === 0 ) {
@@ -474,13 +451,12 @@ const SchedulePDF = ({ days, companyName, scheduleNumber, venueName, venueStreet
         });
     };
 
-    const formatDate = date => {
+    const formatDate = (date:string) => {
         //format time from mm/dd/yyyy to mm/dd/yy
         if (date) {
             let formatDate = date.split("/");
             formatDate[2] = formatDate[2].slice(2, 4);
-            formatDate = formatDate.join("/");
-            return formatDate;
+            return formatDate.join("/");
         }
     };
 

@@ -1,6 +1,5 @@
+// @ts-ignore
 'use client'
-
-import Providers from "../../(components)/(Provider)/Provider";
 
 import ViewPanel from "../../(components)/(ViewPanel)/ViewPanel";
 import CreatorPanel from "../../(components)/(CreatorPanel)/CreatorPanel"

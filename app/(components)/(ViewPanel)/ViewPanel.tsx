@@ -1,6 +1,11 @@
 import styles from './ViewPanel.module.css';
 
-const ViewPanel = ({secondary, children}) => {
+interface ViewPanelProps {
+    secondary?: boolean;
+    children: React.ReactNode;
+}
+
+const ViewPanel = ({secondary, children}:ViewPanelProps) => {
     return (
         <section className={`${styles.viewPanel} ${secondary ? styles.secondary : ""}`} >
             {children}

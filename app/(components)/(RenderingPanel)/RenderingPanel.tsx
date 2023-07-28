@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from "react";
+import { ReactNode, useEffect, useState } from "react";
 import { doc, getDoc, setDoc } from "@firebase/firestore";
 import { db } from "../../../utils/firebaseUtils/firebaseUtils";
 
@@ -17,8 +17,9 @@ import {
 } from "../../redux/selectors/scheduleSelectors";
 
 import { useSelector } from "react-redux";
+import { ScheduleData, SchedulePDFProps } from "../../types/types";
 
-const RenderingPanel = () => {
+const RenderingPanel = (): ReactNode => {
   
   try {
 
@@ -46,16 +47,14 @@ const RenderingPanel = () => {
     );
     
     useEffect(() => {
-      updateInstance(<SchedulePDF days={days} companyName={companyName} scheduleNumber={scheduleNumber} venueName={venueName} venueStreet={venueStreet} venueStreet2={venueStreet2} venueCity={venueCity} venueState={venueState} venueZip={venueZip} />)
-      console.count( companyName)
-      setDocument(<SchedulePDF days={days} companyName={companyName} scheduleNumber={scheduleNumber} venueName={venueName} venueStreet={venueStreet} venueStreet2={venueStreet2} venueCity={venueCity} venueState={venueState} venueZip={venueZip} />)
+      updateInstance();
     }, [days, companyName, scheduleNumber, venueName, venueStreet, venueStreet2, venueCity, venueState, venueZip]);
 
     if (instance.loading) return <div>Loading ...</div>;
 
-    if (instance.error) return <div>Something went wrong: {error}</div>;
+    if (instance.error) return <div>Something went wrong: {instance.error}</div>;
 
-    const saveScheduleToFirebaseDatabase = async (year, scheduleNumber, companyInitials, scheduleData) => {
+    const saveScheduleToFirebaseDatabase = async (year:string, scheduleNumber:number, companyInitials:string, scheduleData:ScheduleData) => {
       try {
         const dbRef = doc(db, "schedules", `22${year}_${scheduleNumber < 10 ? `0${scheduleNumber}` : scheduleNumber}-${companyInitials}`);
         const docSnap = await getDoc(dbRef);
@@ -80,7 +79,7 @@ const RenderingPanel = () => {
         </section>
         <section className={styles.buttons} >
           <section className={styles.downloadButton}>
-            <a href={instance.url} download={`Schedule 2223_${scheduleNumber}`} className={styles.buttonContent} >Download</a>
+            <a href={instance.url as undefined | string} download={`Schedule 2223_${scheduleNumber}`} className={styles.buttonContent} >Download</a>
           </section>
           <section className={styles.downloadButton}>
             <p onClick={e => saveScheduleToFirebaseDatabase(year, scheduleNumber, companyInitials, scheduleData)} className={styles.buttonContent} >Save</p>
@@ -88,9 +87,9 @@ const RenderingPanel = () => {
         </section>
 
       </section>
-    );
+    )
   } catch (error) {
-    
+    console.error(error);
   }
 };
 
