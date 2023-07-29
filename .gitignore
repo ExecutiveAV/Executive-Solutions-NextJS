@@ -33,3 +33,6 @@ yarn-error.log*
 
 # Firebase Keys
 firebaseKeys.js
+
+#Enviroment Variables
+.env.local
