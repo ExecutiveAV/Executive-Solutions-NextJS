@@ -17,7 +17,7 @@ import OptionsInput from "../(CreatorInputs)/(optionsInput)/optionsInput";
 import NumberInput from "../(CreatorInputs)/(numberInput)/numberInput";
 import NavButton from "../(NavButton)/navButton";
 
-const SetUp = ({ action }) => {
+const SetUp = () => {
 
     const dispatch = useDispatch();
     const router = useRouter();

@@ -19,7 +19,7 @@ import {
 import { useSelector } from "react-redux";
 import { ScheduleData, SchedulePDFProps } from "../../types/types";
 
-const RenderingPanel = (): ReactNode => {
+const RenderingPanel = ({ kind }: {kind: string}): ReactNode => {
   
   try {
 
@@ -69,13 +69,37 @@ const RenderingPanel = (): ReactNode => {
         console.error("Error writing document: ", error);
         alert("Error saving schedule. Please try again.");
       }
-    };    
+    };
+
+    const scheduleRender = () => (
+      <>
+        <Hero />
+        <Body />
+      </>
+    );
+
+    const invoiceRender = () => (
+      <>
+      </>
+    );
+
+    const render = () => {
+      switch(kind) {
+        case "schedule":
+          return scheduleRender();
+          break;
+        case "invoices":
+          return invoiceRender();
+          break;
+        default:
+          return scheduleRender();
+      };
+    };
 
     return (
       <section className={styles.renderingPanel}>
         <section className={styles.renderingPreview}>
-          <Hero />
-          <Body />
+          {render()}
         </section>
         <section className={styles.buttons} >
           <section className={styles.downloadButton}>

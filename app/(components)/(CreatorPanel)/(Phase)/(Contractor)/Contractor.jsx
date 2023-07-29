@@ -3,7 +3,7 @@
 import { useSelector, useDispatch } from "react-redux";
 
 import { setContractorName, setContractorPosition, setContractorRate, setWalkAway, setCurrentContractor, setCurrentShift, setCurrentDay, setCurrentPhase } from '../../../../redux/slices/scheduleSlice';
-import { contractorNameSelector, contractorPositionSelector, contractorRateSelector, contractorWalkawaySelector, currentDaySelector, daysSelector, currentShiftSelector, shiftsSelector, currentContractorSelector, contractorsSelector } from "../../../../redux/selectors/scheduleSelectors";
+import { contractorNameSelector, contractorPositionSelector, contractorRateSelector, contractorWalkawaySelector, currentDaySelector, daysSelector, currentShiftSelector, shiftsSelector, currentContractorSelector, contractorsSelector, currentPhaseSelector } from "../../../../redux/selectors/scheduleSelectors";
 
 import OptionsInput from "../(CreatorInputs)/(optionsInput)/optionsInput";
 import NumberInput from "../(CreatorInputs)/(numberInput)/numberInput";
@@ -12,7 +12,7 @@ import NavButton from "../(NavButton)/navButton";
 
 import styles from '../(CreatorInputs)/Inputs.module.css';
 
-const Contractor = ({ currentPhase }) => {
+const Contractor = () => {
 
     const dispatch = useDispatch();
 
@@ -26,6 +26,8 @@ const Contractor = ({ currentPhase }) => {
     const position = useSelector(contractorPositionSelector);
     const rate = useSelector(contractorRateSelector);
     const walkaway = useSelector(contractorWalkawaySelector);
+
+    const currentPhase = useSelector(currentPhaseSelector);
 
     const checkIfLastContractorAndLastShiftAndLastDay = () => {
         if (currentContractor === Contractors.length - 1 && currentShift === Shifts.length - 1 && currentDay === Days.length - 1) {

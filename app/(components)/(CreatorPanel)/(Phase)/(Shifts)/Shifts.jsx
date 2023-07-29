@@ -2,7 +2,8 @@
 
 import { useSelector, useDispatch } from 'react-redux';
 
-import { contractorsSelector, contractorTimeInSelector, contractorTimeOutSelector, halfDaySelector, walkawaySelector, currentShiftSelector, currentDaySelector, shiftSelector } from '../../../../redux/selectors/scheduleSelectors';
+import { contractorsSelector, contractorTimeInSelector, contractorTimeOutSelector, halfDaySelector, walkawaySelector, currentShiftSelector, currentDaySelector, shiftSelector, currentPhase } from '../../../../redux/selectors/scheduleSelectors';
+
 
 import { setContractors, setShiftHalfDay, setShiftWalkaway, setCurrentPhase, setShiftStartTime, setShiftEndTime, setCurrentShift, setCurrentContractor } from '../../../../redux/slices/scheduleSlice';
 
@@ -13,7 +14,7 @@ import NavButton from "../(NavButton)/navButton";
 
 import styles from '../(CreatorInputs)/Inputs.module.css';
 
-const Shifts = ({ currentPhase }) => {
+const Shifts = () => {
 
     const dispatch = useDispatch();
 
@@ -25,6 +26,10 @@ const Shifts = ({ currentPhase }) => {
     const timeOut = useSelector(contractorTimeOutSelector);
     const halfDay = useSelector(halfDaySelector);
     const walkaway = useSelector(walkawaySelector);
+
+    const currentPhase = useSelector(currentPhase);
+
+
 
     const checkIfFirstShiftFromCurrentDay = () => {
         if (currentPhase === 2 && currentShift === 0) {
