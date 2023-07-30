@@ -1,8 +1,7 @@
 import { initializeApp } from 'firebase/app';
-// import firebaseConfig from '../../firebaseKeys';
 import { getFirestore } from 'firebase/firestore';
 
-const firebaseConfig = JSON.parse(process.env.FIREBASE_CONFIG);
+const firebaseConfig = JSON.parse(process.env.NEXT_PUBLIC_FIREBASE_CONFIG);
 
 export const firebaseApp = initializeApp(firebaseConfig);
 
