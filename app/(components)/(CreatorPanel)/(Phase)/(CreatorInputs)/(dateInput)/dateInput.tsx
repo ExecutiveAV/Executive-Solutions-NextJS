@@ -6,7 +6,11 @@ import { useSelector } from 'react-redux';
 
 import styles from '../Inputs.module.css';
 
-const DateInput = ({ value, label, dispatched }) => {
+const DateInput = ({ value, label, dispatched }:{
+    value?: string,
+    label: string,
+    dispatched: (value: any) => void
+}) => {
     return (
         <section>
             <label className={styles.inputLabel} >{label}</label>

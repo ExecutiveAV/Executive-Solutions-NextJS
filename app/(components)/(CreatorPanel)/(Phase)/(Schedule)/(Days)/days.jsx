@@ -1,15 +1,15 @@
 'use client'
 
 import { useSelector, useDispatch } from 'react-redux';
-import { dateSelector, shiftsSelector, daysSelector, currentDaySelector, currentPhaseSelector } from '../../../../redux/selectors/scheduleSelectors';
+import { dateSelector, shiftsSelector, daysSelector, currentDaySelector, currentPhaseSelector } from '../../../../../redux/selectors/scheduleSelectors';
 
-import { setCurrentPhase, setShifts, setDayDate, setCurrentDay, setCurrentShift, setCurrentContractor } from '../../../../redux/slices/scheduleSlice';
+import { setCurrentPhase, setShifts, setDayDate, setCurrentDay, setCurrentShift, setCurrentContractor } from '../../../../../redux/slices/scheduleSlice';
 
-import NumberInput from "../(CreatorInputs)/(numberInput)/numberInput";
-import DateInput from "../(CreatorInputs)/(dateInput)/dateInput";
-import NavButton from "../(NavButton)/navButton";
+import NumberInput from "../../(CreatorInputs)/(numberInput)/numberInput";
+import DateInput from "../../(CreatorInputs)/(dateInput)/dateInput";
+import NavButton from "../../(NavButton)/navButton";
 
-import styles from '../(CreatorInputs)/Inputs.module.css';
+import styles from '../../(CreatorInputs)/Inputs.module.css';
 
 const Days = () => {
 

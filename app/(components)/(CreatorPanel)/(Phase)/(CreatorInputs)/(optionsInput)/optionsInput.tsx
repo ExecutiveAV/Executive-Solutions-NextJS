@@ -10,9 +10,19 @@ import { setNewEntryKind } from "../../../../../redux/slices/newEntrySlice";
 
 import styles from "../Inputs.module.css"
 
-const OptionsInput = ({ value, label, entryType, action, dispatched }) => {
+type Options = {
+    optionIds: string[],
+    optionData: any
+};
 
-    const [options, setOptions] = useState({
+const OptionsInput = ({ value, label, entryType, dispatched }:{
+    value?: string,
+    label: string,
+    entryType: string,
+    dispatched: (value: any) => void
+}) => {
+
+    const [options, setOptions] = useState<Options>({
         optionIds: [],
         optionData: {}
     });
@@ -20,7 +30,7 @@ const OptionsInput = ({ value, label, entryType, action, dispatched }) => {
     const fetchDB = async (kind) => {
         try {
             const group = await getDocs(collection(db, kind));
-            const items = {
+            const items: Options = {
                 optionIds: [],
                 optionData: {}
             };

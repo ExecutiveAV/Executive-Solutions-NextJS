@@ -19,10 +19,11 @@ import { isNewItemPortalOpenSelector } from '../../redux/selectors/portalSelecto
 
 
 //Phases of the creator panel
-import SetUp from './(Phase)/(Setup)/Setup';
-import Days from './(Phase)/(Days)/days';
-import Contractor from './(Phase)/(Contractor)/Contractor';
-import Shifts from './(Phase)/(Shifts)/Shifts';
+import SetUp from './(Phase)/(Schedule)/(Setup)/Setup';
+import Days from './(Phase)/(Schedule)/(Days)/days';
+import Contractor from './(Phase)/(Schedule)/(Contractor)/Contractor';
+import Shifts from './(Phase)/(Schedule)/(Shifts)/Shifts';
+import InvoiceHeader from './(Phase)/(Invoices)/InvoiceHeader/InvoiceHeader';
 
 const NewDocument = ({ children, kind }:{children ? : any, kind: string}) => {
 
@@ -39,16 +40,15 @@ const NewDocument = ({ children, kind }:{children ? : any, kind: string}) => {
                 currentPhase === 3 ? <Contractor  /> :
                 ""
             }
-            {
-                isNewEntryPortalOpen && newEntryPortalType !== "undefined" ?
-                    <NewEntryPortal /> :
-                ""
-            }
         </>
     );
 
     const invoicePanel = () => (
         <>
+            {
+                currentPhase === 0 ? <InvoiceHeader /> :
+                ""
+            }
         </>
     );
 
@@ -69,6 +69,11 @@ const NewDocument = ({ children, kind }:{children ? : any, kind: string}) => {
     return (
         <section className={styles.creatorPanel} >
             {panel()}
+            {
+                isNewEntryPortalOpen && newEntryPortalType !== "undefined" ?
+                    <NewEntryPortal /> :
+                ""
+            }
         </section>
     );
 };

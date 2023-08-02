@@ -1,21 +1,21 @@
 'use client'
-import styles from "../(CreatorInputs)/Inputs.module.css";
+import styles from "../../(CreatorInputs)/Inputs.module.css";
 
 //Firestore DB
-import { db } from "../../../../../utils/firebaseUtils/firebaseUtils";
+import { db } from "../../../../../../utils/firebaseUtils/firebaseUtils";
 import { collection, getDoc } from "firebase/firestore";
 
-import Providers from "../../../(Provider)/Provider";
+import Providers from "../../../../(Provider)/Provider";
 import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/navigation";
 
-import { companyNameSelector, venueNameSelector, scheduleNumberSelector, daysSelector } from "../../../../redux/selectors/scheduleSelectors";
+import { companyNameSelector, venueNameSelector, scheduleNumberSelector, daysSelector } from "../../../../../redux/selectors/scheduleSelectors";
 
-import { setcompany, setScheduleNumber, setVenue, setDays, setCurrentPhase } from '../../../../redux/slices/scheduleSlice';
+import { setcompany, setScheduleNumber, setVenue, setDays, setCurrentPhase } from '../../../../../redux/slices/scheduleSlice';
 
-import OptionsInput from "../(CreatorInputs)/(optionsInput)/optionsInput";
-import NumberInput from "../(CreatorInputs)/(numberInput)/numberInput";
-import NavButton from "../(NavButton)/navButton";
+import OptionsInput from "../../(CreatorInputs)/(optionsInput)/optionsInput";
+import NumberInput from "../../(CreatorInputs)/(numberInput)/numberInput";
+import NavButton from "../../(NavButton)/navButton";
 
 const SetUp = () => {
 

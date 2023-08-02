@@ -2,15 +2,15 @@
 
 import { useSelector, useDispatch } from "react-redux";
 
-import { setContractorName, setContractorPosition, setContractorRate, setWalkAway, setCurrentContractor, setCurrentShift, setCurrentDay, setCurrentPhase } from '../../../../redux/slices/scheduleSlice';
-import { contractorNameSelector, contractorPositionSelector, contractorRateSelector, contractorWalkawaySelector, currentDaySelector, daysSelector, currentShiftSelector, shiftsSelector, currentContractorSelector, contractorsSelector, currentPhaseSelector } from "../../../../redux/selectors/scheduleSelectors";
+import { setContractorName, setContractorPosition, setContractorRate, setWalkAway, setCurrentContractor, setCurrentShift, setCurrentDay, setCurrentPhase } from '../../../../../redux/slices/scheduleSlice';
+import { contractorNameSelector, contractorPositionSelector, contractorRateSelector, contractorWalkawaySelector, currentDaySelector, daysSelector, currentShiftSelector, shiftsSelector, currentContractorSelector, contractorsSelector, currentPhaseSelector } from "../../../../../redux/selectors/scheduleSelectors";
 
-import OptionsInput from "../(CreatorInputs)/(optionsInput)/optionsInput";
-import NumberInput from "../(CreatorInputs)/(numberInput)/numberInput";
-import ToggleInput from "../(CreatorInputs)/(toggleInput)/toggleInput";
-import NavButton from "../(NavButton)/navButton";
+import OptionsInput from "../../(CreatorInputs)/(optionsInput)/optionsInput";
+import NumberInput from "../../(CreatorInputs)/(numberInput)/numberInput";
+import ToggleInput from "../../(CreatorInputs)/(toggleInput)/toggleInput";
+import NavButton from "../../(NavButton)/navButton";
 
-import styles from '../(CreatorInputs)/Inputs.module.css';
+import styles from '../../(CreatorInputs)/Inputs.module.css';
 
 const Contractor = () => {
 
