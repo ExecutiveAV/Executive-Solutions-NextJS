@@ -195,3 +195,84 @@ export interface SchedulePDFProps {
 }
 
 
+//// INVOICE TYPES ////
+
+export interface Invoice {
+    invoiceData: InvoiceData;
+    invoiceCurrent: InvoiceCurrent;
+}
+
+export interface InvoiceData {
+    invoiceHeader: InvoiceHeader;
+    invoiceBillTo: InvoiceBillTo;
+    invoicePayTo: InvoicePayTo;
+    invoiceBody: InvoiceBody;
+    invoiceFooter: InvoiceFooter;
+}
+
+export interface InvoiceCurrent {
+    invoiceCurrentPhase: number;
+    invoiceCurrentContractor: number;
+    invoiceCurrentDay: number;
+}
+
+export interface InvoiceHeader {
+    invoiceNumber: number;
+    invoiceVenue: string;
+    invoiceIssuedDate: string;
+    invoicePaymentTerms: string;
+    invoiceDueDate: string;
+}
+
+export interface InvoiceBillTo {
+    invoiceBillToName: string;
+    invoiceBillToAddress: string;
+    invoiceBillToAddress2?: string;
+    invoiceBillToCity: string;
+    invoiceBillToState: string;
+    invoiceBillToZip: string;
+    invoiceBillToPhoneNum?: string;
+    invoiceBillToEmail: string;
+    invoiceBillToPOC?: string;
+}
+
+export interface InvoicePayTo {
+    invoicePayToName: string;
+    invoicePayToAddress: string;
+    invoicePayToAddress2?: string;
+    invoicePayToCity: string;   
+    invoicePayToState: string;
+    invoicePayToZip: string;
+    invoicePayToPhoneNum?: string;
+    invoicePayToEmail: string;
+    invoicePayToPOC?: string;
+}
+
+export interface InvoiceBody {
+    invoiceBodyContractors: InvoiceBodyContractor[];
+}
+
+export interface InvoiceBodyContractor {
+    contractorTitle: string;
+    contractorDays: InvoiceBodyContractorDay[];
+    contractorTotal: number;
+}
+
+export interface InvoiceBodyContractorDay {
+    contractorDayDate: string;
+    contractorDayPosition: string;
+    contractorDayTimeIn: string;
+    contractorDayTimeOut: string;
+    contractorDayHours: number;
+    contractorDayRate: number;
+    contractorDayOT: number;
+    contractorDayTotal: number;
+    contractorDayWalkaway: boolean;
+}
+
+export interface InvoiceFooter {
+    invoiceFooterSubtotal: number;
+    invoiceFooterTax: number;
+    invoiceFooterDiscount?: number;
+    invoiceFooterTotal: number;
+}   
