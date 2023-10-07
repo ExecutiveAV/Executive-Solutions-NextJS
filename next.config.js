@@ -10,9 +10,6 @@ const nextConfig = {
   // https://nextjs.org/docs/api-reference/next.config.js/custom-webpack-config
   transpilePackages: ['react-native-web', '@react-pdf/renderer'],
   
-  experimental: {
-    appDir: true,
-  },
   webpack: (config, { buildId, dev, isServer, defaultLoaders, webpack }) => {
     config.resolve.alias = {
       ...config.resolve.alias,
