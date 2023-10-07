@@ -5,7 +5,7 @@ import styles from '../Inputs.module.css';
 
 import { useState } from 'react';
 
-const ToggleInput = ({ label, value, dispatched, id }) => {
+const ToggleInput = ( {label, value, dispatched, id} : {label: string, value: boolean, dispatched: Function, id: string} ) => {
 
     const handleClick = () => {
         dispatched(!value);

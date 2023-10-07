@@ -35,7 +35,25 @@ const initialState: Invoice = {
             invoicePayToPOC: '',
         },
         invoiceBody: {
-            invoiceBodyContractors: [],
+            invoiceBodyContractors: [
+                {
+                    contractorTitle: '',
+                    contractorDays: [
+                        {
+                            contractorDayDate: '',
+                            contractorDayHours: 0,
+                            contractorDayPosition: '',
+                            contractorDayTimeIn: '8:00 AM',
+                            contractorDayTimeOut: '6:00 PM',
+                            contractorDayOT: 0,
+                            contractorDayRate: 0,
+                            contractorDayTotal: 0,
+                            contractorDayWalkaway: false,
+                        },
+                    ],
+                    contractorTotal: 0,
+                },
+            ],
         },
         invoiceFooter: {
             invoiceFooterSubtotal: 0,
@@ -44,9 +62,9 @@ const initialState: Invoice = {
         },
     },
     invoiceCurrent: {
-        invoiceCurrentPhase: 0,
-        invoiceCurrentContractor: 0,
-        invoiceCurrentDay: 0,
+        day: 0,
+        contractor: 0,
+        phase: 0,
     },
 };
 
@@ -96,14 +114,14 @@ const invoiceSlice = createSlice({
             state.invoiceData.invoiceFooter = action.payload;
         },
         ///////// Invoice Current Actions /////////
-        setInvoiceCurrentPhase: (state, action: PayloadAction<Invoice['invoiceCurrent']['invoiceCurrentPhase']>) => {
-            state.invoiceCurrent.invoiceCurrentPhase = action.payload;
+        setInvoiceCurrentPhase: (state, action: PayloadAction<Invoice['invoiceCurrent']['phase']>) => {
+            state.invoiceCurrent.phase = action.payload;
         },
-        setInvoiceCurrentContractor: (state, action: PayloadAction<Invoice['invoiceCurrent']['invoiceCurrentContractor']>) => {
-            state.invoiceCurrent.invoiceCurrentContractor = action.payload;
+        setInvoiceCurrentContractor: (state, action: PayloadAction<Invoice['invoiceCurrent']['contractor']>) => {
+            state.invoiceCurrent.contractor = action.payload;
         },
-        setInvoiceCurrentDay: (state, action: PayloadAction<Invoice['invoiceCurrent']['invoiceCurrentDay']>) => {
-            state.invoiceCurrent.invoiceCurrentDay = action.payload;
+        setInvoiceCurrentDay: (state, action: PayloadAction<Invoice['invoiceCurrent']['day']>) => {
+            state.invoiceCurrent.day = action.payload;
         },
         ///////// Invoice Body Actions /////////
         setInvoiceBodyContractors: (state, action: PayloadAction<Invoice['invoiceData']['invoiceBody']['invoiceBodyContractors']>) => {

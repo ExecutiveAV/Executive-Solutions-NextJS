@@ -2,10 +2,10 @@
 
 import { useSelector, useDispatch } from 'react-redux';
 
-import { contractorsSelector, contractorTimeInSelector, contractorTimeOutSelector, halfDaySelector, walkawaySelector, currentShiftSelector, currentDaySelector, shiftSelector, currentPhase } from '../../../../../redux/selectors/scheduleSelectors';
+import { contractorsSelector, contractorTimeInSelector, contractorTimeOutSelector, halfDaySelector, walkawaySelector, scheduleCurrentShiftSelector, scheduleCurrentDaySelector, shiftSelector, scheduleCurrentPhaseSelector } from '../../../../../redux/selectors/scheduleSelectors';
 
 
-import { setContractors, setShiftHalfDay, setShiftWalkaway, setCurrentPhase, setShiftStartTime, setShiftEndTime, setCurrentShift, setCurrentContractor } from '../../../../../redux/slices/scheduleSlice';
+import { setContractors, setShiftHalfDay, setShiftWalkaway, setScheduleCurrentPhase, setShiftStartTime, setShiftEndTime, setScheduleCurrentShift, setScheduleCurrentContractor } from '../../../../../redux/slices/scheduleSlice';
 
 import NumberInput from "../../(CreatorInputs)/(numberInput)/numberInput";
 import ToggleInput from "../../(CreatorInputs)/(toggleInput)/toggleInput";
@@ -18,8 +18,8 @@ const Shifts = () => {
 
     const dispatch = useDispatch();
 
-    const currentShift = useSelector(currentShiftSelector);
-    const currentDay = useSelector(currentDaySelector);
+    const currentShift = useSelector(scheduleCurrentShiftSelector);
+    const currentDay = useSelector(scheduleCurrentDaySelector);
     const shift = useSelector(shiftSelector);
     const contractors = useSelector(contractorsSelector);
     const timeIn = useSelector(contractorTimeInSelector);
@@ -27,17 +27,17 @@ const Shifts = () => {
     const halfDay = useSelector(halfDaySelector);
     const walkaway = useSelector(walkawaySelector);
 
-    const currentPhase = useSelector(currentPhase);
+    const currentPhase = useSelector(scheduleCurrentPhaseSelector);
 
 
 
     const checkIfFirstShiftFromCurrentDay = () => {
         if (currentPhase === 2 && currentShift === 0) {
-            dispatch(setCurrentPhase(currentPhase - 1));
+            dispatch(setScheduleCurrentPhase(currentPhase - 1));
         } else if (currentPhase === 2 && currentShift > 0) {
-            dispatch(setCurrentShift(currentShift - 1));
-            dispatch(setCurrentPhase(currentPhase + 1));
-            dispatch(setCurrentContractor(shift.contractors.length - 1));
+            dispatch(setScheduleCurrentShift(currentShift - 1));
+            dispatch(setScheduleCurrentPhase(currentPhase + 1));
+            dispatch(setScheduleCurrentContractor(shift.contractors.length - 1));
         };
     };
 
@@ -51,7 +51,7 @@ const Shifts = () => {
             <ToggleInput value={walkaway ? walkaway : null} label={`Does this shift have a walkaway?`} dispatched={value => dispatch(setShiftWalkaway(value))} />
             <section className={styles.buttonHolder} >
                 <NavButton action={() => checkIfFirstShiftFromCurrentDay()} >Back</NavButton>
-                <NavButton action={() => dispatch(setCurrentPhase(currentPhase + 1))} >Next</NavButton>
+                <NavButton action={() => dispatch(setScheduleCurrentPhase(currentPhase + 1))} >Next</NavButton>
             </section>
         </>
         

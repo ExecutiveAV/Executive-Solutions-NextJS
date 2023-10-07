@@ -1,4 +1,4 @@
-import { ScheduleState, ScheduleData, Current } from '../../types/types';
+import { Schedule, ScheduleData, ScheduleCurrent } from '../../types/types';
 
 import { createSelector } from 'reselect';
 import { RootState } from '../store/store';
@@ -7,11 +7,11 @@ const scheduleSelector = (state:RootState) => state.schedule;
 
 export const scheduleDataSelector = createSelector(
   scheduleSelector,
-  (schedule:ScheduleState) => schedule.scheduleData
+  (schedule:Schedule) => schedule.scheduleData
 );
-const currentSelector = createSelector(
+export const scheduleCurrentSelector = createSelector(
   scheduleSelector,
-  (schedule:ScheduleState) => schedule.current
+  (schedule:Schedule) => schedule.scheduleCurrent
 );
 
 // Selectors for the schedule data
@@ -47,108 +47,108 @@ export const updatedAtSelector = createSelector(
 );
 
 export const dayNumberSelector = createSelector(
-  [scheduleDataSelector, currentSelector],
-  (scheduleData:ScheduleData, current:Current) => scheduleData.days[current.day].dayNumber
+  [scheduleDataSelector, scheduleCurrentSelector],
+  (scheduleData:ScheduleData, current:ScheduleCurrent) => scheduleData.days[current.day].dayNumber
 );
 
 export const dateSelector = createSelector(
-  [scheduleDataSelector, currentSelector],
-  (scheduleData:ScheduleData, current:Current) => scheduleData.days[current.day].date
+  [scheduleDataSelector, scheduleCurrentSelector],
+  (scheduleData:ScheduleData, current:ScheduleCurrent) => scheduleData.days[current.day].date
 );
 
 export const shiftsSelector = createSelector(
-  [scheduleDataSelector, currentSelector],
-  (scheduleData:ScheduleData, current:Current) => scheduleData.days[current.day].shifts
+  [scheduleDataSelector, scheduleCurrentSelector],
+  (scheduleData:ScheduleData, current:ScheduleCurrent) => scheduleData.days[current.day].shifts
 );
 
 export const shiftSelector = createSelector(
-  [scheduleDataSelector, currentSelector],
-  (scheduleData:ScheduleData, current:Current) => scheduleData.days[current.day].shifts[current.shift]
+  [scheduleDataSelector, scheduleCurrentSelector],
+  (scheduleData:ScheduleData, current:ScheduleCurrent) => scheduleData.days[current.day].shifts[current.shift]
 );
 
 export const shifNumbertSelector = createSelector(
-  [scheduleDataSelector, currentSelector],
-  (scheduleData:ScheduleData, current:Current) => scheduleData.days[current.day].shifts[current.shift].shiftNumber
+  [scheduleDataSelector, scheduleCurrentSelector],
+  (scheduleData:ScheduleData, current:ScheduleCurrent) => scheduleData.days[current.day].shifts[current.shift].shiftNumber
 );
 
 export const startTimeSelector = createSelector(
-    [scheduleDataSelector, currentSelector],
-    (scheduleData:ScheduleData, current:Current) => scheduleData.days[current.day].shifts[current.shift].startTime
+    [scheduleDataSelector, scheduleCurrentSelector],
+    (scheduleData:ScheduleData, current:ScheduleCurrent) => scheduleData.days[current.day].shifts[current.shift].startTime
 );
 
 export const endTimeSelector = createSelector(
-  [scheduleDataSelector, currentSelector],
-  (scheduleData:ScheduleData, current:Current) => scheduleData.days[current.day].shifts[current.shift].endTime
+  [scheduleDataSelector, scheduleCurrentSelector],
+  (scheduleData:ScheduleData, current:ScheduleCurrent) => scheduleData.days[current.day].shifts[current.shift].endTime
 );
 
 export const halfDaySelector = createSelector(
-  [scheduleDataSelector, currentSelector],
-  (scheduleData:ScheduleData, current:Current) => scheduleData.days[current.day].shifts[current.shift].halfDay
+  [scheduleDataSelector, scheduleCurrentSelector],
+  (scheduleData:ScheduleData, current:ScheduleCurrent) => scheduleData.days[current.day].shifts[current.shift].halfDay
 );
 
 export const walkawaySelector = createSelector(
-  [scheduleDataSelector, currentSelector],
-  (scheduleData:ScheduleData, current:Current) => scheduleData.days[current.day].shifts[current.shift].walkaway
+  [scheduleDataSelector, scheduleCurrentSelector],
+  (scheduleData:ScheduleData, current:ScheduleCurrent) => scheduleData.days[current.day].shifts[current.shift].walkaway
 );
 
 export const contractorsSelector = createSelector(
-  [scheduleDataSelector, currentSelector],
-  (scheduleData:ScheduleData, current:Current) => scheduleData.days[current.day].shifts[current.shift].contractors
+  [scheduleDataSelector, scheduleCurrentSelector],
+  (scheduleData:ScheduleData, current:ScheduleCurrent) => scheduleData.days[current.day].shifts[current.shift].contractors
 );
 
 export const totalHoursSelector = createSelector(
-  [scheduleDataSelector, currentSelector],
-  (scheduleData:ScheduleData, current:Current) => scheduleData.days[current.day].shifts[current.shift].totalHours
+  [scheduleDataSelector, scheduleCurrentSelector],
+  (scheduleData:ScheduleData, current:ScheduleCurrent) => scheduleData.days[current.day].shifts[current.shift].totalHours
 );
 
 export const contractorIdSelector = createSelector(
-  [scheduleDataSelector, currentSelector],
-  (scheduleData:ScheduleData, current:Current) => scheduleData.days[current.day].shifts[current.shift].contractors[current.contractor].contractorId
+  [scheduleDataSelector, scheduleCurrentSelector],
+  (scheduleData:ScheduleData, current:ScheduleCurrent) => scheduleData.days[current.day].shifts[current.shift].contractors[current.contractor].contractorId
 );
 
 export const contractorNameSelector = createSelector(
-  [scheduleDataSelector, currentSelector],
-  (scheduleData:ScheduleData, current:Current) => scheduleData.days[current.day].shifts[current.shift].contractors[current.contractor].contractorName
+  [scheduleDataSelector, scheduleCurrentSelector],
+  (scheduleData:ScheduleData, current:ScheduleCurrent) => scheduleData.days[current.day].shifts[current.shift].contractors[current.contractor].contractorName
 );
 
 export const contractorPositionSelector = createSelector(
-  [scheduleDataSelector, currentSelector],
-  (scheduleData:ScheduleData, current:Current) => scheduleData.days[current.day].shifts[current.shift].contractors[current.contractor].contractorPosition
+  [scheduleDataSelector, scheduleCurrentSelector],
+  (scheduleData:ScheduleData, current:ScheduleCurrent) => scheduleData.days[current.day].shifts[current.shift].contractors[current.contractor].contractorPosition
 );
 
 export const contractorRateSelector = createSelector(
-  [scheduleDataSelector, currentSelector],
-  (scheduleData:ScheduleData, current:Current) => scheduleData.days[current.day].shifts[current.shift].contractors[current.contractor].contractorRate
+  [scheduleDataSelector, scheduleCurrentSelector],
+  (scheduleData:ScheduleData, current:ScheduleCurrent) => scheduleData.days[current.day].shifts[current.shift].contractors[current.contractor].contractorRate
 );
 
 export const contractorTimeInSelector = createSelector(
-  [scheduleDataSelector, currentSelector],
-  (scheduleData:ScheduleData, current:Current) => scheduleData.days[current.day].shifts[current.shift].contractors[current.contractor].contractorTimeIn
+  [scheduleDataSelector, scheduleCurrentSelector],
+  (scheduleData:ScheduleData, current:ScheduleCurrent) => scheduleData.days[current.day].shifts[current.shift].contractors[current.contractor].contractorTimeIn
 );
 
 export const contractorTimeOutSelector = createSelector(
-  [scheduleDataSelector, currentSelector],
-  (scheduleData:ScheduleData, current:Current) => scheduleData.days[current.day].shifts[current.shift].contractors[current.contractor].contractorTimeOut
+  [scheduleDataSelector, scheduleCurrentSelector],
+  (scheduleData:ScheduleData, current:ScheduleCurrent) => scheduleData.days[current.day].shifts[current.shift].contractors[current.contractor].contractorTimeOut
 );
 
 export const contractorHoursSelector = createSelector(
-  [scheduleDataSelector, currentSelector],
-  (scheduleData:ScheduleData, current:Current) => scheduleData.days[current.day].shifts[current.shift].contractors[current.contractor].contractorHours
+  [scheduleDataSelector, scheduleCurrentSelector],
+  (scheduleData:ScheduleData, current:ScheduleCurrent) => scheduleData.days[current.day].shifts[current.shift].contractors[current.contractor].contractorHours
 );
 
 export const contractorTotalSelector = createSelector(
-  [scheduleDataSelector, currentSelector],
-  (scheduleData:ScheduleData, current:Current) => scheduleData.days[current.day].shifts[current.shift].contractors[current.contractor].contractorTotal
+  [scheduleDataSelector, scheduleCurrentSelector],
+  (scheduleData:ScheduleData, current:ScheduleCurrent) => scheduleData.days[current.day].shifts[current.shift].contractors[current.contractor].contractorTotal
 );
 
 export const contractorOvertimeSelector = createSelector(
-  [scheduleDataSelector, currentSelector],
-  (scheduleData:ScheduleData, current:Current) => scheduleData.days[current.day].shifts[current.shift].contractors[current.contractor].contractorOvertime
+  [scheduleDataSelector, scheduleCurrentSelector],
+  (scheduleData:ScheduleData, current:ScheduleCurrent) => scheduleData.days[current.day].shifts[current.shift].contractors[current.contractor].contractorOvertime
 );
 
 export const contractorWalkawaySelector = createSelector(
-  [scheduleDataSelector, currentSelector],
-  (scheduleData:ScheduleData, current:Current) => scheduleData.days[current.day].shifts[current.shift].contractors[current.contractor].walkaway
+  [scheduleDataSelector, scheduleCurrentSelector],
+  (scheduleData:ScheduleData, current:ScheduleCurrent) => scheduleData.days[current.day].shifts[current.shift].contractors[current.contractor].walkaway
 );
 
 export const companyNameSelector = createSelector(
@@ -228,22 +228,22 @@ export const venueZipSelector = createSelector(
 
 // Current selectors for the current day, shift, contractor, and phase
 
-export const currentDaySelector = createSelector(
-  currentSelector,
-  (current:Current) => current.day
+export const scheduleCurrentDaySelector = createSelector(
+  scheduleCurrentSelector,
+  (current:ScheduleCurrent) => current.day
 );
 
-export const currentShiftSelector = createSelector(
-  currentSelector,
-  (current:Current) => current.shift
+export const scheduleCurrentShiftSelector = createSelector(
+  scheduleCurrentSelector,
+  (current:ScheduleCurrent) => current.shift
 );
 
-export const currentContractorSelector = createSelector(
-  currentSelector,
-  (current:Current) => current.contractor
+export const scheduleCurrentContractorSelector = createSelector(
+  scheduleCurrentSelector,
+  (current:ScheduleCurrent) => current.contractor
 );
 
-export const currentPhaseSelector = createSelector(
-  currentSelector,
-  (current:Current) => current.phase
+export const scheduleCurrentPhaseSelector = createSelector(
+  scheduleCurrentSelector,
+  (current:ScheduleCurrent) => current.phase
 );

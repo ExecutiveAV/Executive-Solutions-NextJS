@@ -1,36 +1,18 @@
-export interface Shift {
-    shiftNumber: number;
-    startTime: string;
-    endTime: string;
-    totalHours: number;
-    halfDay: boolean;
-    walkaway: boolean;
-    contractors: Contractor[];
+////// SCHEDULE TYPES //////
+
+export interface Schedule {
+    scheduleData: ScheduleData;
+    scheduleCurrent: ScheduleCurrent;
 }
 
-export interface Day {
-    dayNumber: number;
-    date: string;
-    shifts: Shift[];
-}
-
-export interface Position {
-    positionName: string;
-    positionRate: number;
-}
-
-export interface Contractor {
-    contractorId: number;
-    contractorName: string;
-    contractorPosition: Position;
-    contractorRate: number;
-    contractorTimeIn: string;
-    contractorTimeOut: string;
-    contractorHours: number;
-    contractorTotal: number;
-    contractorOvertime: number;
-    walkaway: boolean;
-}
+export interface ScheduleData {
+    scheduleNumber: number;
+    company: Company;
+    venue: Venue;
+    days: Day[];
+    createdAt: string;
+    updatedAt: string;
+};
 
 export interface Company {
     companyName: string;
@@ -54,16 +36,41 @@ export interface Venue {
     venueZip: string;
 }
 
-export interface ScheduleData {
-    scheduleNumber: number;
-    company: Company;
-    venue: Venue;
-    days: Day[];
-    createdAt: string;
-    updatedAt: string;
-};
+export interface Day {
+    dayNumber: number;
+    date: string;
+    shifts: Shift[];
+}
 
-export interface Current {
+export interface Shift {
+    shiftNumber: number;
+    startTime: string;
+    endTime: string;
+    totalHours: number;
+    halfDay: boolean;
+    walkaway: boolean;
+    contractors: Contractor[];
+}
+
+export interface Contractor {
+    contractorId: number;
+    contractorName: string;
+    contractorPosition: Position;
+    contractorRate: number;
+    contractorTimeIn: string;
+    contractorTimeOut: string;
+    contractorHours: number;
+    contractorTotal: number;
+    contractorOvertime: number;
+    walkaway: boolean;
+}
+
+export interface Position {
+    positionName: string;
+    positionRate: number;
+}
+
+export interface ScheduleCurrent {
     day: number;
     shift: number;
     contractor: number;
@@ -71,12 +78,7 @@ export interface Current {
     phase: number;
 }
 
-export interface ScheduleState {
-    scheduleData: ScheduleData;
-    current: Current;
-}
-
-///////
+    ////// PORTAL TYPES //////
 
 export interface PortalState {
     isNewItemPortalOpen: boolean;
@@ -85,7 +87,7 @@ export interface PortalState {
     didUpload: boolean;
 }
 
-//////
+////// NEW ENTRY TYPES //////
 export interface newEntryCompany {
     companyName: string;
     companyPOC: string;
@@ -211,9 +213,9 @@ export interface InvoiceData {
 }
 
 export interface InvoiceCurrent {
-    invoiceCurrentPhase: number;
-    invoiceCurrentContractor: number;
-    invoiceCurrentDay: number;
+    day: number;
+    contractor: number;
+    phase: number;
 }
 
 export interface InvoiceHeader {

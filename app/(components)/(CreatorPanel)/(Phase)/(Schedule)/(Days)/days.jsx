@@ -1,9 +1,9 @@
 'use client'
 
 import { useSelector, useDispatch } from 'react-redux';
-import { dateSelector, shiftsSelector, daysSelector, currentDaySelector, currentPhaseSelector } from '../../../../../redux/selectors/scheduleSelectors';
+import { dateSelector, shiftsSelector, daysSelector, scheduleCurrentDaySelector, scheduleCurrentPhaseSelector } from '../../../../../redux/selectors/scheduleSelectors';
 
-import { setCurrentPhase, setShifts, setDayDate, setCurrentDay, setCurrentShift, setCurrentContractor } from '../../../../../redux/slices/scheduleSlice';
+import { setScheduleCurrentPhase, setShifts, setDayDate, setScheduleCurrentDay, setScheduleCurrentShift, setScheduleCurrentContractor } from '../../../../../redux/slices/scheduleSlice';
 
 import NumberInput from "../../(CreatorInputs)/(numberInput)/numberInput";
 import DateInput from "../../(CreatorInputs)/(dateInput)/dateInput";
@@ -15,21 +15,21 @@ const Days = () => {
 
     const dispatch = useDispatch();
 
-    const currentDay = useSelector(currentDaySelector);
+    const currentDay = useSelector(scheduleCurrentDaySelector);
     const Days = useSelector(daysSelector);
-    const currentPhase = useSelector(currentPhaseSelector);
+    const currentPhase = useSelector(scheduleCurrentPhaseSelector);
 
     const date = useSelector(dateSelector);
     const shifts = useSelector(shiftsSelector);
 
     const checkIfFirstDay = () => {
         if (currentPhase === 1 && currentDay === 0) {
-            dispatch(setCurrentPhase(currentPhase - 1));
+            dispatch(setScheduleCurrentPhase(currentPhase - 1));
         } else if (currentPhase === 1 && currentDay > 0) {
-            dispatch(setCurrentPhase(3));
-            dispatch(setCurrentDay(currentDay - 1));
-            dispatch(setCurrentShift(Days[currentDay - 1].shifts.length - 1));
-            dispatch(setCurrentContractor(Days[currentDay - 1].shifts[Days[currentDay - 1].shifts.length - 1].contractors.length - 1));
+            dispatch(setScheduleCurrentPhase(3));
+            dispatch(setScheduleCurrentDay(currentDay - 1));
+            dispatch(setScheduleCurrentShift(Days[currentDay - 1].shifts.length - 1));
+            dispatch(setScheduleCurrentContractor(Days[currentDay - 1].shifts[Days[currentDay - 1].shifts.length - 1].contractors.length - 1));
         }
     };
 

@@ -11,7 +11,7 @@ import { useRouter } from "next/navigation";
 
 import { companyNameSelector, venueNameSelector, scheduleNumberSelector, daysSelector } from "../../../../../redux/selectors/scheduleSelectors";
 
-import { setcompany, setScheduleNumber, setVenue, setDays, setCurrentPhase } from '../../../../../redux/slices/scheduleSlice';
+import { setcompany, setScheduleNumber, setVenue, setDays, setScheduleCurrent } from '../../../../../redux/slices/scheduleSlice';
 
 import OptionsInput from "../../(CreatorInputs)/(optionsInput)/optionsInput";
 import NumberInput from "../../(CreatorInputs)/(numberInput)/numberInput";
@@ -47,7 +47,7 @@ const SetUp = () => {
         if (checkForEmpty()) {  
             alert("Please fill out all fields");
         } else {
-            dispatch(setCurrentPhase(1));
+            dispatch(setScheduleCurrent(1));
         };
     };
 
