@@ -1,0 +1,69 @@
+/* ContractorCard.module.css */
+
+/* Main Section */
+.contractorCard {
+ margin-top: 20px;
+}
+
+/* remove the margin top from above to just the first contractorCard */
+.contractorCard:first-child {
+  margin-top: 0px;
+}
+
+/* Header */
+.cardHeader {
+  font-size: 20px;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+/* Table */
+.workTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 16px;
+}
+
+/* Table Head */
+.tableHead {
+    border: none;
+}
+
+.tableHeader {
+  padding: 10px;
+  text-align: center;
+  font-weight: bolder;
+}
+
+/* Table Body */
+.tableRow {
+}
+
+
+.tableRow:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.lastTableRow {
+  border-bottom: none;
+}
+
+.tableData {
+  padding: 2px;
+  text-align: center;
+}
+
+/* Footer */
+.tableFooter {
+  margin-top: 20px;
+}
+
+.tableTotal {
+  font-weight: bolder;
+  text-align: center;
+}
+
+.bumper {
+  height: 10px;
+  background-color: #939393;
+}

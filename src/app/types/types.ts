@@ -279,6 +279,7 @@ export interface InvoiceBodyContractor {
     contractorTitle: string;
     contractorDays: InvoiceBodyContractorDay[];
     contractorTotal: number;
+    contractorRate: number;
 }
 
 export interface InvoiceBodyContractorDay {

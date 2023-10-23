@@ -8,7 +8,7 @@ import Title from '../../../(components)/(Title)/Title'
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 import { doc, getDoc } from "firebase/firestore";
-import { db } from "../../../../utils/firebaseUtils/firebaseUtils";
+import { db } from "../../../../../utils/firebaseUtils/firebaseUtils";
 import { setScheduleData } from "../../../redux/slices/scheduleSlice";
 
 import { ScheduleData } from "../../../types/types"

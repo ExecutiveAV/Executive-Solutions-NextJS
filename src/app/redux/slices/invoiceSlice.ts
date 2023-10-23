@@ -57,6 +57,7 @@ const initialInvoiceData: InvoiceData = {
                     },
                 ],
                 contractorTotal: 0,
+                contractorRate: 0,
             },
         ],
     },
@@ -234,14 +235,71 @@ const invoiceSlice = createSlice({
             }
         },
         ///////// Invoice Body Actions /////////
-        setInvoiceBodyContractors: (state, action: PayloadAction<InvoiceBody['invoiceBodyContractors']>) => {
+        setInvoiceBodyContractors: (state, action: PayloadAction<number>) => {
             if (state.documentData.type === 'invoice') {
-                state.documentData.invoiceBody.invoiceBodyContractors = action.payload;
+                //do the same thing as below but for the invoice body
+                const tempContractors: InvoiceBodyContractor[] = [...state.documentData.invoiceBody.invoiceBodyContractors];
+                const newTotal = action.payload - state.documentData.invoiceBody.invoiceBodyContractors.length;
+
+                if (newTotal > 0) {
+                    for (let i = 0; i < newTotal; i++) {
+                        tempContractors.push({
+                            contractorTitle: '',
+                            contractorDays: [
+                                {
+                                    contractorDayDate: '',
+                                    contractorDayHours: 0,
+                                    contractorDayPosition: '',
+                                    contractorDayTimeIn: '8:00 AM',
+                                    contractorDayTimeOut: '6:00 PM',
+                                    contractorDayOT: 0,
+                                    contractorDayRate: 0,
+                                    contractorDayTotal: 0,
+                                    contractorDayWalkaway: false,
+                                },
+                            ],
+                            contractorTotal: 0,
+                            contractorRate: 0,
+                        });
+                    }
+                    state.documentData.invoiceBody.invoiceBodyContractors = tempContractors;
+                } else if (newTotal < 0) {
+                    state.documentData.invoiceBody.invoiceBodyContractors = tempContractors.slice(0, action.payload);
+                } else if (newTotal === 0) {
+                    return;
+                }
+
+            } else {
+                throw new Error('Invalid operation: days, day or shift does not exist on InvoiceData or InvoiceCurrent');
             }
         },
-        setInvoiceBodyContractor: (state, action: PayloadAction<InvoiceBodyContractor>) => {
+        setInvoiceBodyContractor: (state, action: PayloadAction<newEntryContractor>) => {
             if (state.documentData.type === 'invoice') {
-                state.documentData.invoiceBody.invoiceBodyContractors.push(action.payload);
+                let current = state.documentCurrent.contractor;
+                console.log("this is the current contractor on invoices: ", current)
+                state.documentData.invoiceBody.invoiceBodyContractors[current].contractorTitle = action.payload.contractorName;
+            }
+        },
+        addInvoiceBodyContractor: (state, action: PayloadAction<number>) => {
+            if (state.documentData.type === 'invoice') {
+                state.documentData.invoiceBody.invoiceBodyContractors.push({
+                    contractorTitle: '',
+                    contractorDays: [
+                        {
+                            contractorDayDate: '',
+                            contractorDayHours: 0,
+                            contractorDayPosition: '',
+                            contractorDayTimeIn: '8:00 AM',
+                            contractorDayTimeOut: '6:00 PM',
+                            contractorDayOT: 0,
+                            contractorDayRate: 0,
+                            contractorDayTotal: 0,
+                            contractorDayWalkaway: false,
+                        },
+                    ],
+                    contractorTotal: 0,
+                    contractorRate: 0,
+                });
             }
         },
         removeInvoiceBodyContractor: (state, action: PayloadAction<number>) => {
@@ -378,6 +436,7 @@ export const {
     ///////// Invoice Body Actions /////////
     setInvoiceBodyContractors,
     setInvoiceBodyContractor,
+    addInvoiceBodyContractor,
     removeInvoiceBodyContractor,
     setInvoiceBodyContractorTitle,
     setInvoiceBodyContractorDays,

@@ -41,12 +41,12 @@ const PayTo = () => {
     return (
         <>
             <OptionsInput label="Pay To" entryType="contractor" dispatched={(value) => dispatch(setInvoicePayTo(value))} value={invoicePayToAddress} />
-            <TextInput label="Address" value={invoicePayToAddress} dispatched={(value) => dispatch(setInvoicePayToAddress(value))} value={invoicePayToAddress} />
-            <TextInput label="Address 2" value={invoicePayToAddress2} dispatched={(value) => dispatch(setInvoicePayToAddress2(value))} value={invoicePayToAddress2} />
-            <TextInput label="City" value={invoicePayToCity} dispatched={(value) => dispatch(setInvoicePayToCity(value))} value={invoicePayToCity} />
-            <TextInput label="State" value={invoicePayToState} dispatched={(value) => dispatch(setInvoicePayToState(value))} value={invoicePayToState} />
-            <TextInput label="Zip" value={invoicePayToZip} dispatched={(value) => dispatch(setInvoicePayToZip(value))} value={invoicePayToZip} />
-            <TextInput label="Email" value={invoicePayToEmail} dispatched={(value) => dispatch(setInvoicePayToEmail(value))} value={invoicePayToEmail} />
+            <TextInput label="Address" value={invoicePayToAddress} dispatched={(value) => dispatch(setInvoicePayToAddress(value))} />
+            <TextInput label="Address 2" value={invoicePayToAddress2} dispatched={(value) => dispatch(setInvoicePayToAddress2(value))} />
+            <TextInput label="City" value={invoicePayToCity} dispatched={(value) => dispatch(setInvoicePayToCity(value))} />
+            <TextInput label="State" value={invoicePayToState} dispatched={(value) => dispatch(setInvoicePayToState(value))} />
+            <TextInput label="Zip" value={invoicePayToZip} dispatched={(value) => dispatch(setInvoicePayToZip(value))} />
+            <TextInput label="Email" value={invoicePayToEmail} dispatched={(value) => dispatch(setInvoicePayToEmail(value))} />
         </>
     );
 };

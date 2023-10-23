@@ -23,6 +23,7 @@ import { setScheduleCurrentPhase, setScheduleCurrentContractor, setScheduleCurre
 import SetUp from './(Phase)/(Schedule)/(Setup)/Setup';
 import Days from './(Phase)/(Schedule)/(Days)/days';
 import Contractor from './(Phase)/(Schedule)/(Contractor)/Contractor';
+import InvoiceContractor from './(Phase)/(Invoices)/(InvoiceContractor)/InvoiceContractor';
 import Shifts from './(Phase)/(Schedule)/(Shifts)/Shifts';
 import InvoiceHeader from './(Phase)/(Invoices)/(InvoiceHeader)/InvoiceHeader';
 import PayTo from './(Phase)/(Invoices)/(PayTo)/PayTo';
@@ -73,7 +74,7 @@ const NewDocument = ({ children, kind }:{children ? : any, kind: string}) => {
                 invoiceCurrentPhase === 1 ? <PayTo /> :
                 invoiceCurrentPhase === 2 ? <BillTo /> :
                 invoiceCurrentPhase === 3 ? <Body /> :
-                invoiceCurrentPhase === 4 ? <Contractor /> :
+                invoiceCurrentPhase === 4 ? <InvoiceContractor /> :
                 invoiceCurrentPhase === 5 ? <ContractorDay /> :
                 ""
             }
@@ -137,7 +138,7 @@ const NewDocument = ({ children, kind }:{children ? : any, kind: string}) => {
             }
         } else { // kind === 'invoices'
         if (direction === 'forward') {
-            if (phase < 3) {
+            if (phase < 4) {
             dispatch(setInvoiceCurrentPhase(phase + 1));
             } else {
             if (day < totalDays - 1) {

@@ -24,6 +24,7 @@ import {
     invoiceBillToStateSelector,
     invoiceBillToZipSelector,
     invoiceBillToEmailSelector,
+    invoiceBillToNameSelector
 } from "../../../../../redux/selectors/invoiceSelectors";
 
 
@@ -32,6 +33,7 @@ const BillTo = () => {
 
     const dispatch = useDispatch();
 
+    const invoiceBillToName = useSelector(invoiceBillToNameSelector);
     const invoiceBillToAddress = useSelector(invoiceBillToAddressSelector);
     const invoiceBillToAddress2 = useSelector(invoiceBillToAddress2Selector);
     const invoiceBillToCity = useSelector(invoiceBillToCitySelector);
@@ -41,7 +43,7 @@ const BillTo = () => {
 
     return (
         <>
-            <OptionsInput label="Bill To" entryType="company" dispatched={(value) => dispatch(setInvoiceBillTo(value))} />
+            <OptionsInput label="Bill To" value={invoiceBillToName} entryType="company" dispatched={(value) => dispatch(setInvoiceBillTo(value))} />
             <TextInput label="Address" value={invoiceBillToAddress} dispatched={(value) => dispatch(setInvoiceBillToAddress(value))}/>
             <TextInput label="Address 2" value={invoiceBillToAddress2} dispatched={(value) => dispatch(setInvoiceBillToAddress2(value))}/>
             <TextInput label="City" value={invoiceBillToCity} dispatched={(value) => dispatch(setInvoiceBillToCity(value))}/>
