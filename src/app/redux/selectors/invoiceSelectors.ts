@@ -222,7 +222,7 @@ export const invoiceFooterTotalSelector = createSelector(
 
 ////////// INVOICE BODY CONTRACTOR SELECTORS //////////
 
-export const invoiceBodyContractorNameSelector = createSelector(
+export const invoiceBodyContractorTitleSelector = createSelector(
     invoiceBodyContractorsSelector,
     invoiceCurrentContractorSelector,
     (invoiceBodyContractors, invoiceCurrentContractor) => invoiceBodyContractors[invoiceCurrentContractor].contractorTitle

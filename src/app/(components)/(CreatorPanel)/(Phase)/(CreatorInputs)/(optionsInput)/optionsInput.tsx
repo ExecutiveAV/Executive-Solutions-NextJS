@@ -70,7 +70,7 @@ const OptionsInput = ({ value, label, entryType, dispatched }:{
     return (
         <section >
             <label className={styles.inputLabel} >{label}</label>
-            <select className={styles.optionsInput} value={value ? value : "***Make a selection***"} onChange={e => newSelected(e.target.value, entryType)} >
+            <select className={styles.optionsInput} defaultValue={value ? value : "***Make a selection***"} onChange={e => newSelected(e.target.value, entryType)} >
                 <option className={styles.option} disabled  >***Make a selection***</option>
                 {options !== "undefined" ?
                 options.optionIds.map(option => (

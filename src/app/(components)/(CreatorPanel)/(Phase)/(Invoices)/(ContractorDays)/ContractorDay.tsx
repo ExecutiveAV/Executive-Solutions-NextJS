@@ -6,6 +6,29 @@ import OptionsInput from "../../(CreatorInputs)/(optionsInput)/optionsInput";
 import TimeInput from "../../(CreatorInputs)/(timeInput)/timeInput";
 import ToggleInput from "../../(CreatorInputs)/(toggleInput)/toggleInput";
 
+//import corresponding actions from ../../../../redux/actions/invoiceSlice.ts
+//import corresponding selectors from ../../../../redux/selectors/invoiceSelectors.ts
+import {
+    setInvoiceBodyContractorDayDate,
+    setInvoiceBodyContractorDayTimeIn,
+    setInvoiceBodyContractorDayTimeOut,
+    setInvoiceBodyContractorDayPosition,
+    setInvoiceBodyContractorDayWalkaway,
+    setInvoiceBodyContractorDayOT,
+    setInvoiceBodyContractorDayRate,
+} from "../../../../../redux/slices/invoiceSlice";
+
+import {
+    selectInvoiceBodyContractorDayDate,
+    selectInvoiceBodyContractorDayTimeIn,
+    selectInvoiceBodyContractorDayTimeOut,
+    selectInvoiceBodyContractorDayPosition,
+    selectInvoiceBodyContractorDayWalkaway,
+    selectInvoiceBodyContractorDayOT,
+    selectInvoiceBodyContractorDayRate,
+} from "../../../../../redux/selectors/invoiceSelectors";
+
+
 const ContractorDay = () => {
     return (
         <>

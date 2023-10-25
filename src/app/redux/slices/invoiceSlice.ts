@@ -307,69 +307,117 @@ const invoiceSlice = createSlice({
                 state.documentData.invoiceBody.invoiceBodyContractors.splice(action.payload, 1);
             }
         },
-        setInvoiceBodyContractorTitle: (state, action: PayloadAction<{ contractorIndex: number, contractorTitle: string }>) => {
+        setInvoiceBodyContractorTitle: (state, action: PayloadAction<string>) => {
             if (state.documentData.type === 'invoice') {
-                state.documentData.invoiceBody.invoiceBodyContractors[action.payload.contractorIndex].contractorTitle = action.payload.contractorTitle;
+                const currentContractor = state.documentCurrent.contractor;
+                state.documentData.invoiceBody.invoiceBodyContractors[currentContractor].contractorTitle = action.payload;
             }
         },
-        setInvoiceBodyContractorDays: (state, action: PayloadAction<{ contractorIndex: number, contractorDays: InvoiceBodyContractorDay[] }>) => {
+        setInvoiceBodyContractorDays: (state, action: PayloadAction<number>) => {
             if (state.documentData.type === 'invoice') {
-                state.documentData.invoiceBody.invoiceBodyContractors[action.payload.contractorIndex].contractorDays = action.payload.contractorDays;
+                const currentContractor = state.documentCurrent.contractor;
+                const tempDays: InvoiceBodyContractorDay[] = [...state.documentData.invoiceBody.invoiceBodyContractors[currentContractor].contractorDays];
+                const newTotal = action.payload - state.documentData.invoiceBody.invoiceBodyContractors[currentContractor].contractorDays.length;
+
+                if (newTotal > 0) {
+                    for (let i = 0; i < newTotal; i++) {
+                        tempDays.push({
+                            contractorDayDate: '',
+                            contractorDayHours: 0,
+                            contractorDayPosition: '',
+                            contractorDayTimeIn: '8:00 AM',
+                            contractorDayTimeOut: '6:00 PM',
+                            contractorDayOT: 0,
+                            contractorDayRate: 0,
+                            contractorDayTotal: 0,
+                            contractorDayWalkaway: false,
+                        });
+                    }
+                    state.documentData.invoiceBody.invoiceBodyContractors[currentContractor].contractorDays = tempDays;
+                } else if (newTotal < 0) {
+                    state.documentData.invoiceBody.invoiceBodyContractors[currentContractor].contractorDays = tempDays.slice(0, action.payload);
+                } else if (newTotal === 0) {
+                    return;
+                }
             }
         },
-        setInvoiceBodyContractorDay: (state, action: PayloadAction<{ contractorIndex: number, contractorDay: InvoiceBodyContractorDay }>) => {
+        setInvoiceBodyContractorDay: (state, action: PayloadAction<InvoiceBodyContractorDay>) => {
             if (state.documentData.type === 'invoice') {
-                state.documentData.invoiceBody.invoiceBodyContractors[action.payload.contractorIndex].contractorDays.push(action.payload.contractorDay);
+                const currentContractor = state.documentCurrent.contractor;
+                const currentDay = state.documentCurrent.day;
+                state.documentData.invoiceBody.invoiceBodyContractors[currentContractor].contractorDays[currentDay] = action.payload;
             }
         },
-        removeInvoiceBodyContractorDay: (state, action: PayloadAction<{ contractorIndex: number, contractorDayIndex: number }>) => {
+        removeInvoiceBodyContractorDay: (state, action: PayloadAction<number>) => {
             if (state.documentData.type === 'invoice') {
-                state.documentData.invoiceBody.invoiceBodyContractors[action.payload.contractorIndex].contractorDays.splice(action.payload.contractorDayIndex, 1);
+                const currentContractor = state.documentCurrent.contractor;
+                state.documentData.invoiceBody.invoiceBodyContractors[currentContractor].contractorDays.splice(action.payload, 1);
             }
         },
-        setInvoiceBodyContractorDayDate: (state, action: PayloadAction<{ contractorIndex: number, contractorDayIndex: number, contractorDayDate: string }>) => {
+        setInvoiceBodyContractorDayDate: (state, action: PayloadAction<InvoiceBodyContractorDay['contractorDayDate']>) => {
             if (state.documentData.type === 'invoice') {
-                state.documentData.invoiceBody.invoiceBodyContractors[action.payload.contractorIndex].contractorDays[action.payload.contractorDayIndex].contractorDayDate = action.payload.contractorDayDate;
+                const currentContractor = state.documentCurrent.contractor;
+                const currentDay = state.documentCurrent.day;
+                state.documentData.invoiceBody.invoiceBodyContractors[currentContractor].contractorDays[currentDay].contractorDayDate = action.payload;
             }
         },
-        setInvoiceBodyContractorDayHours: (state, action: PayloadAction<{ contractorIndex: number, contractorDayIndex: number, contractorDayHours: number }>) => {
+        setInvoiceBodyContractorDayHours: (state, action: PayloadAction<InvoiceBodyContractorDay['contractorDayHours']>) => {
             if (state.documentData.type === 'invoice') {
-                state.documentData.invoiceBody.invoiceBodyContractors[action.payload.contractorIndex].contractorDays[action.payload.contractorDayIndex].contractorDayHours = action.payload.contractorDayHours;
+                const currentContractor = state.documentCurrent.contractor;
+                const currentDay = state.documentCurrent.day;
+                state.documentData.invoiceBody.invoiceBodyContractors[currentContractor].contractorDays[currentDay].contractorDayHours = action.payload;
             }
         },
-        setInvoiceBodyContractorDayPosition: (state, action: PayloadAction<{ contractorIndex: number, contractorDayIndex: number, contractorDayPosition: string }>) => {
+        setInvoiceBodyContractorDayPosition: (state, action: PayloadAction<InvoiceBodyContractorDay['contractorDayPosition']>) => {
             if (state.documentData.type === 'invoice') {
-                state.documentData.invoiceBody.invoiceBodyContractors[action.payload.contractorIndex].contractorDays[action.payload.contractorDayIndex].contractorDayPosition = action.payload.contractorDayPosition;
+                const currentContractor = state.documentCurrent.contractor;
+                const currentDay = state.documentCurrent.day;
+                state.documentData.invoiceBody.invoiceBodyContractors[currentContractor].contractorDays[currentDay].contractorDayPosition = action.payload;
             }
         },
-        setInvoiceBodyContractorDayTimeIn: (state, action: PayloadAction<{ contractorIndex: number, contractorDayIndex: number, contractorDayTimeIn: string }>) => {
+        setInvoiceBodyContractorDayTimeIn: (state, action: PayloadAction<InvoiceBodyContractorDay['contractorDayTimeIn']>) => {
             if (state.documentData.type === 'invoice') {
-                state.documentData.invoiceBody.invoiceBodyContractors[action.payload.contractorIndex].contractorDays[action.payload.contractorDayIndex].contractorDayTimeIn = action.payload.contractorDayTimeIn;
+                const currentContractor = state.documentCurrent.contractor;
+                const currentDay = state.documentCurrent.day;
+                state.documentData.invoiceBody.invoiceBodyContractors[currentContractor].contractorDays[currentDay].contractorDayTimeIn = action.payload;
             }
         },
-        setInvoiceBodyContractorDayTimeOut: (state, action: PayloadAction<{ contractorIndex: number, contractorDayIndex: number, contractorDayTimeOut: string }>) => {
+        setInvoiceBodyContractorDayTimeOut: (state, action: PayloadAction<InvoiceBodyContractorDay['contractorDayTimeOut']>) => {
             if (state.documentData.type === 'invoice') {
-                state.documentData.invoiceBody.invoiceBodyContractors[action.payload.contractorIndex].contractorDays[action.payload.contractorDayIndex].contractorDayTimeOut = action.payload.contractorDayTimeOut;
+                const currentContractor = state.documentCurrent.contractor;
+                const currentDay = state.documentCurrent.day;
+                state.documentData.invoiceBody.invoiceBodyContractors[currentContractor].contractorDays[currentDay].contractorDayTimeOut = action.payload;
             }
         },
-        setInvoiceBodyContractorDayOT: (state, action: PayloadAction<{ contractorIndex: number, contractorDayIndex: number, contractorDayOT: number }>) => {
+        setInvoiceBodyContractorDayOT: (state, action: PayloadAction<InvoiceBodyContractorDay['contractorDayOT']>) => {
             if (state.documentData.type === 'invoice') {
-                state.documentData.invoiceBody.invoiceBodyContractors[action.payload.contractorIndex].contractorDays[action.payload.contractorDayIndex].contractorDayOT = action.payload.contractorDayOT;
+                const currentContractor = state.documentCurrent.contractor;
+                const currentDay = state.documentCurrent.day;
+                state.documentData.invoiceBody.invoiceBodyContractors[currentContractor].contractorDays[currentDay].contractorDayOT = action.payload;
             }
         },
-        setInvoiceBodyContractorDayRate: (state, action: PayloadAction<{ contractorIndex: number, contractorDayIndex: number, contractorDayRate: number }>) => {
+        setInvoiceBodyContractorDayRate: (state, action: PayloadAction<InvoiceBodyContractorDay['contractorDayRate']>) => {
             if (state.documentData.type === 'invoice') {
-                state.documentData.invoiceBody.invoiceBodyContractors[action.payload.contractorIndex].contractorDays[action.payload.contractorDayIndex].contractorDayRate = action.payload.contractorDayRate;
+                const currentContractor = state.documentCurrent.contractor;
+                const currentDay = state.documentCurrent.day;
+
+                state.documentData.invoiceBody.invoiceBodyContractors[currentContractor].contractorDays[currentDay].contractorDayRate = action.payload;
             }
         },
-        setInvoiceBodyContractorDayTotal: (state, action: PayloadAction<{ contractorIndex: number, contractorDayIndex: number, contractorDayTotal: number }>) => {
+        setInvoiceBodyContractorDayTotal: (state, action: PayloadAction<InvoiceBodyContractorDay['contractorDayTotal']>) => {
             if (state.documentData.type === 'invoice') {
-                state.documentData.invoiceBody.invoiceBodyContractors[action.payload.contractorIndex].contractorDays[action.payload.contractorDayIndex].contractorDayTotal = action.payload.contractorDayTotal;
+                const currentContractor = state.documentCurrent.contractor;
+                const currentDay = state.documentCurrent.day;
+
+                state.documentData.invoiceBody.invoiceBodyContractors[currentContractor].contractorDays[currentDay].contractorDayTotal = action.payload;
             }
         },
-        setInvoiceBodyContractorDayWalkaway: (state, action: PayloadAction<{ contractorIndex: number, contractorDayIndex: number, contractorDayWalkaway: boolean }>) => {
+        setInvoiceBodyContractorDayWalkaway: (state, action: PayloadAction<InvoiceBodyContractorDay['contractorDayWalkaway']>) => {
             if (state.documentData.type === 'invoice') {
-                state.documentData.invoiceBody.invoiceBodyContractors[action.payload.contractorIndex].contractorDays[action.payload.contractorDayIndex].contractorDayWalkaway = action.payload.contractorDayWalkaway;
+                const currentContractor = state.documentCurrent.contractor;
+                const currentDay = state.documentCurrent.day;
+
+                state.documentData.invoiceBody.invoiceBodyContractors[currentContractor].contractorDays[currentDay].contractorDayWalkaway = action.payload;
             }
         },
         ///////// Invoice Footer Actions /////////

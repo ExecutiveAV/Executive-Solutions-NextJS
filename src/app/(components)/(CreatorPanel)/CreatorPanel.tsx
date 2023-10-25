@@ -141,11 +141,14 @@ const NewDocument = ({ children, kind }:{children ? : any, kind: string}) => {
             if (phase < 4) {
             dispatch(setInvoiceCurrentPhase(phase + 1));
             } else {
-            if (day < totalDays - 1) {
-                dispatch(setInvoiceCurrentDay(day + 1));
-            } else if (contractor < totalContractors - 1) {
-                dispatch(setInvoiceCurrentContractor(contractor + 1));
-            }
+                if (day < totalDays - 1) {
+                    dispatch(setInvoiceCurrentDay(day + 1));
+                } else if (contractor < totalContractors - 1 && phase < 5) {
+                    dispatch(setInvoiceCurrentPhase(phase + 1));
+                } else if (contractor < totalContractors - 1 && phase === 5) {
+                    dispatch(setInvoiceCurrentContractor(contractor + 1));
+                    dispatch(setInvoiceCurrentPhase(4));
+                }
             }
         } else { // direction === 'backward'
             if (day > 0) {
